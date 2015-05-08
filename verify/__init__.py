@@ -70,6 +70,9 @@ class Expect(object):
             as its first argument. It's expected that these callables assert
             something.
 
+    Returns:
+        True: If all assertions pass.
+
     Raises:
         Exception: Whatever exception is raised in `assertables`. Generally,
             this should be an ``AssertionError``.
@@ -77,7 +80,8 @@ class Expect(object):
     .. versionadded:: 0.0.1
 
     .. versionchanged:: 0.1.0
-        Passed in `value` is no longer called if it's a callable.
+        - Passed in `value` is no longer called if it's a callable.
+        - Return ``True`` if all assertions pass.
     """
     def __init__(self, value, *assertables):
         self.value = value
@@ -88,6 +92,7 @@ class Expect(object):
     def __call__(self, *assertables):
         for assertable in assertables:
             assertable(self.value)
+        return True
 
 
 class Assertion(object):

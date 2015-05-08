@@ -17,31 +17,27 @@ def raises_assertion():
     (5, [verify.Greater(4), verify.Less(6)]),
 ])
 def test_multiple_assertables(value, assertables):
-    Expect(value, *assertables)
+    assert Expect(value, *assertables)
 
 
-@pytest.mark.parametrize('value,assertion', [
+@pytest.mark.parametrize('value,comparable', [
     (False, verify.Truthy),
     (True, verify.Falsy)
 ])
-def test_not(value, assertion):
-    Expect(value,
-           Not(assertion))
-
-    assert Not(assertion)
+def test_not(value, comparable):
+    assert Not(value, comparable)
 
 
-@pytest.mark.parametrize('value,assertable', [
+@pytest.mark.parametrize('value,comparable', [
     (True, verify.Truthy),
     (False, verify.Falsy)
 ])
-def test_not_raises(value, assertable):
+def test_not_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               Not(assertable))
+        Expect(value, Not(comparable))
 
     with raises_assertion():
-        Not(value, assertable)
+        Not(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -52,10 +48,8 @@ def test_not_raises(value, assertable):
     ('abc', 'abc'),
 ])
 def test_equal(value, comparable):
-    Expect(value,
-           verify.Equal(comparable))
-
-    verify.Equal(value, comparable)
+    assert Expect(value, verify.Equal(comparable))
+    assert verify.Equal(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -65,8 +59,7 @@ def test_equal(value, comparable):
 ])
 def test_equal_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               verify.Equal(comparable))
+        Expect(value, verify.Equal(comparable))
 
     with raises_assertion():
         verify.Equal(value, comparable)
@@ -79,10 +72,8 @@ def test_equal_raises(value, comparable):
     (True, False),
 ])
 def test_greater(value, comparable):
-    Expect(value,
-           verify.Greater(comparable))
-
-    verify.Greater(value, comparable)
+    assert Expect(value, verify.Greater(comparable))
+    assert verify.Greater(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -92,8 +83,7 @@ def test_greater(value, comparable):
 ])
 def test_greater_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               verify.Greater(comparable))
+        Expect(value, verify.Greater(comparable))
 
     with raises_assertion():
         verify.Greater(value, comparable)
@@ -107,10 +97,8 @@ def test_greater_raises(value, comparable):
     (True, False),
 ])
 def test_greater_equal(value, comparable):
-    Expect(value,
-           verify.GreaterEqual(comparable))
-
-    verify.GreaterEqual(value, comparable)
+    assert Expect(value, verify.GreaterEqual(comparable))
+    assert verify.GreaterEqual(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -120,8 +108,7 @@ def test_greater_equal(value, comparable):
 ])
 def test_greater_equal_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               verify.GreaterEqual(comparable))
+        Expect(value, verify.GreaterEqual(comparable))
 
     with raises_assertion():
         verify.GreaterEqual(value, comparable)
@@ -133,10 +120,8 @@ def test_greater_equal_raises(value, comparable):
     ('a', 'b'),
 ])
 def test_less(value, comparable):
-    Expect(value,
-           verify.Less(comparable))
-
-    verify.Less(value, comparable)
+    assert Expect(value, verify.Less(comparable))
+    assert verify.Less(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -147,8 +132,7 @@ def test_less(value, comparable):
 ])
 def test_less_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               verify.Less(comparable))
+        Expect(value, verify.Less(comparable))
 
     with raises_assertion():
         verify.Less(value, comparable)
@@ -160,10 +144,8 @@ def test_less_raises(value, comparable):
     ('a', 'b'),
 ])
 def test_less_equal(value, comparable):
-    Expect(value,
-           verify.LessEqual(comparable))
-
-    verify.LessEqual(value, comparable)
+    assert Expect(value, verify.LessEqual(comparable))
+    assert verify.LessEqual(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -174,8 +156,7 @@ def test_less_equal(value, comparable):
 ])
 def test_less_equal_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               verify.LessEqual(comparable))
+        Expect(value, verify.LessEqual(comparable))
 
     with raises_assertion():
         verify.LessEqual(value, comparable)
@@ -189,10 +170,8 @@ def test_less_equal_raises(value, comparable):
     ('a', 'a')
 ])
 def test_is(value, comparable):
-    Expect(value,
-           verify.Is(comparable))
-
-    verify.Is(value, comparable)
+    assert Expect(value, verify.Is(comparable))
+    assert verify.Is(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -203,8 +182,7 @@ def test_is(value, comparable):
 ])
 def test_is_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               verify.Is(comparable))
+        Expect(value, verify.Is(comparable))
 
     with raises_assertion():
         verify.Is(value, comparable)
@@ -214,17 +192,14 @@ def test_is_raises(value, comparable):
     True
 ])
 def test_is_true(value):
-    Expect(value,
-           verify.IsTrue())
-
-    verify.IsTrue(value)
+    assert Expect(value, verify.IsTrue())
+    assert verify.IsTrue(value)
 
 
 @pytest.mark.parametrize('value', falsisms)
 def test_is_true_raises(value):
     with raises_assertion():
-        Expect(value,
-               verify.IsTrue())
+        Expect(value, verify.IsTrue())
 
     with raises_assertion():
         verify.IsTrue(value)
@@ -234,17 +209,14 @@ def test_is_true_raises(value):
     False
 ])
 def test_is_false(value):
-    Expect(value,
-           verify.IsFalse())
-
-    verify.IsFalse(value)
+    assert Expect(value, verify.IsFalse())
+    assert verify.IsFalse(value)
 
 
 @pytest.mark.parametrize('value', truisms)
 def test_is_false_raises(value):
     with raises_assertion():
-        Expect(value,
-               verify.IsFalse())
+        Expect(value, verify.IsFalse())
 
     with raises_assertion():
         verify.IsFalse(value)
@@ -254,17 +226,14 @@ def test_is_false_raises(value):
     None
 ])
 def test_is_none(value):
-    Expect(value,
-           verify.IsNone())
-
-    verify.IsNone(value)
+    assert Expect(value, verify.IsNone())
+    assert verify.IsNone(value)
 
 
 @pytest.mark.parametrize('value', truisms)
 def test_is_none_raises(value):
     with raises_assertion():
-        Expect(value,
-               verify.IsNone())
+        Expect(value, verify.IsNone())
 
     with raises_assertion():
         verify.IsNone(value)
@@ -276,10 +245,8 @@ def test_is_none_raises(value):
     ('a', 'abc'),
 ])
 def test_in(value, comparable):
-    Expect(value,
-           verify.In(comparable))
-
-    verify.In(value, comparable)
+    assert Expect(value, verify.In(comparable))
+    assert verify.In(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -289,8 +256,7 @@ def test_in(value, comparable):
 ])
 def test_in_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               verify.In(comparable))
+        Expect(value, verify.In(comparable))
 
     with raises_assertion():
         verify.In(value, comparable)
@@ -302,10 +268,8 @@ def test_in_raises(value, comparable):
     (1, int)
 ])
 def test_instance_of(value, comparable):
-    Expect(value,
-           verify.InstanceOf(comparable))
-
-    verify.InstanceOf(value, comparable)
+    assert Expect(value, verify.InstanceOf(comparable))
+    assert verify.InstanceOf(value, comparable)
 
 
 @pytest.mark.parametrize('value,comparable', [
@@ -315,8 +279,7 @@ def test_instance_of(value, comparable):
 ])
 def test_instance_of_raises(value, comparable):
     with raises_assertion():
-        Expect(value,
-               verify.InstanceOf(comparable))
+        Expect(value, verify.InstanceOf(comparable))
 
     with raises_assertion():
         verify.InstanceOf(value, comparable)
@@ -324,17 +287,14 @@ def test_instance_of_raises(value, comparable):
 
 @pytest.mark.parametrize('value', truisms)
 def test_truthy(value):
-    Expect(value,
-           verify.Truthy())
-
-    verify.Truthy(value)
+    assert Expect(value, verify.Truthy())
+    assert verify.Truthy(value)
 
 
 @pytest.mark.parametrize('value', falsisms)
 def test_true_raises(value):
     with raises_assertion():
-        Expect(value,
-               verify.Truthy())
+        Expect(value, verify.Truthy())
 
     with raises_assertion():
         verify.Truthy(value)
@@ -342,17 +302,14 @@ def test_true_raises(value):
 
 @pytest.mark.parametrize('value', falsisms)
 def test_falsy(value):
-    Expect(value,
-           verify.Falsy())
-
-    verify.Falsy(value)
+    assert Expect(value, verify.Falsy())
+    assert verify.Falsy(value)
 
 
 @pytest.mark.parametrize('value', truisms)
 def test_falsy_raises(value):
     with raises_assertion():
-        Expect(value,
-               verify.Falsy())
+        Expect(value, verify.Falsy())
 
     with raises_assertion():
         verify.Falsy(value)
