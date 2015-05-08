@@ -22,10 +22,31 @@ def raises_assertion():
 
 
 @pytest.mark.parametrize('value,assertables', [
-    (5, [v.Greater(4), v.Less(6)]),
+    (5, (v.Greater(4), v.Less(6))),
 ])
-def test_multiple_assertables(value, assertables):
+def test_expect_multiple_assertables(value, assertables):
+    """Test that Expect handles multiple assertables."""
     assert Expect(value, *assertables)
+
+
+@pytest.mark.parametrize('value,predicates', [
+    (True, (lambda value: value is True, lambda value: value)),
+])
+def test_expect_predicates(value, predicates):
+    """Test that Expect handles multiple predicates that returns boolean
+    values."""
+    assert Expect(value, *predicates)
+
+
+@pytest.mark.parametrize('value,predicates', [
+    (True, (lambda value: value is True, lambda value: not value)),
+    (True, (lambda value: value is False, lambda value: value)),
+])
+def test_expect_predicates_raises(value, predicates):
+    """Test that Expect handles multiple predicates that returns boolean
+    values."""
+    with raises_assertion():
+        assert Expect(value, *predicates)
 
 
 @pytest.mark.parametrize('meth,value,comparables', [

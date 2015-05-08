@@ -47,16 +47,15 @@ class _NotSet(object):
 NotSet = _NotSet()
 
 
-class Expect(object):
-    """Main class for piping `value` through a set of assertable functions. If
-    all `assertables` pass, then the expectation is considered valid.
+def Expect(value, *assertables):
+    """Pass `value` through a set of assertable functions.
 
     Example:
 
         This will pass:
 
         >>> Expect(5, Truthy, Greater(4))
-        <verify.Expect...>
+        True
 
         This will fail:
 
@@ -74,6 +73,7 @@ class Expect(object):
 
     Returns:
         True: If all assertions pass.
+        False: If any assertions failed and no exceptions raised.
 
     Raises:
         Exception: Whatever exception is raised in `assertables`. Generally,
@@ -82,19 +82,12 @@ class Expect(object):
     .. versionadded:: 0.0.1
 
     .. versionchanged:: 0.1.0
+        - Change implementation of ``Except`` to function instead of class.
         - Passed in `value` is no longer called if it's a callable.
-        - Return ``True`` if all assertions pass.
+        - Return ``True`` if all assertions pass, ``False`` if otherwise and no
+          exceptions raised.
     """
-    def __init__(self, value, *assertables):
-        self.value = value
-
-        if assertables:
-            self(*assertables)
-
-    def __call__(self, *assertables):
-        for assertable in assertables:
-            assertable(self.value)
-        return True
+    return all(assertable(value) for assertable in assertables)
 
 
 class Assertion(object):
