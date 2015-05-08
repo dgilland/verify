@@ -12,7 +12,7 @@ Links
 
 - Project: https://github.com/dgilland/verify
 - Documentation: http://verify.readthedocs.org
-- PyPi: https://pypi.python.org/pypi/verify/
+- PyPI: https://pypi.python.org/pypi/verify/
 - TravisCI: https://travis-ci.org/dgilland/verify
 
 
@@ -27,7 +27,7 @@ Install using pip:
     pip install verify
 
 
-Verify some value using verify's assertions:
+Verify some value using multiple assertions:
 
 
 .. code-block:: python
@@ -41,13 +41,13 @@ Verify some value using verify's assertions:
            Less(30))
 
 
-Verify using your own functions:
+Verify using your own assert functions:
 
 
 .. code-block:: python
 
     def is_just_right(value):
-        assert 20 <= value <= 30, "it's just not right"
+        assert value != 'too cold' and value != 'too hot', 'Not just right!'
 
     # Passes
     Expect(25, is_just_right)
@@ -58,23 +58,45 @@ Verify using your own functions:
     except AssertionError:
         raise
 
-
-Under the hood the value that's passed to ``Expect`` will be piped through all of the assertion callables that are passed to it.
-
-You can also use the verify assertions on their own:
+Or your own predicate functions:
 
 
 .. code-block:: python
 
-    # These will pass.
+    def is_awesome(value):
+        return 'awesome' in value
+
+    def is_more_awesome(value):
+        return value > 'awesome'
+
+    Expect('so awesome', is_awesome, is_more_awesome)
+
+
+But you don't have to use ``Expect``. The verify assertions can be used on their own:
+
+
+.. code-block:: python
+
+    import verify
+
+    # These would pass.
     verify.Truthy(1)
     verify.Equal(2, 2)
     verify.Greater(3, 2)
 
-    # These will fail with an AssertionError
+    # These would fail with an AssertionError
     verify.Truthy(0)
     verify.Equal(2, 3)
     verify.Greater(2, 3)
+
+
+And if you'd prefer to see ``assert`` being used, all verify assertions will return ``True`` if no ``AssertionError`` is raised:
+
+
+.. code-block:: python
+
+    assert Truthy(1)
+    assert Except(1, Truthy(), Number())
 
 
 Validators
@@ -90,31 +112,33 @@ The available validators are:
 ================   ===========
 Validator          Description
 ================   ===========
-``Not``            Assert that a callable doesn't raise an ``AssertionError``
-``Equal``          Assert that ``a == b``
-``Greater``        Assert that ``a > b``
-``GreaterEqual``   Assert that ``a >= b``
-``Less``           Assert that ``a < b``
-``LessEqual``      Assert that ``a <= b``
-``Is``             Assert that ``a is b``
-``IsTrue``         Assert that ``a is True``
-``IsFalse``        Assert that ``a is False``
-``IsNone``         Assert that ``a is None``
-``In``             Assert that ``a in b``
-``InstanceOf``     Assert that ``isinstance(a, b)``
-``Truthy``         Assert that ``bool(a)``
-``Falsy``          Assert that ``not bool(a)``
-``IsBoolean``      TODO
-``IsString``       TODO
-``IsDict``         TODO
-``IsList``         TODO
-``IsTuple``        TODO
-``IsNumber``       TODO
-``IsInt``          TODO
-``IsFloat``        TODO
-``IsNaN``          TODO
-``IsDate``         TODO
-``IsDatetime``     TODO
+``Not``            Assert that a callable doesn't raise an ``AssertionError``.
+``Predicate``      Assert that ``predicate(a)`` (``predicate()`` should return a boolean).
+``Equal``          Assert that ``a == b``.
+``Greater``        Assert that ``a > b``.
+``GreaterEqual``   Assert that ``a >= b``.
+``Less``           Assert that ``a < b``.
+``LessEqual``      Assert that ``a <= b``.
+``Is``             Assert that ``a is b``.
+``IsTrue``         Assert that ``a is True``.
+``IsFalse``        Assert that ``a is False``.
+``IsNone``         Assert that ``a is None``.
+``In``             Assert that ``a in b``.
+``InstanceOf``     Assert that ``isinstance(a, b)``.
+``Truthy``         Assert that ``bool(a)``.
+``Falsy``          Assert that ``not bool(a)``.
+``Boolean``        Assert that ``isinstance(a, bool)``.
+``String``         Assert that ``isinstance(a, (str, unicode))``
+``Dict``           Assert that ``isinstance(a, dict)``
+``List``           Assert that ``isinstance(a, list)``
+``Tuple``          Assert that ``isinstance(a, tuple)``
+``Int``            Assert that ``isinstance(a, int)``
+``Float``          Assert that ``isinstance(a, float)``
+``Number``         Assert that ``isinstance(a, (int, float, Decimal, long))``.
+``NaN``            Assert that ``not isinstance(a, (int, float, Decimal, long))``.
+
+``Date``           TODO
+``Datetime``       TODO
 ``Negative``       TODO
 ``Positive``       TODO
 ``Odd``            TODO
@@ -129,10 +153,9 @@ Validator          Description
 ``Match``          TODO
 ``Range``          TODO
 ``Length``         TODO
-``Datetime``       TODO
+``DatetimeString`` TODO
 ``Unique``         TODO
 ``ExactSequence``  TODO
-``Predicate``      TODO
 ``Subset``         TODO
 ``Superset``       TODO
 ================   ===========
