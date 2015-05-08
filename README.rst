@@ -97,13 +97,13 @@ Validator          Description
 ``Less``           Assert that ``a < b``
 ``LessEqual``      Assert that ``a <= b``
 ``Is``             Assert that ``a is b``
+``IsTrue``         Assert that ``a is True``
+``IsFalse``        Assert that ``a is False``
+``IsNone``         Assert that ``a is None``
 ``In``             Assert that ``a in b``
 ``InstanceOf``     Assert that ``isinstance(a, b)``
 ``Truthy``         Assert that ``bool(a)``
 ``Falsy``          Assert that ``not bool(a)``
-``IsTrue``         Assert that ``a is True``
-``IsFalse``        Assert that ``a is False``
-``IsNone``         Assert that ``a is None``
 ``IsBoolean``      TODO
 ``IsString``       TODO
 ``IsDict``         TODO

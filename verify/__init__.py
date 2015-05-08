@@ -23,14 +23,14 @@ __all__ = (
     'GreaterEqual',
     'Less',
     'LessEqual',
-    'Is',
     'In',
     'InstanceOf',
-    'Truthy',
-    'Falsy',
-    'Istrue',
+    'Is',
+    'IsTrue',
     'IsFalse',
     'IsNone',
+    'Truthy',
+    'Falsy',
 )
 
 
@@ -240,6 +240,42 @@ class Is(Comparator):
     op = operator.is_
 
 
+class IsTrue(Assertion):
+    """Asserts that `value` is ``True``.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not True'
+    op = Is(True)
+
+
+class IsFalse(Assertion):
+    """Asserts that `value` is ``False``.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not False'
+    op = Is(False)
+
+
+class IsNone(Assertion):
+    """Asserts that `value` is ``None``.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.0.1
+    """
+    reason = '{0} is not None'
+    op = Is(None)
+
+
 class In(Comparator):
     """Asserts that `value` is in `comparable`.
 
@@ -291,39 +327,3 @@ class Falsy(NegateMixin, Truthy):
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not falsy'
-
-
-class IsTrue(Assertion):
-    """Asserts that `value` is ``True``.
-
-    Raises:
-        AssertionError: If comparision returns ``False``.
-
-    .. versionadded:: 0.1.0
-    """
-    reason = '{0} is not True'
-    op = Is(True)
-
-
-class IsFalse(Assertion):
-    """Asserts that `value` is ``False``.
-
-    Raises:
-        AssertionError: If comparision returns ``False``.
-
-    .. versionadded:: 0.1.0
-    """
-    reason = '{0} is not False'
-    op = Is(False)
-
-
-class IsNone(Assertion):
-    """Asserts that `value` is ``None``.
-
-    Raises:
-        AssertionError: If comparision returns ``False``.
-
-    .. versionadded:: 0.0.1
-    """
-    reason = '{0} is not None'
-    op = Is(None)

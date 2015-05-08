@@ -13,6 +13,37 @@ def raises_assertion():
     return pytest.raises(AssertionError)
 
 
+@pytest.mark.parametrize('value,assertables', [
+    (5, [verify.Greater(4), verify.Less(6)]),
+])
+def test_multiple_assertables(value, assertables):
+    Expect(value, *assertables)
+
+
+@pytest.mark.parametrize('value,assertion', [
+    (False, verify.Truthy),
+    (True, verify.Falsy)
+])
+def test_not(value, assertion):
+    Expect(value,
+           Not(assertion))
+
+    assert Not(assertion)
+
+
+@pytest.mark.parametrize('value,assertable', [
+    (True, verify.Truthy),
+    (False, verify.Falsy)
+])
+def test_not_raises(value, assertable):
+    with raises_assertion():
+        Expect(value,
+               Not(assertable))
+
+    with raises_assertion():
+        Not(value, assertable)
+
+
 @pytest.mark.parametrize('value,comparable', [
     (1, 1),
     (True, True),
@@ -179,42 +210,6 @@ def test_is_raises(value, comparable):
         verify.Is(value, comparable)
 
 
-@pytest.mark.parametrize('value', truisms)
-def test_truthy(value):
-    Expect(value,
-           verify.Truthy())
-
-    verify.Truthy(value)
-
-
-@pytest.mark.parametrize('value', falsisms)
-def test_true_raises(value):
-    with raises_assertion():
-        Expect(value,
-               verify.Truthy())
-
-    with raises_assertion():
-        verify.Truthy(value)
-
-
-@pytest.mark.parametrize('value', falsisms)
-def test_falsy(value):
-    Expect(value,
-           verify.Falsy())
-
-    verify.Falsy(value)
-
-
-@pytest.mark.parametrize('value', truisms)
-def test_falsy_raises(value):
-    with raises_assertion():
-        Expect(value,
-               verify.Falsy())
-
-    with raises_assertion():
-        verify.Falsy(value)
-
-
 @pytest.mark.parametrize('value', [
     True
 ])
@@ -327,32 +322,37 @@ def test_instance_of_raises(value, comparable):
         verify.InstanceOf(value, comparable)
 
 
-@pytest.mark.parametrize('value,assertion', [
-    (False, verify.Truthy),
-    (True, verify.Falsy)
-])
-def test_not(value, assertion):
+@pytest.mark.parametrize('value', truisms)
+def test_truthy(value):
     Expect(value,
-           Not(assertion))
+           verify.Truthy())
 
-    assert Not(assertion)
+    verify.Truthy(value)
 
 
-@pytest.mark.parametrize('value,assertable', [
-    (True, verify.Truthy),
-    (False, verify.Falsy)
-])
-def test_not_raises(value, assertable):
+@pytest.mark.parametrize('value', falsisms)
+def test_true_raises(value):
     with raises_assertion():
         Expect(value,
-               Not(assertable))
+               verify.Truthy())
 
     with raises_assertion():
-        Not(value, assertable)
+        verify.Truthy(value)
 
 
-@pytest.mark.parametrize('value,assertables', [
-    (5, [verify.Greater(4), verify.Less(6)]),
-])
-def test_multiple_assertables(value, assertables):
-    Expect(value, *assertables)
+@pytest.mark.parametrize('value', falsisms)
+def test_falsy(value):
+    Expect(value,
+           verify.Falsy())
+
+    verify.Falsy(value)
+
+
+@pytest.mark.parametrize('value', truisms)
+def test_falsy_raises(value):
+    with raises_assertion():
+        Expect(value,
+               verify.Falsy())
+
+    with raises_assertion():
+        verify.Falsy(value)
