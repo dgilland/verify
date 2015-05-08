@@ -353,6 +353,90 @@ class Falsy(NegateMixin, Truthy):
     reason = '{0} is not falsy'
 
 
+class Boolean(Assertion):
+    """Asserts that `value` is a boolean.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not a boolean'
+    op = Predicate(pydash.is_boolean)
+
+
+class String(Assertion):
+    """Asserts that `value` is a string (``str`` or ``unicode`` on Python 2).
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not a string'
+    op = Predicate(pydash.is_string)
+
+
+class Dict(Assertion):
+    """Asserts that `value` is a dictionary.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not a dictionary'
+    op = Predicate(pydash.is_dict)
+
+
+class List(Assertion):
+    """Asserts that `value` is a list.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not a list'
+    op = Predicate(pydash.is_list)
+
+
+class Tuple(Assertion):
+    """Asserts that `value` is a tuple.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not a tuple'
+    op = Predicate(pydash.is_tuple)
+
+
+class Int(Assertion):
+    """Asserts that `value` is an integer.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not an int'
+    op = Predicate(pydash.is_int)
+
+
+class Float(Assertion):
+    """Asserts that `value` is a float.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not a float'
+    op = Predicate(pydash.is_float)
+
+
 class Number(Assertion):
     """Asserts that `value` is a number.
 
@@ -370,3 +454,15 @@ class Number(Assertion):
     """
     reason = '{0} is not a number'
     op = Predicate(pydash.is_number)
+
+
+class NaN(Assertion):
+    """Asserts that `value` is a not a number.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is a number'
+    op = Predicate(pydash.is_nan)
