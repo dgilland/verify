@@ -18,7 +18,7 @@ from .__meta__ import (
 
 
 __all__ = (
-    'Expect',
+    'expect',
     'Not',
     'Equal',
     'Greater',
@@ -34,6 +34,14 @@ __all__ = (
     'Predicate',
     'Truthy',
     'Falsy',
+    'Boolean',
+    'String',
+    'Dict',
+    'List',
+    'Tuple',
+    'Int',
+    'Float',
+    'NaN',
     'Number',
 )
 
@@ -47,19 +55,19 @@ class _NotSet(object):
 NotSet = _NotSet()
 
 
-def Expect(value, *assertables):
+def expect(value, *assertions):
     """Pass `value` through a set of assertable functions.
 
     Example:
 
         This will pass:
 
-        >>> Expect(5, Truthy, Greater(4))
+        >>> expect(5, Truthy, Greater(4))
         True
 
         This will fail:
 
-        >>> Expect(5, Falsy)
+        >>> expect(5, Falsy)
         Traceback (most recent call last):
         ...
         AssertionError: ...
@@ -67,27 +75,29 @@ def Expect(value, *assertables):
 
     Args:
         value (mixed): Value to test.
-        *assertables (callable, optional): Callable objects that accept `value`
+        *assertions (callable, optional): Callable objects that accept `value`
             as its first argument. It's expected that these callables assert
             something.
 
     Returns:
-        True: If all assertions pass.
-        False: If any assertions failed and no exceptions raised.
+        bool: Whether all assertions pass.
 
     Raises:
-        Exception: Whatever exception is raised in `assertables`. Generally,
+        AssertionError: If the evaluation of all assertions returns ``False``.
+        Exception: Whatever exception is raised in `assertions`. Generally,
             this should be an ``AssertionError``.
 
     .. versionadded:: 0.0.1
 
     .. versionchanged:: 0.1.0
-        - Change implementation of ``Except`` to function instead of class.
+
+        - Rename from ``Expect`` to ``expect`` and change implementation from a
+          class to a function.
         - Passed in `value` is no longer called if it's a callable.
-        - Return ``True`` if all assertions pass, ``False`` if otherwise and no
-          exceptions raised.
+        - Return ``True`` if all assertions pass.
     """
-    return all(assertable(value) for assertable in assertables)
+    assert all(assertable(value) for assertable in assertions)
+    return True
 
 
 class Assertion(object):
@@ -435,10 +445,10 @@ class Number(Assertion):
 
     Objects considered a number are:
 
-    - int
-    - float
-    - decimal.Decimal
-    - long (Python 2)
+    - ``int``
+    - ``float``
+    - ``decimal.Decimal``
+    - ``long (Python 2)``
 
     Raises:
         AssertionError: If comparision returns ``False``.

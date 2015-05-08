@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 from decimal import Decimal
 
@@ -5,7 +6,7 @@ import pytest
 
 import verify
 import verify as v
-from verify import Expect, Not
+from verify import expect, Not
 
 
 def make_parametrize_id(argvalue):
@@ -21,12 +22,12 @@ def raises_assertion():
     return pytest.raises(AssertionError)
 
 
-@pytest.mark.parametrize('value,assertables', [
+@pytest.mark.parametrize('value,assertions', [
     (5, (v.Greater(4), v.Less(6))),
 ])
-def test_expect_multiple_assertables(value, assertables):
-    """Test that Expect handles multiple assertables."""
-    assert Expect(value, *assertables)
+def test_expect_multiple_assertions(value, assertions):
+    """Test that Expect handles multiple assertions."""
+    assert expect(value, *assertions)
 
 
 @pytest.mark.parametrize('value,predicates', [
@@ -35,7 +36,7 @@ def test_expect_multiple_assertables(value, assertables):
 def test_expect_predicates(value, predicates):
     """Test that Expect handles multiple predicates that returns boolean
     values."""
-    assert Expect(value, *predicates)
+    assert expect(value, *predicates)
 
 
 @pytest.mark.parametrize('value,predicates', [
@@ -46,7 +47,7 @@ def test_expect_predicates_raises(value, predicates):
     """Test that Expect handles multiple predicates that returns boolean
     values."""
     with raises_assertion():
-        assert Expect(value, *predicates)
+        assert expect(value, *predicates)
 
 
 @pytest.mark.parametrize('meth,value,comparables', [
@@ -114,7 +115,7 @@ def test_assert_method(meth, value, comparables):
     if not isinstance(comparables, (list, tuple)):
         comparables = (comparables,)
 
-    assert Expect(value, meth(*comparables))
+    assert expect(value, meth(*comparables))
     assert meth(value, *comparables)
 
 
@@ -201,7 +202,7 @@ def test_assert_raises(meth, value, comparables):
         comparables = (comparables,)
 
     with raises_assertion():
-        Expect(value, meth(*comparables))
+        expect(value, meth(*comparables))
 
     with raises_assertion():
         meth(value, *comparables)

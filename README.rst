@@ -32,9 +32,9 @@ Verify some value using multiple assertions:
 
 .. code-block:: python
 
-    from verify import Expect, Not, Truthy, Falsy, Less, Greater
+    from verify import expect, Not, Truthy, Falsy, Less, Greater
 
-    Expect(5 * 5,
+    expect(5 * 5,
            Truthy(),
            Not(Falsy),
            Greater(15),
@@ -50,11 +50,11 @@ Verify using your own assert functions:
         assert value != 'too cold' and value != 'too hot', 'Not just right!'
 
     # Passes
-    Expect(25, is_just_right)
+    expect(25, is_just_right)
 
     # Fails
     try:
-        Expect(31, is_just_right)
+        expect(31, is_just_right)
     except AssertionError:
         raise
 
@@ -69,10 +69,10 @@ Or your own predicate functions:
     def is_more_awesome(value):
         return value > 'awesome'
 
-    Expect('so awesome', is_awesome, is_more_awesome)
+    expect('so awesome', is_awesome, is_more_awesome)
 
 
-But you don't have to use ``Expect``. The verify assertions can be used on their own:
+But you don't have to use ``expect`` since the ``verify`` assertions can be used on their own:
 
 
 .. code-block:: python
@@ -90,7 +90,7 @@ But you don't have to use ``Expect``. The verify assertions can be used on their
     verify.Greater(2, 3)
 
 
-And if you'd prefer to see ``assert`` being used, all verify assertions will return ``True`` if no ``AssertionError`` is raised:
+And if you'd prefer to see ``assert`` being used, all ``verify`` assertions will return ``True`` if no ``AssertionError`` is raised:
 
 
 .. code-block:: python
@@ -105,60 +105,59 @@ Validators
 All of the validators in ``verify`` are callables that can be used in two contexts:
 
 1. By themselves as in ``Equal(a, b)`` which will raise an ``AssertionError`` if false.
-2. In combination with ``Except`` as in ``Expect(a, Equal(b))`` could also raise an ``AssertionError``.
+2. In combination with ``except`` as in ``expect(a, Equal(b))`` which could also raise an ``AssertionError``.
 
 The available validators are:
 
-================   ===========
-Validator          Description
-================   ===========
-``Not``            Assert that a callable doesn't raise an ``AssertionError``.
-``Predicate``      Assert that ``predicate(a)`` (``predicate()`` should return a boolean).
-``Equal``          Assert that ``a == b``.
-``Greater``        Assert that ``a > b``.
-``GreaterEqual``   Assert that ``a >= b``.
-``Less``           Assert that ``a < b``.
-``LessEqual``      Assert that ``a <= b``.
-``Is``             Assert that ``a is b``.
-``IsTrue``         Assert that ``a is True``.
-``IsFalse``        Assert that ``a is False``.
-``IsNone``         Assert that ``a is None``.
-``In``             Assert that ``a in b``.
-``InstanceOf``     Assert that ``isinstance(a, b)``.
-``Truthy``         Assert that ``bool(a)``.
-``Falsy``          Assert that ``not bool(a)``.
-``Boolean``        Assert that ``isinstance(a, bool)``.
-``String``         Assert that ``isinstance(a, (str, unicode))``
-``Dict``           Assert that ``isinstance(a, dict)``
-``List``           Assert that ``isinstance(a, list)``
-``Tuple``          Assert that ``isinstance(a, tuple)``
-``Int``            Assert that ``isinstance(a, int)``
-``Float``          Assert that ``isinstance(a, float)``
-``Number``         Assert that ``isinstance(a, (int, float, Decimal, long))``.
-``NaN``            Assert that ``not isinstance(a, (int, float, Decimal, long))``.
-
-``Date``           TODO
-``Datetime``       TODO
-``Negative``       TODO
-``Positive``       TODO
-``Odd``            TODO
-``Even``           TODO
-``Monotone``       TODO
-``Increasing``     TODO
-``Decreasing``     TODO
-``Contains``       TODO
-``ContainsOnly``   TODO
-``Any``            TODO
-``All``            TODO
-``Match``          TODO
-``Range``          TODO
-``Length``         TODO
-``DatetimeString`` TODO
-``Unique``         TODO
-``ExactSequence``  TODO
-``Subset``         TODO
-``Superset``       TODO
-================   ===========
+==================   ===========
+Validator            Description
+==================   ===========
+``Not``              Assert that a callable doesn't raise an ``AssertionError``.
+``Predicate``        Assert that ``predicate(a)`` (``predicate()`` should return a boolean).
+``Equal``            Assert that ``a == b``.
+``Greater``          Assert that ``a > b``.
+``GreaterEqual``     Assert that ``a >= b``.
+``Less``             Assert that ``a < b``.
+``LessEqual``        Assert that ``a <= b``.
+``Is``               Assert that ``a is b``.
+``IsTrue``           Assert that ``a is True``.
+``IsFalse``          Assert that ``a is False``.
+``IsNone``           Assert that ``a is None``.
+``In``               Assert that ``a in b``.
+``InstanceOf``       Assert that ``isinstance(a, b)``.
+``Truthy``           Assert that ``bool(a)``.
+``Falsy``            Assert that ``not bool(a)``.
+``Boolean``          Assert that ``isinstance(a, bool)``.
+``String``           Assert that ``isinstance(a, (str, unicode))``.
+``Dict``             Assert that ``isinstance(a, dict)``.
+``List``             Assert that ``isinstance(a, list)``.
+``Tuple``            Assert that ``isinstance(a, tuple)``.
+``Int``              Assert that ``isinstance(a, int)``.
+``Float``            Assert that ``isinstance(a, float)``.
+``Number``           Assert that ``isinstance(a, (int, float, Decimal, long))``.
+``NaN``              Assert that ``not isinstance(a, (int, float, Decimal, long))``.
+``Date``             TODO
+``Datetime``         TODO
+``Negative``         TODO
+``Positive``         TODO
+``Odd``              TODO
+``Even``             TODO
+``Monotone``         TODO
+``Increasing``       TODO
+``Decreasing``       TODO
+``Contains``         TODO
+``ContainsOnly``     TODO
+``Any``              TODO
+``All``              TODO
+``Match``            TODO
+``Range``            TODO
+``Length``           TODO
+``DatetimeString``   TODO
+``Unique``           TODO
+``ExactSequence``    TODO
+``Subset``           TODO
+``Superset``         TODO
+==================   ===========
 
 
 For more details, please see the full documentation at http://verify.readthedocs.org.
