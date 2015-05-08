@@ -138,22 +138,15 @@ class NegateMixin(object):
         return not super(NegateMixin, self).compare(*args, **kargs)
 
 
-class Not(Assertion):
-    """Asserts that the negation of `assertable` is ``True``."""
-    reason = 'The negation of {0} should not be {assertable}'
+class Not(Comparator):
+    """Asserts that `comparable` doesn't raise an ``AssertionError``.
 
-    def __init__(self, assertable, value=NotSet):
-        if value is not NotSet:
-            value, assertable = assertable, value
-
-        self.assertable = assertable
-
-        if value is not NotSet:
-            self(value)
+    """
+    reason = 'The negation of {0} should not be {comparable}'
 
     def compare(self, *args, **kargs):
         try:
-            self.assertable(*args, **kargs)
+            self.comparable(*args, **kargs)
         except AssertionError:
             return True
         else:
