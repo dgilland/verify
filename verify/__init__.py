@@ -28,6 +28,8 @@ __all__ = (
     'InstanceOf',
     'Truthy',
     'Falsy',
+    'Istrue',
+    'IsFalse',
     'IsNone',
 )
 
@@ -218,6 +220,30 @@ class Truthy(Assertion):
 class Falsy(NegateMixin, Truthy):
     """Asserts that `value` is falsy."""
     reason = '{0} is not falsy'
+
+
+class IsTrue(Assertion):
+    """Asserts that `value` is ``True``.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not True'
+    op = Is(True)
+
+
+class IsFalse(Assertion):
+    """Asserts that `value` is ``False``.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not False'
+    op = Is(False)
 
 
 class IsNone(Assertion):

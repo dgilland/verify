@@ -216,6 +216,46 @@ def test_falsy_raises(value):
 
 
 @pytest.mark.parametrize('value', [
+    True
+])
+def test_is_true(value):
+    Expect(value,
+           verify.IsTrue())
+
+    verify.IsTrue(value)
+
+
+@pytest.mark.parametrize('value', falsisms)
+def test_is_true_raises(value):
+    with raises_assertion():
+        Expect(value,
+               verify.IsTrue())
+
+    with raises_assertion():
+        verify.IsTrue(value)
+
+
+@pytest.mark.parametrize('value', [
+    False
+])
+def test_is_false(value):
+    Expect(value,
+           verify.IsFalse())
+
+    verify.IsFalse(value)
+
+
+@pytest.mark.parametrize('value', truisms)
+def test_is_false_raises(value):
+    with raises_assertion():
+        Expect(value,
+               verify.IsFalse())
+
+    with raises_assertion():
+        verify.IsFalse(value)
+
+
+@pytest.mark.parametrize('value', [
     None
 ])
 def test_is_none(value):
