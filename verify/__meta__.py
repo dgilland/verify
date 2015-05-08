@@ -8,7 +8,7 @@ __url__ = 'https://github.com/dgilland/verify'
 
 __version__ = '0.0.1'
 
-__install_requires__ = []
+__install_requires__ = ['pydash>=3.2.2']
 
 __author__ = 'Derrick Gilland'
 __email__ = 'dgilland@gmail.com'

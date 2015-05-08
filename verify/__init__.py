@@ -4,6 +4,8 @@
 
 import operator
 
+import pydash
+
 from .__meta__ import (
     __title__,
     __summary__,
