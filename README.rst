@@ -32,18 +32,13 @@ Verify some value using verify's assertions:
 
 .. code-block:: python
 
-    import verify
-    from verify import Expect, Not
+    from verify import Expect, Not, Truthy, Falsy, Less, Greater
 
     Expect(5 * 5,
-           verify.Truthy(),
-           Not(verify.Falsy),
-           verify.Greater(15),
-           verify.Less(30))
-
-    Expect(lambda: 5 * 5,
-           verify.GreaterEqual(15),
-           verify.Less(30))
+           Truthy(),
+           Not(Falsy),
+           Greater(15),
+           Less(30))
 
 
 Verify using your own functions:
@@ -88,26 +83,60 @@ Validators
 All of the validators in ``verify`` are callables that can be used in two contexts:
 
 1. By themselves as in ``Equal(a, b)`` which will raise an ``AssertionError`` if false.
-2. In combination with ``Except`` as in ``Expect(a, Equal(b))``.
+2. In combination with ``Except`` as in ``Expect(a, Equal(b))`` could also raise an ``AssertionError``.
 
 The available validators are:
 
-================  ===========
-Validator         Description
-================  ===========
-``Not``           Assert the negation of a callable
-``Equal``         Assert that ``a == b``
-``Greater``       Assert that ``a > b``
-``GreaterEqual``  Assert that ``a >= b``
-``Less``          Assert that ``a < b``
-``LessEqual``     Assert that ``a <= b``
-``Is``            Assert that ``a is b``
-``In``            Assert that ``a in b``
-``InstanceOf``    Assert that ``isinstance(a, b)``
-``Truthy``        Assert that ``bool(a)``
-``Falsy``         Assert that ``not bool(a)``
-``IsNone``        Assert that ``a is None``
-================  ===========
+================   ===========
+Validator          Description
+================   ===========
+``Not``            Assert that a callable doesn't raise an ``AssertionError``
+``Equal``          Assert that ``a == b``
+``Greater``        Assert that ``a > b``
+``GreaterEqual``   Assert that ``a >= b``
+``Less``           Assert that ``a < b``
+``LessEqual``      Assert that ``a <= b``
+``Is``             Assert that ``a is b``
+``In``             Assert that ``a in b``
+``InstanceOf``     Assert that ``isinstance(a, b)``
+``Truthy``         Assert that ``bool(a)``
+``Falsy``          Assert that ``not bool(a)``
+``IsTrue``         Assert that ``a is True``
+``IsFalse``        Assert that ``a is False``
+``IsNone``         Assert that ``a is None``
+``IsBoolean``      TODO
+``IsString``       TODO
+``IsDict``         TODO
+``IsList``         TODO
+``IsTuple``        TODO
+``IsNumber``       TODO
+``IsInt``          TODO
+``IsFloat``        TODO
+``IsNaN``          TODO
+``IsDate``         TODO
+``IsDatetime``     TODO
+``Negative``       TODO
+``Positive``       TODO
+``Odd``            TODO
+``Even``           TODO
+``Monotone``       TODO
+``Increasing``     TODO
+``Decreasing``     TODO
+``Contains``       TODO
+``ContainsOnly``   TODO
+``Any``            TODO
+``All``            TODO
+``Match``          TODO
+``Range``          TODO
+``Length``         TODO
+``Datetime``       TODO
+``Unique``         TODO
+``ExactSequence``  TODO
+``Predicate``      TODO
+``Subset``         TODO
+``Superset``       TODO
+================   ===========
+
 
 For more details, please see the full documentation at http://verify.readthedocs.org.
 
