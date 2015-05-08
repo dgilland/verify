@@ -5,8 +5,8 @@ import verify
 from verify import Expect, Not
 
 
-truisms = [True, 1, 'verify', lambda: True]
-falsisms = [False, None, 0,  '', lambda: False]
+truisms = [True, 1, 'verify']
+falsisms = [False, None, 0,  '']
 
 
 def raises_assertion():

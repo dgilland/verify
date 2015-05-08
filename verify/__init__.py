@@ -73,9 +73,12 @@ class Expect(object):
             this should be an ``AssertionError``.
 
     .. versionadded:: 0.0.1
+
+    .. versionchanged:: 0.1.0
+        Passed in `value` is no longer called if it's a callable.
     """
     def __init__(self, value, *assertables):
-        self.value = value() if callable(value) else value
+        self.value = value
 
         if assertables:
             self(*assertables)
@@ -92,7 +95,7 @@ class Assertion(object):
 
     def __init__(self, value=NotSet):
         if value is not NotSet:
-            self(value() if callable(value) else value)
+            self(value)
 
     def message(self, *args, **kargs):
         kargs.update(self.__dict__)
