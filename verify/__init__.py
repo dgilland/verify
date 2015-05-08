@@ -31,8 +31,10 @@ __all__ = (
     'IsTrue',
     'IsFalse',
     'IsNone',
+    'Predicate',
     'Truthy',
     'Falsy',
+    'Number',
 )
 
 
@@ -173,6 +175,21 @@ class Not(Comparator):
             return True
         else:
             return False
+
+
+class Predicate(Comparator):
+    """Asserts that `value` evaluated by the predicate `comparable` is
+    ``True``.
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = 'The evaluation of {0} using {comparable} is false'
+
+    def compare(self, *args, **kargs):
+        return self.comparable(*args, **kargs)
 
 
 class Equal(Comparator):
@@ -334,3 +351,22 @@ class Falsy(NegateMixin, Truthy):
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not falsy'
+
+
+class Number(Assertion):
+    """Asserts that `value` is a number.
+
+    Objects considered a number are:
+
+    - int
+    - float
+    - decimal.Decimal
+    - long (Python 2)
+
+    Raises:
+        AssertionError: If comparision returns ``False``.
+
+    .. versionadded:: 0.1.0
+    """
+    reason = '{0} is not a number'
+    op = Predicate(pydash.is_number)

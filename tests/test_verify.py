@@ -1,4 +1,6 @@
 
+from decimal import Decimal
+
 import pytest
 
 import verify
@@ -313,3 +315,30 @@ def test_falsy_raises(value):
 
     with raises_assertion():
         verify.Falsy(value)
+
+
+@pytest.mark.parametrize('value', [
+    1,
+    0,
+    -1,
+    1.05,
+    Decimal(1.05)
+])
+def test_is_number(value):
+    assert Expect(value, verify.Number())
+    assert verify.Number(value)
+
+
+@pytest.mark.parametrize('value', [
+    '',
+    False,
+    None,
+    {},
+    []
+])
+def test_is_number(value):
+    with raises_assertion():
+        Expect(value, verify.Number())
+
+    with raises_assertion():
+        verify.Number(value)
