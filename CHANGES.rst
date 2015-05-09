@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+- Make ``expect`` include an assertion message on failure. Without it, a cryptic ``NameError`` is thrown when a plain predicate function fails due to a generator being used in the ``all()`` call.
+
+
 v0.1.0 (2015-05-08)
 -------------------
 

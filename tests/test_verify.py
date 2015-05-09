@@ -4,7 +4,6 @@ from decimal import Decimal
 
 import pytest
 
-import verify
 import verify as v
 from verify import expect, Not
 
