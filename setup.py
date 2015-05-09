@@ -61,7 +61,7 @@ setup(
     tests_require=['tox'],
     cmdclass={'test': Tox},
     test_suite='tests',
-    keywords='test testing assertion validation unittest unittesting',
+    keywords='test testing assert assertion validation unittest',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
