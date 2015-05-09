@@ -106,7 +106,7 @@ def test_expect_predicates_raises(value, predicates):
     (v.Number, 0, ()),
     (v.Number, -1, ()),
     (v.Number, 1.05, ()),
-    (v.Number, Decimal(1.05), ()),
+    (v.Number, Decimal('1.05'), ()),
     (v.NaN, '', ()),
     (v.NaN, True, ()),
     (v.NaN, {}, ()),
@@ -195,7 +195,7 @@ def test_assert_method(meth, value, comparables):
     (v.NaN, 0, ()),
     (v.NaN, -1, ()),
     (v.NaN, 1.05, ()),
-    (v.NaN, Decimal(1.05), ()),
+    (v.NaN, Decimal('1.05'), ()),
 ], ids=make_parametrize_id)
 def test_assert_raises(meth, value, comparables):
     if not isinstance(comparables, (list, tuple)):
