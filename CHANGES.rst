@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+v0.3.0 (2015-05-11)
+-------------------
+
 - Add ``Match``.
 - Add ``Subset``.
 - Add ``Superset``.
