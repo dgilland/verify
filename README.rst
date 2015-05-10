@@ -55,7 +55,7 @@ Verify using your own assert functions:
     # Fails
     try:
         expect(31, is_just_right)
-    except AssertionError:
+    expect AssertionError:
         raise
 
 Or your own predicate functions:
@@ -96,7 +96,7 @@ And if you'd prefer to see ``assert`` being used, all ``verify`` assertions will
 .. code-block:: python
 
     assert Truthy(1)
-    assert Except(1, Truthy(), Number())
+    assert Expect(1, Truthy(), Number())
 
 
 Validators
@@ -105,7 +105,7 @@ Validators
 All of the validators in ``verify`` are callables that can be used in two contexts:
 
 1. By themselves as in ``Equal(a, b)`` which will raise an ``AssertionError`` if false.
-2. In combination with ``except`` as in ``expect(a, Equal(b))`` which could also raise an ``AssertionError``.
+2. In combination with ``expect`` as in ``expect(a, Equal(b))`` which could also raise an ``AssertionError``.
 
 The available validators are:
 
