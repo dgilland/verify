@@ -344,7 +344,7 @@ class Length(Comparator):
     def op(self, value, comparable):
         try:
             return len(value) == comparable
-        except TypeError:
+        except (TypeError, ValueError):
             return False
 
 
@@ -446,7 +446,7 @@ class In(Comparator):
         """Return whether `value` is contained in `comparable`."""
         try:
             return value in comparable
-        except TypeError:
+        except (TypeError, ValueError):
             return False
 
 
@@ -464,7 +464,7 @@ class Contains(Comparator):
         """Return whether `value` contains `comparable`."""
         try:
             return comparable in value
-        except TypeError:
+        except (TypeError, ValueError):
             return False
 
 
@@ -482,7 +482,7 @@ class ContainsOnly(Comparator):
         """Return whether `value` contains only values in `comparable`."""
         try:
             return all(val in comparable for val in value)
-        except TypeError:
+        except (TypeError, ValueError):
             return False
 
 
