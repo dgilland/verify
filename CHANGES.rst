@@ -6,6 +6,7 @@ Changelog
 
 - Add ``Subset``.
 - Add ``Superset``.
+- Add ``Unique``.
 - Add ``Positive``.
 - Add ``Negative``.
 - Add ``Even``.

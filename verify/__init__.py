@@ -36,6 +36,7 @@ __all__ = (
     'ContainsOnly',
     'Subset',
     'Superset',
+    'Unique',
     'InstanceOf',
     'Is',
     'IsTrue',
@@ -509,6 +510,33 @@ class Superset(Comparator):
     """
     reason = '{0} is not a supserset of {comparable}'
     op = partial(pydash.is_match)
+
+
+class Unique(Assertion):
+    """Asserts that `value` contains only unique values. If `value` is a
+    ``dict``, then its ``values()`` will be compared.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} contains duplicate items'
+
+    def op(self, value):
+        if isinstance(value, dict):
+            value = value.values()
+
+        is_unique = True
+        seen = []
+
+        for item in value:
+            if item in seen:
+                is_unique = False
+                break
+            seen.append(item)
+
+        return is_unique
 
 
 class InstanceOf(Comparator):

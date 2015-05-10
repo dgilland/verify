@@ -110,6 +110,7 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.ContainsOnly
 .. autoclass:: verify.Subset
 .. autoclass:: verify.Superset
+.. autoclass:: verify.Unique
 .. autoclass:: verify.InstanceOf
 .. autoclass:: verify.Is
 .. autoclass:: verify.IsTrue

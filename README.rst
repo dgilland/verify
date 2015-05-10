@@ -132,6 +132,7 @@ Validator               Description
 ``ContainsOnly``        Assert that values from ``b`` are the only ones contained in ``a``.
 ``Subset``              Assert that ``a`` is a subset of ``b``.
 ``Superset``            Assert that ``a`` is a superset of ``b``.
+``Unique``              Assert that ``a`` contains unique items.
 ``InstanceOf``          Assert that ``isinstance(a, b)``.
 ``Truthy``              Assert that ``bool(a)``.
 ``Falsy``               Assert that ``not bool(a)``.
@@ -155,10 +156,8 @@ Validator               Description
 ``StrictlyDecreasing``  Assert that ``a`` is strictly decreasing.
 ``Date``                TODO
 ``Datetime``            TODO
-``Match``               TODO
 ``DateString``          TODO
-``Unique``              TODO
-``ExactSequence``       TODO
+``Match``               TODO
 ======================  ===========
 
 
