@@ -129,10 +129,10 @@ class Assertion(object):
         that we also function as a regular comparison function.
 
         Returns:
-            True: If comparision succeeds without an ``AssertionError``
+            True: If comparison succeeds without an ``AssertionError``
 
         Raises:
-            AssertionError: If comparision returns ``False``.
+            AssertionError: If comparison returns ``False``.
         """
         assert self.compare(*args, **kargs), self.message(*args, **kargs)
         return True
@@ -180,7 +180,7 @@ class Predicate(Comparator):
     ``True``.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -194,7 +194,7 @@ class Equal(Comparator):
     """Asserts that two values are equal.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -206,7 +206,7 @@ class Greater(Comparator):
     """Asserts that `value` is greater than `comparable`.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -218,7 +218,7 @@ class GreaterEqual(Comparator):
     """Asserts that `value` is greater than or equal to `comparable`.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -230,7 +230,7 @@ class Less(Comparator):
     """Asserts that `value` is less than `comparable`.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -242,7 +242,7 @@ class LessEqual(Comparator):
     """Asserts that `value` is less than or equal to `comparable`.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -254,7 +254,7 @@ class Is(Comparator):
     """Asserts that `value` is `comparable`.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -266,7 +266,7 @@ class IsTrue(Assertion):
     """Asserts that `value` is ``True``.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -278,7 +278,7 @@ class IsFalse(Assertion):
     """Asserts that `value` is ``False``.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -290,7 +290,7 @@ class IsNone(Assertion):
     """Asserts that `value` is ``None``.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -302,7 +302,7 @@ class In(Comparator):
     """Asserts that `value` is in `comparable`.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -320,7 +320,7 @@ class InstanceOf(Comparator):
     """Asserts that `value` is an instance of `comparable`.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -332,7 +332,7 @@ class Truthy(Assertion):
     """Asserts that `value` is truthy.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -344,7 +344,7 @@ class Falsy(Assertion):
     """Asserts that `value` is falsy.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -356,7 +356,7 @@ class Boolean(Assertion):
     """Asserts that `value` is a boolean.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -368,7 +368,7 @@ class String(Assertion):
     """Asserts that `value` is a string (``str`` or ``unicode`` on Python 2).
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -380,7 +380,7 @@ class Dict(Assertion):
     """Asserts that `value` is a dictionary.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -392,7 +392,7 @@ class List(Assertion):
     """Asserts that `value` is a list.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -404,7 +404,7 @@ class Tuple(Assertion):
     """Asserts that `value` is a tuple.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -416,7 +416,7 @@ class Int(Assertion):
     """Asserts that `value` is an integer.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -428,7 +428,7 @@ class Float(Assertion):
     """Asserts that `value` is a float.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -447,7 +447,7 @@ class Number(Assertion):
     - ``long (Python 2)``
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -459,7 +459,7 @@ class NaN(Assertion):
     """Asserts that `value` is a not a number.
 
     Raises:
-        AssertionError: If comparision returns ``False``.
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
