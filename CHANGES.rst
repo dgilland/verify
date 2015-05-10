@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+- Make ``Not`` compatible with bare predicate functions by return the evaluation of the `comparable`.
+
+
 v0.1.1 (2015-05-08)
 -------------------
 

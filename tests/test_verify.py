@@ -52,6 +52,7 @@ def test_expect_predicates_raises(value, predicates):
 @pytest.mark.parametrize('meth,value,comparables', [
     (v.Not, False, v.Truthy),
     (v.Not, True, v.Falsy),
+    (v.Not, 1, pydash.is_boolean),
     (v.Equal, 1, 1),
     (v.Equal, True, True),
     (v.Equal, 1, True),
@@ -121,6 +122,7 @@ def test_assert_method(meth, value, comparables):
 @pytest.mark.parametrize('meth,value,comparables', [
     (v.Not, True, v.Truthy),
     (v.Not, False, v.Falsy),
+    (v.Not, True, pydash.is_boolean),
     (v.Equal, 1, 2),
     (v.Equal, True, False),
     (v.Equal, 'abc', 'cba'),

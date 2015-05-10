@@ -169,11 +169,9 @@ class Not(Comparator):
 
     def compare(self, *args, **kargs):
         try:
-            self.comparable(*args, **kargs)
+            return not self.comparable(*args, **kargs)
         except AssertionError:
             return True
-        else:
-            return False
 
 
 class Predicate(Comparator):
