@@ -34,6 +34,8 @@ __all__ = (
     'In',
     'Contains',
     'ContainsOnly',
+    'Subset',
+    'Superset',
     'InstanceOf',
     'Is',
     'IsTrue',
@@ -481,6 +483,32 @@ class ContainsOnly(Comparator):
             return all(val in comparable for val in value)
         except TypeError:
             return False
+
+
+class Subset(Comparator):
+    """Asserts that `value` is a subset of `comparable`. Comparison supports
+    nested ``dict``, ``list``, and ``tuple`` objects.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not a subset of {comparable}'
+    op = pydash.rearg(pydash.is_match, 1, 0)
+
+
+class Superset(Comparator):
+    """Asserts that `value` is a superset of `comparable`. Comparison supports
+    nested ``dict``, ``list``, and ``tuple`` objects.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not a supserset of {comparable}'
+    op = partial(pydash.is_match)
 
 
 class InstanceOf(Comparator):

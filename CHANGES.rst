@@ -4,6 +4,8 @@ Changelog
 =========
 
 
+- Add ``Subset``.
+- Add ``Superset``.
 - Add ``Positive``.
 - Add ``Negative``.
 - Add ``Even``.

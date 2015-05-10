@@ -130,6 +130,8 @@ Validator               Description
 ``In``                  Assert that ``a in b``.
 ``Contains``            Assert that ``b in a``.
 ``ContainsOnly``        Assert that values from ``b`` are the only ones contained in ``a``.
+``Subset``              Assert that ``a`` is a subset of ``b``.
+``Superset``            Assert that ``a`` is a superset of ``b``.
 ``InstanceOf``          Assert that ``isinstance(a, b)``.
 ``Truthy``              Assert that ``bool(a)``.
 ``Falsy``               Assert that ``not bool(a)``.
@@ -157,8 +159,6 @@ Validator               Description
 ``DateString``          TODO
 ``Unique``              TODO
 ``ExactSequence``       TODO
-``Subset``              TODO
-``Superset``            TODO
 ======================  ===========
 
 
