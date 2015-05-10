@@ -3,6 +3,7 @@
 """
 
 import operator
+from functools import partial
 
 import pydash
 
@@ -271,7 +272,7 @@ class IsTrue(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not True'
-    op = Is(True)
+    op = partial(operator.is_, True)
 
 
 class IsFalse(Assertion):
@@ -283,7 +284,7 @@ class IsFalse(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not False'
-    op = Is(False)
+    op = partial(operator.is_, False)
 
 
 class IsNone(Assertion):
@@ -295,7 +296,7 @@ class IsNone(Assertion):
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not None'
-    op = Is(None)
+    op = partial(pydash.is_none)
 
 
 class In(Comparator):
@@ -361,7 +362,7 @@ class Boolean(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a boolean'
-    op = Predicate(pydash.is_boolean)
+    op = partial(pydash.is_boolean)
 
 
 class String(Assertion):
@@ -373,7 +374,7 @@ class String(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a string'
-    op = Predicate(pydash.is_string)
+    op = partial(pydash.is_string)
 
 
 class Dict(Assertion):
@@ -385,7 +386,7 @@ class Dict(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a dictionary'
-    op = Predicate(pydash.is_dict)
+    op = partial(pydash.is_dict)
 
 
 class List(Assertion):
@@ -397,7 +398,7 @@ class List(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a list'
-    op = Predicate(pydash.is_list)
+    op = partial(pydash.is_list)
 
 
 class Tuple(Assertion):
@@ -409,7 +410,7 @@ class Tuple(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a tuple'
-    op = Predicate(pydash.is_tuple)
+    op = partial(pydash.is_tuple)
 
 
 class Int(Assertion):
@@ -421,7 +422,7 @@ class Int(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not an int'
-    op = Predicate(pydash.is_int)
+    op = partial(pydash.is_int)
 
 
 class Float(Assertion):
@@ -433,7 +434,7 @@ class Float(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a float'
-    op = Predicate(pydash.is_float)
+    op = partial(pydash.is_float)
 
 
 class Number(Assertion):
@@ -452,7 +453,7 @@ class Number(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a number'
-    op = Predicate(pydash.is_number)
+    op = partial(pydash.is_number)
 
 
 class NaN(Assertion):
@@ -464,4 +465,4 @@ class NaN(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is a number'
-    op = Predicate(pydash.is_nan)
+    op = partial(pydash.is_nan)
