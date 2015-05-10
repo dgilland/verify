@@ -6,7 +6,7 @@ __title__ = 'verify'
 __summary__ = 'A painless assertion library for Python.'
 __url__ = 'https://github.com/dgilland/verify'
 
-__version__ = '0.1.1'
+__version__ = '0.2.0'
 
 __install_requires__ = ['pydash>=3.2.2']
 
