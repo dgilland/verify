@@ -26,7 +26,13 @@ __all__ = (
     'GreaterEqual',
     'Less',
     'LessEqual',
+    'Between',
+    'Length',
+    'All',
+    'Any',
     'In',
+    'Contains',
+    'ContainsOnly',
     'InstanceOf',
     'Is',
     'IsTrue',
@@ -71,7 +77,7 @@ def expect(value, *assertions):
         >>> expect(5, Falsy)
         Traceback (most recent call last):
         ...
-        AssertionError: ...
+        AssertionError...
 
 
     Args:
@@ -127,7 +133,7 @@ class Assertion(object):
 
     def __call__(self, *args, **kargs):
         """Our main entry point for executing validation. Return ``True`` so
-        that we also function as a regular comparison function.
+        that we can be used in ``all()``.
 
         Returns:
             True: If comparison succeeds without an ``AssertionError``
@@ -165,7 +171,8 @@ class Not(Comparator):
 
     .. versionadded:: 0.0.1
     """
-    reason = 'The negation of {0} should not be {comparable}'
+    reason = ('The negation of {0} should not be true '
+              'when evaluated by {comparable}')
 
     def compare(self, *args, **kargs):
         try:
@@ -249,6 +256,81 @@ class LessEqual(Comparator):
     op = operator.le
 
 
+class Between(Comparator):
+    """Asserts that `value` is between `comparable[0]` and `comparable[1]`
+    inclusively.
+
+    Examples:
+
+        >>> assert Between(5, (4, 5))  # 4 <= 5 <= 5
+        >>> assert Between(5, (5, 5))  # 5 <= 5 <= 5
+        >>> assert Between(5, 5)  # 5 <= 5
+        >>> assert Between(5, (None, 6))  # 5 <= 6
+        >>> assert Between(5, (4, None))  # 5 >= 4
+        >>> Between(5, 4)  # 5 <= 4
+        Traceback (most recent call last):
+        ...
+        AssertionError...
+
+    Args:
+        comparable (tuple): The (min, max) values for Between comparison. Pass
+            ``None`` for min or max to skip that comparison.
+        value (mixed, optional): Value to compare.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.2.0
+    """
+    reason = '{0} is not between {comparable[0]} and {comparable[1]}'
+
+    def __init__(self, comparable, value=NotSet):
+        if value is not NotSet:
+            value, comparable = comparable, value
+
+        if not isinstance(comparable, (tuple, list)) or len(comparable) == 1:
+            # If comparable is a single value, then assume it's the maximum.
+            comparable = (None, comparable)
+
+        self.comparable = comparable
+
+        if value is not NotSet:
+            self(value)
+
+    def op(self, value, comparable):
+        ge_min = True
+        le_max = True
+
+        if comparable[0] is not None:
+            ge_min = value >= comparable[0]
+
+        if comparable[1] is not None:
+            le_max = value <= comparable[1]
+
+        return ge_min and le_max
+
+
+class Length(Comparator):
+    """Asserts that `value` is an iterable with length equal to `comparable`.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.2.0
+    """
+    reason = '{0} does not have length {comparable}'
+
+    def op(self, value, comparable):
+        try:
+            return len(value) == comparable
+        except TypeError:
+            return False
+
+
 class Is(Comparator):
     """Asserts that `value` is `comparable`.
 
@@ -297,6 +379,42 @@ class IsNone(Assertion):
     op = partial(pydash.is_none)
 
 
+class All(Comparator):
+    """Asserts that `value` evaluates as truthy for **all** predicates in
+    `comparable`.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.2.0
+    """
+    reason = '{0} is not true for all {comparable}'
+
+    def op(self, value, comparable):
+        """Return whether all results from evaluating `value` in `comparable`
+        predicates return truthy.
+        """
+        return all(pydash.juxtapose(*comparable)(value))
+
+
+class Any(Comparator):
+    """Asserts that `value` evaluates as truthy for **any** predicates in
+    `comparable`.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.2.0
+    """
+    reason = '{0} is not true for any {comparable}'
+
+    def op(self, value, comparable):
+        """Return whether any results from evaluating `value` in `comparable`
+        predicates return truthy.
+        """
+        return any(pydash.juxtapose(*comparable)(value))
+
+
 class In(Comparator):
     """Asserts that `value` is in `comparable`.
 
@@ -311,6 +429,42 @@ class In(Comparator):
         """Return whether `value` is contained in `comparable`."""
         try:
             return value in comparable
+        except TypeError:
+            return False
+
+
+class Contains(Comparator):
+    """Asserts that `value` is an iterable and contains `comparable`.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.2.0
+    """
+    reason = '{0} does not contain {comparable}'
+
+    def op(self, value, comparable):
+        """Return whether `value` contains `comparable`."""
+        try:
+            return comparable in value
+        except TypeError:
+            return False
+
+
+class ContainsOnly(Comparator):
+    """Asserts that `value` is an iterable and only contains `comparable`.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.2.0
+    """
+    reason = '{0} does not only contain values in {comparable}'
+
+    def op(self, value, comparable):
+        """Return whether `value` contains only values in `comparable`."""
+        try:
+            return all(val in comparable for val in value)
         except TypeError:
             return False
 

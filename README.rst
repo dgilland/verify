@@ -119,11 +119,17 @@ Validator            Description
 ``GreaterEqual``     Assert that ``a >= b``.
 ``Less``             Assert that ``a < b``.
 ``LessEqual``        Assert that ``a <= b``.
+``Between``          Assert that ``b <= a <= c``.
+``Length``           Assert that ``len(a) == b``.
 ``Is``               Assert that ``a is b``.
 ``IsTrue``           Assert that ``a is True``.
 ``IsFalse``          Assert that ``a is False``.
 ``IsNone``           Assert that ``a is None``.
+``All``              Assert that all of the list of predicates evaluate ``a`` as truthy.
+``Any``              Assert that any of the list of predicates evaluate ``a`` as truthy.
 ``In``               Assert that ``a in b``.
+``Contains``         Assert that ``b in a``.
+``ContainsOnly``     Assert that values from ``b`` are the only ones contained in ``a``.
 ``InstanceOf``       Assert that ``isinstance(a, b)``.
 ``Truthy``           Assert that ``bool(a)``.
 ``Falsy``            Assert that ``not bool(a)``.
@@ -145,13 +151,7 @@ Validator            Description
 ``Monotone``         TODO
 ``Increasing``       TODO
 ``Decreasing``       TODO
-``Contains``         TODO
-``ContainsOnly``     TODO
-``Any``              TODO
-``All``              TODO
 ``Match``            TODO
-``Range``            TODO
-``Length``           TODO
 ``DatetimeString``   TODO
 ``Unique``           TODO
 ``ExactSequence``    TODO

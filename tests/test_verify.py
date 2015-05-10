@@ -3,6 +3,7 @@
 from decimal import Decimal
 
 import pytest
+import pydash
 
 import verify as v
 from verify import expect, Not
@@ -11,7 +12,7 @@ from verify import expect, Not
 def make_parametrize_id(argvalue):
     """Return custom parameter id for test reporting."""
     if hasattr(argvalue, '__name__'):
-        return argvalue.__name__
+        return '-' + argvalue.__name__
     else:
         return str(argvalue)
 
@@ -30,7 +31,7 @@ def test_expect_multiple_assertions(value, assertions):
 
 
 @pytest.mark.parametrize('value,predicates', [
-    (True, (lambda value: value is True, lambda value: value)),
+    (True, (pydash.is_boolean, pydash.identity)),
 ])
 def test_expect_predicates(value, predicates):
     """Test that Expect handles multiple predicates that returns boolean
@@ -39,8 +40,8 @@ def test_expect_predicates(value, predicates):
 
 
 @pytest.mark.parametrize('value,predicates', [
-    (True, (lambda value: value is True, lambda value: not value)),
-    (True, (lambda value: value is False, lambda value: value)),
+    (True, (pydash.is_boolean, pydash.is_number)),
+    (True, (pydash.is_int, pydash.identity)),
 ])
 def test_expect_predicates_raises(value, predicates):
     """Test that Expect handles multiple predicates that returns boolean
@@ -53,6 +54,8 @@ def test_expect_predicates_raises(value, predicates):
     (v.Not, False, v.Truthy),
     (v.Not, True, v.Falsy),
     (v.Not, 1, pydash.is_boolean),
+    (v.Predicate, True, pydash.is_boolean),
+    (v.Predicate, 1, pydash.is_number),
     (v.Equal, 1, 1),
     (v.Equal, True, True),
     (v.Equal, 1, True),
@@ -73,6 +76,13 @@ def test_expect_predicates_raises(value, predicates):
     (v.LessEqual, 5, 5),
     (v.LessEqual, 4, 5),
     (v.LessEqual, 'a', 'b'),
+    (v.Between, 5, ((4, 5),)),
+    (v.Between, 5, ((None, 5),)),
+    (v.Between, 5, ((5, None),)),
+    (v.Between, 5, ((5, 5),)),
+    (v.Between, 5, 6),
+    (v.Length, [1, 2, 3, 4], 4),
+    (v.Length, (1, 2, 3), 3),
     (v.Is, True, True),
     (v.Is, False, False),
     (v.Is, None, None),
@@ -81,9 +91,15 @@ def test_expect_predicates_raises(value, predicates):
     (v.IsTrue, True, ()),
     (v.IsFalse, False, ()),
     (v.IsNone, None, ()),
+    (v.All, True, ([pydash.is_boolean, pydash.is_nan],)),
+    (v.Any, True, ([pydash.is_boolean, pydash.is_number],)),
     (v.In, 1, ([0, 1, 2],)),
     (v.In, 'a', (('a', 'b', 'c'),)),
     (v.In, 'a', 'abc'),
+    (v.Contains, [1, 2, 3], 2),
+    (v.Contains, {'one': 1, 'two': 2}, 'two'),
+    (v.ContainsOnly, [1, 1, 1], ([1],)),
+    (v.ContainsOnly, [1, 0, 1], ((1, 0),)),
     (v.InstanceOf, True, bool),
     (v.InstanceOf, 'abc', str),
     (v.InstanceOf, 1, int),
@@ -112,6 +128,7 @@ def test_expect_predicates_raises(value, predicates):
     (v.NaN, {}, ()),
 ], ids=make_parametrize_id)
 def test_assert_method(meth, value, comparables):
+    """Test that method passes when evaluated for comparables."""
     if not isinstance(comparables, (list, tuple)):
         comparables = (comparables,)
 
@@ -123,6 +140,8 @@ def test_assert_method(meth, value, comparables):
     (v.Not, True, v.Truthy),
     (v.Not, False, v.Falsy),
     (v.Not, True, pydash.is_boolean),
+    (v.Predicate, 1, pydash.is_boolean),
+    (v.Predicate, True, pydash.is_number),
     (v.Equal, 1, 2),
     (v.Equal, True, False),
     (v.Equal, 'abc', 'cba'),
@@ -140,6 +159,11 @@ def test_assert_method(meth, value, comparables):
     (v.LessEqual, 10, -10),
     (v.LessEqual, 'b', 'a'),
     (v.LessEqual, True, False),
+    (v.Between, 5, 4),
+    (v.Between, 5, ((1, 4),)),
+    (v.Length, [1, 2, 3, 4], 3),
+    (v.Length, (1, 2, 3), 2),
+    (v.Length, 1, 1),
     (v.Is, 1, 2),
     (v.Is, 1, True),
     (v.Is, 0, False),
@@ -154,9 +178,16 @@ def test_assert_method(meth, value, comparables):
     (v.IsNone, True, ()),
     (v.IsNone, 1, ()),
     (v.IsNone, 'verify', ()),
+    (v.All, True, ([pydash.is_boolean, pydash.is_number],)),
+    (v.Any, True, ([pydash.is_none, pydash.is_number],)),
     (v.In, 1, ([0, 0, 2],)),
     (v.In, 'a', (('b', 'b', 'c'),)),
     (v.In, 1, 2),
+    (v.Contains, [1, 2, 3], 4),
+    (v.Contains, {'one': 1, 'two': 2}, 2),
+    (v.Contains, 4, 4),
+    (v.ContainsOnly, 1, 1),
+    (v.ContainsOnly, [1, 0], ([1],)),
     (v.InstanceOf, True, str),
     (v.InstanceOf, 'abc', int),
     (v.InstanceOf, 1, str),
@@ -199,6 +230,9 @@ def test_assert_method(meth, value, comparables):
     (v.NaN, Decimal('1.05'), ()),
 ], ids=make_parametrize_id)
 def test_assert_raises(meth, value, comparables):
+    """Test that method raises an assertion error when evaluated for
+    comparables.
+    """
     if not isinstance(comparables, (list, tuple)):
         comparables = (comparables,)
 

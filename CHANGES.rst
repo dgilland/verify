@@ -4,6 +4,12 @@ Changelog
 =========
 
 
+- Add ``All``.
+- Add ``Any``.
+- Add ``Between``.
+- Add ``Contains``.
+- Add ``ContainsOnly``.
+- Add ``Length``.
 - Make ``Not`` compatible with bare predicate functions by return the evaluation of the `comparable`.
 
 
