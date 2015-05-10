@@ -4,6 +4,17 @@ Changelog
 =========
 
 
+- Add ``Positive``.
+- Add ``Negative``.
+- Add ``Even``.
+- Add ``Odd``.
+- Add ``Monotone``.
+- Add ``Increasing``.
+- Add ``StrictlyIncreasing``.
+- Add ``Decreasing``.
+- Add ``StrictlyDecreasing``.
+
+
 v0.2.0 (2015-05-11)
 -------------------
 

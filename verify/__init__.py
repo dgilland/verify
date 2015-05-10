@@ -50,6 +50,15 @@ __all__ = (
     'Float',
     'NaN',
     'Number',
+    'Positive',
+    'Negative',
+    'Even',
+    'Odd',
+    'Monotone',
+    'Increasing',
+    'StrictlyIncreasing',
+    'Decreasing',
+    'StrictlyDecreasing',
 )
 
 
@@ -623,3 +632,111 @@ class NaN(Assertion):
     """
     reason = '{0} is a number'
     op = partial(pydash.is_nan)
+
+
+class Positive(Assertion):
+    """Asserts that `value` is a positive number.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not a positive number'
+    op = partial(pydash.is_positive)
+
+
+class Negative(Assertion):
+    """Asserts that `value` is a negative number.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not a negative number'
+    op = partial(pydash.is_negative)
+
+
+class Even(Assertion):
+    """Asserts that `value` is an even number.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not an even number'
+    op = partial(pydash.is_even)
+
+
+class Odd(Assertion):
+    """Asserts that `value` is an odd number.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not an odd number'
+    op = partial(pydash.is_odd)
+
+
+class Monotone(Comparator):
+    """Asserts that `value` is a monotonic with respect to `comparable`.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not monotonic as evaluated by {comparable}'
+    op = partial(pydash.is_monotone)
+
+
+class Increasing(Assertion):
+    """Asserts that `value` is monotonically increasing.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not monotonically increasing'
+    op = partial(pydash.is_increasing)
+
+
+class StrictlyIncreasing(Assertion):
+    """Asserts that `value` is strictly increasing.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not strictly increasing'
+    op = partial(pydash.is_strictly_increasing)
+
+
+class Decreasing(Assertion):
+    """Asserts that `value` is monotonically decreasing.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not monotonically decreasing'
+    op = partial(pydash.is_decreasing)
+
+
+class StrictlyDecreasing(Assertion):
+    """Asserts that `value` is strictly decreasing.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not strictly decreasing'
+    op = partial(pydash.is_strictly_decreasing)

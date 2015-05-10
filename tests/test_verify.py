@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from decimal import Decimal
+import operator
 
 import pytest
 import pydash
@@ -126,6 +127,20 @@ def test_expect_predicates_raises(value, predicates):
     (v.NaN, '', ()),
     (v.NaN, True, ()),
     (v.NaN, {}, ()),
+    (v.Positive, 1, ()),
+    (v.Positive, 100, ()),
+    (v.Negative, -1, ()),
+    (v.Negative, -100, ()),
+    (v.Even, 2, ()),
+    (v.Even, -8, ()),
+    (v.Odd, 1, ()),
+    (v.Odd, -5, ()),
+    (v.Monotone, [1, 1, 3, 5], operator.le),
+    (v.Monotone, [1, 2, 10, 20], operator.lt),
+    (v.Increasing, [1, 1, 3, 5], ()),
+    (v.StrictlyIncreasing, [1, 5, 10], ()),
+    (v.Decreasing, [5, 3, 1, 1], ()),
+    (v.StrictlyDecreasing, [5, 4, 2, 1], ()),
 ], ids=make_parametrize_id)
 def test_assert_method(meth, value, comparables):
     """Test that method passes when evaluated for comparables."""
@@ -228,6 +243,20 @@ def test_assert_method(meth, value, comparables):
     (v.NaN, -1, ()),
     (v.NaN, 1.05, ()),
     (v.NaN, Decimal('1.05'), ()),
+    (v.Positive, -1, ()),
+    (v.Positive, -100, ()),
+    (v.Negative, 1, ()),
+    (v.Negative, 100, ()),
+    (v.Even, 1, ()),
+    (v.Even, -5, ()),
+    (v.Odd, 2, ()),
+    (v.Odd, -8, ()),
+    (v.Monotone, [1, 0, 3, 5], operator.le),
+    (v.Monotone, [1, 2, 0, 20], operator.lt),
+    (v.Increasing, [1, 0, 3, 5], ()),
+    (v.StrictlyIncreasing, [1, 1, 10], ()),
+    (v.Decreasing, [5, 3, 0, 1], ()),
+    (v.StrictlyDecreasing, [5, 5, 2, 1], ()),
 ], ids=make_parametrize_id)
 def test_assert_raises(meth, value, comparables):
     """Test that method raises an assertion error when evaluated for

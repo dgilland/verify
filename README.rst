@@ -109,55 +109,57 @@ All of the validators in ``verify`` are callables that can be used in two contex
 
 The available validators are:
 
-==================   ===========
-Validator            Description
-==================   ===========
-``Not``              Assert that a callable doesn't raise an ``AssertionError``.
-``Predicate``        Assert that ``predicate(a)`` (``predicate()`` should return a boolean).
-``Equal``            Assert that ``a == b``.
-``Greater``          Assert that ``a > b``.
-``GreaterEqual``     Assert that ``a >= b``.
-``Less``             Assert that ``a < b``.
-``LessEqual``        Assert that ``a <= b``.
-``Between``          Assert that ``b <= a <= c``.
-``Length``           Assert that ``len(a) == b``.
-``Is``               Assert that ``a is b``.
-``IsTrue``           Assert that ``a is True``.
-``IsFalse``          Assert that ``a is False``.
-``IsNone``           Assert that ``a is None``.
-``All``              Assert that all of the list of predicates evaluate ``a`` as truthy.
-``Any``              Assert that any of the list of predicates evaluate ``a`` as truthy.
-``In``               Assert that ``a in b``.
-``Contains``         Assert that ``b in a``.
-``ContainsOnly``     Assert that values from ``b`` are the only ones contained in ``a``.
-``InstanceOf``       Assert that ``isinstance(a, b)``.
-``Truthy``           Assert that ``bool(a)``.
-``Falsy``            Assert that ``not bool(a)``.
-``Boolean``          Assert that ``isinstance(a, bool)``.
-``String``           Assert that ``isinstance(a, (str, unicode))``.
-``Dict``             Assert that ``isinstance(a, dict)``.
-``List``             Assert that ``isinstance(a, list)``.
-``Tuple``            Assert that ``isinstance(a, tuple)``.
-``Int``              Assert that ``isinstance(a, int)``.
-``Float``            Assert that ``isinstance(a, float)``.
-``Number``           Assert that ``isinstance(a, (int, float, Decimal, long))``.
-``NaN``              Assert that ``not isinstance(a, (int, float, Decimal, long))``.
-``Date``             TODO
-``Datetime``         TODO
-``Negative``         TODO
-``Positive``         TODO
-``Odd``              TODO
-``Even``             TODO
-``Monotone``         TODO
-``Increasing``       TODO
-``Decreasing``       TODO
-``Match``            TODO
-``DatetimeString``   TODO
-``Unique``           TODO
-``ExactSequence``    TODO
-``Subset``           TODO
-``Superset``         TODO
-==================   ===========
+======================  ===========
+Validator               Description
+======================  ===========
+``Not``                 Assert that a callable doesn't raise an ``AssertionError``.
+``Predicate``           Assert that ``predicate(a)`` (``predicate()`` should return a boolean).
+``Equal``               Assert that ``a == b``.
+``Greater``             Assert that ``a > b``.
+``GreaterEqual``        Assert that ``a >= b``.
+``Less``                Assert that ``a < b``.
+``LessEqual``           Assert that ``a <= b``.
+``Between``             Assert that ``b <= a <= c``.
+``Length``              Assert that ``len(a) == b``.
+``Is``                  Assert that ``a is b``.
+``IsTrue``              Assert that ``a is True``.
+``IsFalse``             Assert that ``a is False``.
+``IsNone``              Assert that ``a is None``.
+``All``                 Assert that all of the list of predicates evaluate ``a`` as truthy.
+``Any``                 Assert that any of the list of predicates evaluate ``a`` as truthy.
+``In``                  Assert that ``a in b``.
+``Contains``            Assert that ``b in a``.
+``ContainsOnly``        Assert that values from ``b`` are the only ones contained in ``a``.
+``InstanceOf``          Assert that ``isinstance(a, b)``.
+``Truthy``              Assert that ``bool(a)``.
+``Falsy``               Assert that ``not bool(a)``.
+``Boolean``             Assert that ``isinstance(a, bool)``.
+``String``              Assert that ``isinstance(a, (str, unicode))``.
+``Dict``                Assert that ``isinstance(a, dict)``.
+``List``                Assert that ``isinstance(a, list)``.
+``Tuple``               Assert that ``isinstance(a, tuple)``.
+``Int``                 Assert that ``isinstance(a, int)``.
+``Float``               Assert that ``isinstance(a, float)``.
+``Number``              Assert that ``isinstance(a, (int, float, Decimal, long))``.
+``NaN``                 Assert that ``not isinstance(a, (int, float, Decimal, long))``.
+``Positive``            Assert that ``a > 0``.
+``Negative``            Assert that ``a < 0``.
+``Even``                Assert that ``a % 2 == 0``.
+``Odd``                 Assert that ``a % 2 != 1``.
+``Monotone``            Assert that ``a`` is monotonic with respect to ``b()``.
+``Increasing``          Assert that ``a`` is monotonically increasing.
+``StrictlyIncreasing``  Assert that ``a`` is strictly increasing.
+``Decreasing``          Assert that ``a`` is monotonically decreasing.
+``StrictlyDecreasing``  Assert that ``a`` is strictly decreasing.
+``Date``                TODO
+``Datetime``            TODO
+``Match``               TODO
+``DateString``          TODO
+``Unique``              TODO
+``ExactSequence``       TODO
+``Subset``              TODO
+``Superset``            TODO
+======================  ===========
 
 
 For more details, please see the full documentation at http://verify.readthedocs.org.

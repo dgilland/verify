@@ -124,3 +124,12 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.Float
 .. autoclass:: verify.NaN
 .. autoclass:: verify.Number
+.. autoclass:: verify.Positive
+.. autoclass:: verify.Negative
+.. autoclass:: verify.Even
+.. autoclass:: verify.Odd
+.. autoclass:: verify.Monotone
+.. autoclass:: verify.Increasing
+.. autoclass:: verify.StrictlyIncreasing
+.. autoclass:: verify.Decreasing
+.. autoclass:: verify.StrictlyDecreasing
