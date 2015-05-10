@@ -159,12 +159,6 @@ class Comparator(Assertion):
         return self.op(value, self.comparable)
 
 
-class NegateMixin(object):
-    """Mixin class that negates an assertion."""
-    def compare(self, *args, **kargs):
-        return not super(NegateMixin, self).compare(*args, **kargs)
-
-
 class Not(Comparator):
     """Asserts that `comparable` doesn't raise an ``AssertionError``.
 
@@ -346,7 +340,7 @@ class Truthy(Assertion):
     op = bool
 
 
-class Falsy(NegateMixin, Truthy):
+class Falsy(Assertion):
     """Asserts that `value` is falsy.
 
     Raises:
@@ -355,6 +349,7 @@ class Falsy(NegateMixin, Truthy):
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not falsy'
+    op = pydash.negate(bool)
 
 
 class Boolean(Assertion):
