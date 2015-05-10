@@ -4,6 +4,7 @@ Changelog
 =========
 
 
+- Add ``Match``.
 - Add ``Subset``.
 - Add ``Superset``.
 - Add ``Unique``.

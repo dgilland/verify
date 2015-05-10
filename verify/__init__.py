@@ -5,6 +5,7 @@
 import datetime
 import operator
 from functools import partial
+import re
 
 import pydash
 
@@ -24,6 +25,7 @@ __all__ = (
     'Not',
     'Predicate',
     'Equal',
+    'Match',
     'Greater',
     'GreaterEqual',
     'Less',
@@ -223,6 +225,29 @@ class Equal(Comparator):
     op = operator.eq
 
 
+class Match(Comparator):
+    """Asserts that `value` matches the regular expression `comparable`.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} does not match the regular expression {comparable}'
+
+    @staticmethod
+    def op(value, comparable):
+        if not pydash.is_re(comparable):
+            comparable = re.compile(comparable)
+
+        try:
+            match = comparable.match(value)
+        except (TypeError, ValueError):
+            match = False
+
+        return bool(match)
+
+
 class Greater(Comparator):
     """Asserts that `value` is greater than `comparable`.
 
@@ -321,7 +346,8 @@ class Between(Comparator):
         if value is not NotSet:
             self(value)
 
-    def op(self, value, comparable):
+    @staticmethod
+    def op(value, comparable):
         ge_min = True
         le_max = True
 
@@ -344,7 +370,8 @@ class Length(Comparator):
     """
     reason = '{0} does not have length {comparable}'
 
-    def op(self, value, comparable):
+    @staticmethod
+    def op(value, comparable):
         try:
             return len(value) == comparable
         except (TypeError, ValueError):
@@ -396,7 +423,7 @@ class IsNone(Assertion):
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not None'
-    op = partial(pydash.is_none)
+    op = staticmethod(pydash.is_none)
 
 
 class All(Comparator):
@@ -410,7 +437,8 @@ class All(Comparator):
     """
     reason = '{0} is not true for all {comparable}'
 
-    def op(self, value, comparable):
+    @staticmethod
+    def op(value, comparable):
         """Return whether all results from evaluating `value` in `comparable`
         predicates return truthy.
         """
@@ -428,7 +456,8 @@ class Any(Comparator):
     """
     reason = '{0} is not true for any {comparable}'
 
-    def op(self, value, comparable):
+    @staticmethod
+    def op(value, comparable):
         """Return whether any results from evaluating `value` in `comparable`
         predicates return truthy.
         """
@@ -445,7 +474,8 @@ class In(Comparator):
     """
     reason = '{0} is not in {comparable}'
 
-    def op(self, value, comparable):
+    @staticmethod
+    def op(value, comparable):
         """Return whether `value` is contained in `comparable`."""
         try:
             return value in comparable
@@ -463,7 +493,8 @@ class Contains(Comparator):
     """
     reason = '{0} does not contain {comparable}'
 
-    def op(self, value, comparable):
+    @staticmethod
+    def op(value, comparable):
         """Return whether `value` contains `comparable`."""
         try:
             return comparable in value
@@ -481,7 +512,8 @@ class ContainsOnly(Comparator):
     """
     reason = '{0} does not only contain values in {comparable}'
 
-    def op(self, value, comparable):
+    @staticmethod
+    def op(value, comparable):
         """Return whether `value` contains only values in `comparable`."""
         try:
             return all(val in comparable for val in value)
@@ -512,7 +544,7 @@ class Superset(Comparator):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not a supserset of {comparable}'
-    op = partial(pydash.is_match)
+    op = staticmethod(pydash.is_match)
 
 
 class Unique(Assertion):
@@ -526,7 +558,8 @@ class Unique(Assertion):
     """
     reason = '{0} contains duplicate items'
 
-    def op(self, value):
+    @staticmethod
+    def op(value):
         if isinstance(value, dict):
             value = value.values()
 
@@ -587,7 +620,7 @@ class Boolean(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a boolean'
-    op = partial(pydash.is_boolean)
+    op = staticmethod(pydash.is_boolean)
 
 
 class String(Assertion):
@@ -599,7 +632,7 @@ class String(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a string'
-    op = partial(pydash.is_string)
+    op = staticmethod(pydash.is_string)
 
 
 class Dict(Assertion):
@@ -611,7 +644,7 @@ class Dict(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a dictionary'
-    op = partial(pydash.is_dict)
+    op = staticmethod(pydash.is_dict)
 
 
 class List(Assertion):
@@ -623,7 +656,7 @@ class List(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a list'
-    op = partial(pydash.is_list)
+    op = staticmethod(pydash.is_list)
 
 
 class Tuple(Assertion):
@@ -635,7 +668,7 @@ class Tuple(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a tuple'
-    op = partial(pydash.is_tuple)
+    op = staticmethod(pydash.is_tuple)
 
 
 class Date(Assertion):
@@ -648,7 +681,7 @@ class Date(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not a date or datetime object'
-    op = partial(pydash.is_date)
+    op = staticmethod(pydash.is_date)
 
 
 class DateString(Comparator):
@@ -661,7 +694,8 @@ class DateString(Comparator):
     """
     reason = '{0} does not match the datetime format {comparable}'
 
-    def op(self, value, comparable):
+    @staticmethod
+    def op(value, comparable):
         try:
             datetime.datetime.strptime(value, comparable)
             return True
@@ -678,7 +712,7 @@ class Int(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not an int'
-    op = partial(pydash.is_int)
+    op = staticmethod(pydash.is_int)
 
 
 class Float(Assertion):
@@ -690,7 +724,7 @@ class Float(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a float'
-    op = partial(pydash.is_float)
+    op = staticmethod(pydash.is_float)
 
 
 class Number(Assertion):
@@ -709,7 +743,7 @@ class Number(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a number'
-    op = partial(pydash.is_number)
+    op = staticmethod(pydash.is_number)
 
 
 class NaN(Assertion):
@@ -721,7 +755,7 @@ class NaN(Assertion):
     .. versionadded:: 0.1.0
     """
     reason = '{0} is a number'
-    op = partial(pydash.is_nan)
+    op = staticmethod(pydash.is_nan)
 
 
 class Positive(Assertion):
@@ -733,7 +767,7 @@ class Positive(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not a positive number'
-    op = partial(pydash.is_positive)
+    op = staticmethod(pydash.is_positive)
 
 
 class Negative(Assertion):
@@ -745,7 +779,7 @@ class Negative(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not a negative number'
-    op = partial(pydash.is_negative)
+    op = staticmethod(pydash.is_negative)
 
 
 class Even(Assertion):
@@ -757,7 +791,7 @@ class Even(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not an even number'
-    op = partial(pydash.is_even)
+    op = staticmethod(pydash.is_even)
 
 
 class Odd(Assertion):
@@ -769,7 +803,7 @@ class Odd(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not an odd number'
-    op = partial(pydash.is_odd)
+    op = staticmethod(pydash.is_odd)
 
 
 class Monotone(Comparator):
@@ -781,7 +815,7 @@ class Monotone(Comparator):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not monotonic as evaluated by {comparable}'
-    op = partial(pydash.is_monotone)
+    op = staticmethod(pydash.is_monotone)
 
 
 class Increasing(Assertion):
@@ -793,7 +827,7 @@ class Increasing(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not monotonically increasing'
-    op = partial(pydash.is_increasing)
+    op = staticmethod(pydash.is_increasing)
 
 
 class StrictlyIncreasing(Assertion):
@@ -805,7 +839,7 @@ class StrictlyIncreasing(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not strictly increasing'
-    op = partial(pydash.is_strictly_increasing)
+    op = staticmethod(pydash.is_strictly_increasing)
 
 
 class Decreasing(Assertion):
@@ -817,7 +851,7 @@ class Decreasing(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not monotonically decreasing'
-    op = partial(pydash.is_decreasing)
+    op = staticmethod(pydash.is_decreasing)
 
 
 class StrictlyDecreasing(Assertion):
@@ -829,4 +863,4 @@ class StrictlyDecreasing(Assertion):
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not strictly decreasing'
-    op = partial(pydash.is_strictly_decreasing)
+    op = staticmethod(pydash.is_strictly_decreasing)

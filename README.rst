@@ -115,6 +115,7 @@ Validator               Description
 ``Not``                 Assert that a callable doesn't raise an ``AssertionError``.
 ``Predicate``           Assert that ``predicate(a)`` (``predicate()`` should return a boolean).
 ``Equal``               Assert that ``a == b``.
+``Match``               Assert that ``a`` matches regular expression ``b``.
 ``Greater``             Assert that ``a > b``.
 ``GreaterEqual``        Assert that ``a >= b``.
 ``Less``                Assert that ``a < b``.
@@ -156,7 +157,6 @@ Validator               Description
 ``StrictlyDecreasing``  Assert that ``a`` is strictly decreasing.
 ``Date``                Assert that ``isinstance(a, datetime.date)``.
 ``DateString``          Assert that ``a`` matches the datetime format string ``b``.
-``Match``               TODO
 ======================  ===========
 
 

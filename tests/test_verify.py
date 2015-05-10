@@ -3,6 +3,7 @@
 import datetime
 from decimal import Decimal
 import operator
+import re
 
 import pytest
 import pydash
@@ -63,6 +64,8 @@ def test_expect_predicates_raises(value, predicates):
     (v.Equal, 1, True),
     (v.Equal, 0, False),
     (v.Equal, 'abc', 'abc'),
+    (v.Match, 'abc', r'\w+'),
+    (v.Match, 'abc', re.compile(r'\w+')),
     (v.Greater, 5, 4),
     (v.Greater, 10, -10),
     (v.Greater, 'b', 'a'),
@@ -177,6 +180,9 @@ def test_assert_method(meth, value, comparables):
     (v.Equal, 1, 2),
     (v.Equal, True, False),
     (v.Equal, 'abc', 'cba'),
+    (v.Match, '###', r'\w+'),
+    (v.Match, '###', re.compile(r'\w+')),
+    (v.Match, 1, r'\w+'),
     (v.Greater, 5, 5),
     (v.Greater, 4, 5),
     (v.Greater, 'a', 'b'),

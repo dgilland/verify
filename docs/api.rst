@@ -97,6 +97,7 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.Not
 .. autoclass:: verify.Predicate
 .. autoclass:: verify.Equal
+.. autoclass:: verify.Match
 .. autoclass:: verify.Greater
 .. autoclass:: verify.GreaterEqual
 .. autoclass:: verify.Less
