@@ -21,6 +21,7 @@ from .__meta__ import (
 __all__ = (
     'expect',
     'Not',
+    'Predicate',
     'Equal',
     'Greater',
     'GreaterEqual',
@@ -38,7 +39,6 @@ __all__ = (
     'IsTrue',
     'IsFalse',
     'IsNone',
-    'Predicate',
     'Truthy',
     'Falsy',
     'Boolean',
@@ -65,7 +65,7 @@ NotSet = _NotSet()
 def expect(value, *assertions):
     """Pass `value` through a set of assertable functions.
 
-    Example:
+    Examples:
 
         This will pass:
 
@@ -262,11 +262,16 @@ class Between(Comparator):
 
     Examples:
 
+        These will pass:
+
         >>> assert Between(5, (4, 5))  # 4 <= 5 <= 5
         >>> assert Between(5, (5, 5))  # 5 <= 5 <= 5
         >>> assert Between(5, 5)  # 5 <= 5
         >>> assert Between(5, (None, 6))  # 5 <= 6
         >>> assert Between(5, (4, None))  # 5 >= 4
+
+        This will fail:
+
         >>> Between(5, 4)  # 5 <= 4
         Traceback (most recent call last):
         ...
