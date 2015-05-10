@@ -2,6 +2,7 @@
 """The verify module.
 """
 
+import datetime
 import operator
 from functools import partial
 
@@ -49,6 +50,8 @@ __all__ = (
     'Dict',
     'List',
     'Tuple',
+    'Date',
+    'DateString',
     'Int',
     'Float',
     'NaN',
@@ -633,6 +636,37 @@ class Tuple(Assertion):
     """
     reason = '{0} is not a tuple'
     op = partial(pydash.is_tuple)
+
+
+class Date(Assertion):
+    """Asserts that `value` is an instance of ``datetime.date`` or
+    ``datetime.datetime``.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} is not a date or datetime object'
+    op = partial(pydash.is_date)
+
+
+class DateString(Comparator):
+    """Asserts that `value` is matches the datetime format string `comparable`.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.3.0
+    """
+    reason = '{0} does not match the datetime format {comparable}'
+
+    def op(self, value, comparable):
+        try:
+            datetime.datetime.strptime(value, comparable)
+            return True
+        except (TypeError, ValueError):
+            return False
 
 
 class Int(Assertion):

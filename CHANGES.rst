@@ -7,6 +7,8 @@ Changelog
 - Add ``Subset``.
 - Add ``Superset``.
 - Add ``Unique``.
+- Add ``Date``.
+- Add ``DateString``.
 - Add ``Positive``.
 - Add ``Negative``.
 - Add ``Even``.

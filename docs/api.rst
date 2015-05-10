@@ -123,6 +123,8 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.Dict
 .. autoclass:: verify.List
 .. autoclass:: verify.Tuple
+.. autoclass:: Date
+.. autoclass:: DateString
 .. autoclass:: verify.Int
 .. autoclass:: verify.Float
 .. autoclass:: verify.NaN

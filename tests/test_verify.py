@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import datetime
 from decimal import Decimal
 import operator
 
@@ -129,6 +130,10 @@ def test_expect_predicates_raises(value, predicates):
     (v.Dict, {}, ()),
     (v.List, [], ()),
     (v.Tuple, (), ()),
+    (v.Date, datetime.date.today(), ()),
+    (v.Date, datetime.datetime.now(), ()),
+    (v.DateString, '2015-01-01', '%Y-%m-%d'),
+    (v.DateString, '2015-01-01T01:00:59', '%Y-%m-%dT%H:%M:%S'),
     (v.Int, 1, ()),
     (v.Float, 1.1, ()),
     (v.Number, 1, ()),
@@ -252,6 +257,10 @@ def test_assert_method(meth, value, comparables):
     (v.Tuple, {}, ()),
     (v.Tuple, [], ()),
     (v.Tuple, '', ()),
+    (v.Date, '', ()),
+    (v.Date, '2015-01-01', ()),
+    (v.DateString, 2015, '%Y'),
+    (v.DateString, '2015-29-01', '%Y-%m-%d'),
     (v.Int, '', ()),
     (v.Int, False, ()),
     (v.Int, 1.1, ()),

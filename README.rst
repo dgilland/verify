@@ -154,9 +154,8 @@ Validator               Description
 ``StrictlyIncreasing``  Assert that ``a`` is strictly increasing.
 ``Decreasing``          Assert that ``a`` is monotonically decreasing.
 ``StrictlyDecreasing``  Assert that ``a`` is strictly decreasing.
-``Date``                TODO
-``Datetime``            TODO
-``DateString``          TODO
+``Date``                Assert that ``isinstance(a, datetime.date)``.
+``DateString``          Assert that ``a`` matches the datetime format string ``b``.
 ``Match``               TODO
 ======================  ===========
 
