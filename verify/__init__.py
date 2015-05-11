@@ -104,12 +104,11 @@ def expect(value, *assertions):
             something.
 
     Returns:
-        bool: Whether all assertions pass.
+        bool: ``True`` if comparisons pass, otherwise, an ``AssertionError`` is
+            raised.
 
     Raises:
         AssertionError: If the evaluation of all assertions returns ``False``.
-        Exception: Whatever exception is raised in `assertions`. Generally,
-            this should be an ``AssertionError``.
 
     .. versionadded:: 0.0.1
 
@@ -153,7 +152,8 @@ class Assertion(object):
         that we can be used in ``all()``.
 
         Returns:
-            True: If comparison succeeds without an ``AssertionError``
+            bool: ``True`` if comparison passes, otherwise, an
+                ``AssertionError`` is raised.
 
         Raises:
             AssertionError: If comparison returns ``False``.
@@ -184,7 +184,24 @@ class Comparator(Assertion):
 
 
 class Not(Comparator):
-    """Asserts that `comparable` doesn't raise an ``AssertionError``.
+    """Asserts that `comparable` doesn't raise an ``AssertionError``. Can be
+    used to create "opposite" comparators.
+
+    Examples:
+
+        >>> expect(5, Not(In([1, 2, 3])))
+        True
+        >>> Not(5, In([1, 2, 3]))
+        True
+        >>> Not(In([1, 2, 3]))(5)
+        True
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
