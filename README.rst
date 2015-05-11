@@ -121,7 +121,7 @@ Validator               Description
 ``Less``                Assert that ``a < b``.
 ``LessEqual``           Assert that ``a <= b``.
 ``Between``             Assert that ``b <= a <= c``.
-``Length``              Assert that ``len(a) == b``.
+``Length``              Assert that ``b <= len(a) <= c``.
 ``Is``                  Assert that ``a is b``.
 ``IsTrue``              Assert that ``a is True``.
 ``IsFalse``             Assert that ``a is False``.

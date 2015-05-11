@@ -64,7 +64,7 @@ that any assert message included will not be shown since the assertion error wil
 
 
 Assertion Runner
-================
+----------------
 
 The :func:`.expect` function is basically an assertion runner that takes an input `value` and passes it through any number of assertions or predicate functions. If all assertions pass **and** return truthy, then all is well and ``True`` is returned. Otherwise, either one of the assertion functions will raise an ``AssertionError`` or no exceptiosn were raised but at least one of the functions returned a non-truthy value which means that :func:`.expect` will return ``False``.
 
@@ -72,7 +72,7 @@ The :func:`.expect` function is basically an assertion runner that takes an inpu
 
 
 Assertions
-==========
+----------
 
 For all assertion classes, the `value` argument is optional, but when provided the assertion will be evaluated immediately. When passing both the `value` and `comparable` arguments, be sure that `value` comes first even though `comparable` is listed as the first argument. Internally, when both variables are passed in, `value` and `comparable` are swapped in order to support late evaulation, i.e., all of the following are equivalent ways to assert validity:
 
@@ -124,8 +124,8 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.Dict
 .. autoclass:: verify.List
 .. autoclass:: verify.Tuple
-.. autoclass:: Date
-.. autoclass:: DateString
+.. autoclass:: verify.Date
+.. autoclass:: verify.DateString
 .. autoclass:: verify.Int
 .. autoclass:: verify.Float
 .. autoclass:: verify.NaN
