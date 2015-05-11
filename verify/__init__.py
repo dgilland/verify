@@ -192,7 +192,7 @@ class Not(Comparator):
         >>> expect(5, Not(In([1, 2, 3])))
         True
         >>> Not(5, In([1, 2, 3]))
-        True
+        <Not()>
         >>> Not(In([1, 2, 3]))(5)
         True
 

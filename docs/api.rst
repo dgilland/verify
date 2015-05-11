@@ -41,7 +41,7 @@ that any assert message included will not be shown since the assertion error wil
 .. doctest::
 
     >>> Truthy(True)
-    <Truthy>
+    <Truthy()>
     >>> assert Truthy(True)
 
 .. doctest::
@@ -80,13 +80,13 @@ For all assertion classes, the `value` argument is optional, but when provided t
 .. doctest::
 
     >>> Less(5, 10)
-    <Less>
+    <Less()>
     >>> Less(10)(5)
     True
     >>> expect(5, Less(10))
     True
     >>> Truthy(5)
-    <Truthy>
+    <Truthy()>
     >>> Truthy()(5)
     True
     >>> expect(5, Truthy())
