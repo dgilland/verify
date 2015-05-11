@@ -202,6 +202,10 @@ class Predicate(Comparator):
     """Asserts that `value` evaluated by the predicate `comparable` is
     ``True``.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -215,6 +219,10 @@ class Predicate(Comparator):
 
 class Equal(Comparator):
     """Asserts that two values are equal.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -469,6 +477,10 @@ class Length(Between):
 class Is(Comparator):
     """Asserts that `value` is `comparable`.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -480,6 +492,10 @@ class Is(Comparator):
 
 class IsTrue(Assertion):
     """Asserts that `value` is ``True``.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -493,6 +509,10 @@ class IsTrue(Assertion):
 class IsFalse(Assertion):
     """Asserts that `value` is ``False``.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -504,6 +524,10 @@ class IsFalse(Assertion):
 
 class IsNone(Assertion):
     """Asserts that `value` is ``None``.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -517,6 +541,10 @@ class IsNone(Assertion):
 class All(Comparator):
     """Asserts that `value` evaluates as truthy for **all** predicates in
     `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -537,6 +565,10 @@ class Any(Comparator):
     """Asserts that `value` evaluates as truthy for **any** predicates in
     `comparable`.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -554,6 +586,10 @@ class Any(Comparator):
 
 class In(Comparator):
     """Asserts that `value` is in `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -574,6 +610,10 @@ class In(Comparator):
 class Contains(Comparator):
     """Asserts that `value` is an iterable and contains `comparable`.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -592,6 +632,10 @@ class Contains(Comparator):
 
 class ContainsOnly(Comparator):
     """Asserts that `value` is an iterable and only contains `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -613,6 +657,10 @@ class Subset(Comparator):
     """Asserts that `value` is a subset of `comparable`. Comparison supports
     nested ``dict``, ``list``, and ``tuple`` objects.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -626,6 +674,10 @@ class Superset(Comparator):
     """Asserts that `value` is a superset of `comparable`. Comparison supports
     nested ``dict``, ``list``, and ``tuple`` objects.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -638,6 +690,10 @@ class Superset(Comparator):
 class Unique(Assertion):
     """Asserts that `value` contains only unique values. If `value` is a
     ``dict``, then its ``values()`` will be compared.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -666,6 +722,10 @@ class Unique(Assertion):
 class InstanceOf(Comparator):
     """Asserts that `value` is an instance of `comparable`.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -677,6 +737,10 @@ class InstanceOf(Comparator):
 
 class Truthy(Assertion):
     """Asserts that `value` is truthy.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -690,6 +754,10 @@ class Truthy(Assertion):
 class Falsy(Assertion):
     """Asserts that `value` is falsy.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -701,6 +769,10 @@ class Falsy(Assertion):
 
 class Boolean(Assertion):
     """Asserts that `value` is a boolean.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -714,6 +786,10 @@ class Boolean(Assertion):
 class String(Assertion):
     """Asserts that `value` is a string (``str`` or ``unicode`` on Python 2).
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -725,6 +801,10 @@ class String(Assertion):
 
 class Dict(Assertion):
     """Asserts that `value` is a dictionary.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -738,6 +818,10 @@ class Dict(Assertion):
 class List(Assertion):
     """Asserts that `value` is a list.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -749,6 +833,10 @@ class List(Assertion):
 
 class Tuple(Assertion):
     """Asserts that `value` is a tuple.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -763,6 +851,10 @@ class Date(Assertion):
     """Asserts that `value` is an instance of ``datetime.date`` or
     ``datetime.datetime``.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -774,6 +866,10 @@ class Date(Assertion):
 
 class DateString(Comparator):
     """Asserts that `value` is matches the datetime format string `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -794,6 +890,10 @@ class DateString(Comparator):
 class Int(Assertion):
     """Asserts that `value` is an integer.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -805,6 +905,10 @@ class Int(Assertion):
 
 class Float(Assertion):
     """Asserts that `value` is a float.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -825,6 +929,10 @@ class Number(Assertion):
     - ``decimal.Decimal``
     - ``long (Python 2)``
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -836,6 +944,10 @@ class Number(Assertion):
 
 class NaN(Assertion):
     """Asserts that `value` is a not a number.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -849,6 +961,10 @@ class NaN(Assertion):
 class Positive(Assertion):
     """Asserts that `value` is a positive number.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -860,6 +976,10 @@ class Positive(Assertion):
 
 class Negative(Assertion):
     """Asserts that `value` is a negative number.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -873,6 +993,10 @@ class Negative(Assertion):
 class Even(Assertion):
     """Asserts that `value` is an even number.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -884,6 +1008,10 @@ class Even(Assertion):
 
 class Odd(Assertion):
     """Asserts that `value` is an odd number.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -897,6 +1025,10 @@ class Odd(Assertion):
 class Monotone(Comparator):
     """Asserts that `value` is a monotonic with respect to `comparable`.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -908,6 +1040,10 @@ class Monotone(Comparator):
 
 class Increasing(Assertion):
     """Asserts that `value` is monotonically increasing.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
@@ -921,6 +1057,10 @@ class Increasing(Assertion):
 class StrictlyIncreasing(Assertion):
     """Asserts that `value` is strictly increasing.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -933,6 +1073,10 @@ class StrictlyIncreasing(Assertion):
 class Decreasing(Assertion):
     """Asserts that `value` is monotonically decreasing.
 
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -944,6 +1088,10 @@ class Decreasing(Assertion):
 
 class StrictlyDecreasing(Assertion):
     """Asserts that `value` is strictly decreasing.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
