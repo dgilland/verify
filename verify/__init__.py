@@ -382,20 +382,65 @@ class Between(Comparator):
         return ge_min and le_max
 
 
-class Length(Comparator):
-    """Asserts that `value` is an iterable with length equal to `comparable`.
+class Length(Between):
+    """Asserts that `value` is an iterable with length between `min` and `max`
+    inclusively.
+
+    Examples:
+
+        These will pass:
+
+        >>> assert Length([1, 2, 3], 3)  # 3 <= len(a) <= 3
+        >>> assert Length([1, 2, 3, 4, 5], (5, 6))  # 5 <= len(a) <= 6
+        >>> assert Length([1, 2, 3], (None, 6))  # len(a) <= 6
+        >>> assert Length([1, 2, 3, 4], (4, None))  # len(a) >= 4
+        >>> assert Length([1, 2, 3], min=2, max=4)  # 2 <= len(a) <= 4
+
+        This will fail:
+
+        >>> Length([1, 2, 4], 2)  # len(a) <= 2
+        Traceback (most recent call last):
+        ...
+        AssertionError...
+
+    Args:
+        value (mixed, optional): Value to compare.
+        comparable (tuple): The ``(min, max)`` values for length comparison.
+            Pass ``None`` for either position to skip that comparison.
+
+    Keyword Args:
+        min (int, optional): Minimum value that `value` must be greater than or
+            equal to.
+        max (int, optional): Maximum value that `value` must be less than or
+            equal to.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
 
     Raises:
         AssertionError: If comparison returns ``False``.
 
+    Warning:
+        Specify the min/max using either a positional ``tuple`` or keyword
+        arguments, but don't mix the two styles. Passing `comparable` by
+        position has precedence.
+
     .. versionadded:: 0.2.0
+
+    .. versionchanged:: 0.4.0
+
+        - Change comparison to function like :class:`Between` meaning length is
+          compared to min and max values.
+        - Allow keyword arguments ``min`` and ``max`` to be used in place of
+          positional tuple
     """
-    reason = '{0} does not have length {comparable}'
+    reason = '{0} does not have length between {min} and {max}'
 
     @staticmethod
-    def op(value, comparable):
+    def op(value, min=None, max=None):
         try:
-            return len(value) == comparable
+            return Between.op(len(value), min=min, max=max)
         except (TypeError, ValueError):
             return False
 
