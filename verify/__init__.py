@@ -145,7 +145,7 @@ class Assertion(object):
         return '<{0}>'.format(self)
 
     def __str__(self):  # pragma: no cover
-        return self.__class__.__name__
+        return '{0}()'.format(self.__class__.__name__)
 
     def __call__(self, *args, **kargs):
         """Our main entry point for executing validation. Return ``True`` so
@@ -205,8 +205,8 @@ class Not(Comparator):
 
     .. versionadded:: 0.0.1
     """
-    reason = ('The negation of {0} should not be true '
-              'when evaluated by {comparable}')
+    reason = ('The negation of {comparable} should not be true '
+              'when evaluated with {0}')
 
     def compare(self, *args, **kargs):
         try:
