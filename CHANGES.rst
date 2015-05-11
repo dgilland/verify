@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+- Make ``Between`` accept keyword arguments for ``min`` and ``max``.
+
+
 v0.3.0 (2015-05-11)
 -------------------
 
