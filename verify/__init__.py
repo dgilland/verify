@@ -228,6 +228,18 @@ class Equal(Comparator):
 class Match(Comparator):
     """Asserts that `value` matches the regular expression `comparable`.
 
+    Args:
+        value (mixed, optional): Value to compare.
+        comparable (str|RegExp): String or RegExp object used for matching.
+
+    Keyword Args:
+        flags (int, optional): Used when compiling regular expression when
+            regular expression is a string. Defaults to ``0``.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
     Raises:
         AssertionError: If comparison returns ``False``.
 
@@ -235,17 +247,26 @@ class Match(Comparator):
     """
     reason = '{0} does not match the regular expression {comparable}'
 
+    def __init__(self, comparable, value=NotSet, **options):
+        self.flags = options.get('flags', 0)
+        super(Match, self).__init__(comparable, value)
+
+    def compare(self, value):
+        return self.op(value, self.comparable, flags=self.flags)
+
     @staticmethod
-    def op(value, comparable):
-        if not pydash.is_re(comparable):
-            comparable = re.compile(comparable)
+    def op(value, comparable, flags=0):
+        if pydash.is_string(comparable):
+            pattern = re.compile(comparable, flags)
+        else:
+            pattern = comparable
 
         try:
-            match = comparable.match(value)
+            match = bool(pattern.match(value))
         except (TypeError, ValueError):
             match = False
 
-        return bool(match)
+        return match
 
 
 class Greater(Comparator):

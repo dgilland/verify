@@ -6,6 +6,7 @@ Changelog
 
 - Make ``Between`` accept keyword arguments for ``min`` and ``max``.
 - Make ``Length`` function like ``Between`` and allow comparison over range of lengths. If a single comparable value is passed in, then comparison uses the value as a max length. Previously, a single comparable value performed an equality check for length. (**breaking change**)
+- Make ``Match`` accept keyword argument ``flags`` for use with string based regular expression.
 
 
 v0.3.0 (2015-05-11)
