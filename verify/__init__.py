@@ -210,7 +210,7 @@ class Negate(object):
     def compare(self, *args, **kargs):
         try:
             return not super(Negate, self).compare(*args, **kargs)
-        except AssertionError:
+        except AssertionError:  # pragma: no cover
             return True
 
 
