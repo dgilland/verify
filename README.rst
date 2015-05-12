@@ -145,7 +145,7 @@ Validator               Description
 ``Int``                 Assert that ``isinstance(a, int)``.
 ``Float``               Assert that ``isinstance(a, float)``.
 ``Number``              Assert that ``isinstance(a, (int, float, Decimal, long))``.
-``NaN``                 Assert that ``not isinstance(a, (int, float, Decimal, long))``.
+``NotNumber``           Assert that ``not isinstance(a, (int, float, Decimal, long))``.
 ``Positive``            Assert that ``a > 0``.
 ``Negative``            Assert that ``a < 0``.
 ``Even``                Assert that ``a % 2 == 0``.
@@ -157,6 +157,32 @@ Validator               Description
 ``StrictlyDecreasing``  Assert that ``a`` is strictly decreasing.
 ``Date``                Assert that ``isinstance(a, datetime.date)``.
 ``DateString``          Assert that ``a`` matches the datetime format string ``b``.
+``NotEqual``            Assert ``not Equal``.
+``NotMatch``            Assert ``not Match``.
+``NotBetween``          Assert ``not Between``.
+``IsNot``               Assert ``not Is``.
+``IsNotTrue``           Assert ``not Istrue``.
+``IsNotFalse``          Assert ``not IsFalse``.
+``IsNotNone``           Assert ``not IsNone``.
+``NotAll``              Assert ``not All``.
+``NotAny``              Assert ``not Any``.
+``NotIn``               Assert ``not In``.
+``NotContains``         Assert ``not Contains``.
+``NotContainsOnly``     Assert ``not ContainsOnly``.
+``NotSubset``           Assert ``not Subset``.
+``NotSuperset``         Assert ``not Superset``.
+``NotUnique``           Assert ``not Unique``.
+``NotInstanceOf``       Assert ``not InstanceOf``.
+``NotBoolean``          Assert ``not Boolean``.
+``NotString``           Assert ``not String``.
+``NotDict``             Assert ``not Dict``.
+``NotList``             Assert ``not List``.
+``NotTuple``            Assert ``not Tuple``.
+``NotDate``             Assert ``not Date``.
+``NotDateString``       Assert ``not DateString``.
+``NotInt``              Assert ``not Int``.
+``NotFloat``            Assert ``not Float``.
+``NotNumber``           Assert ``not Number``.
 ======================  ===========
 
 
