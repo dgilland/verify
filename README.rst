@@ -47,16 +47,19 @@ Verify using your own assert functions:
 .. code-block:: python
 
     def is_just_right(value):
-        assert value != 'too cold' and value != 'too hot', 'Not just right!'
+        assert value == 'just right', 'Not just right!'
+        return True
 
     # Passes
-    expect(25, is_just_right)
+    expect('just right', is_just_right)
 
     # Fails
     try:
-        expect(31, is_just_right)
+        expect('too cold', is_just_right)
     expect AssertionError:
         raise
+
+**NOTE:** The assert function should return a truthy value, otherwise, ``expect`` will treat the falsy return from the function as an indication that it failed as subsequently raise it's own ``AssertionError``.
 
 Or your own predicate functions:
 
@@ -145,7 +148,6 @@ Validator               Description
 ``Int``                 Assert that ``isinstance(a, int)``.
 ``Float``               Assert that ``isinstance(a, float)``.
 ``Number``              Assert that ``isinstance(a, (int, float, Decimal, long))``.
-``NotNumber``           Assert that ``not isinstance(a, (int, float, Decimal, long))``.
 ``Positive``            Assert that ``a > 0``.
 ``Negative``            Assert that ``a < 0``.
 ``Even``                Assert that ``a % 2 == 0``.
