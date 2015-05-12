@@ -3,7 +3,7 @@
 verify
 ******
 
-A painless assertion library for Python.
+A painless assertion and validation library for Python.
 
 Project: https://github.com/dgilland/verify
 

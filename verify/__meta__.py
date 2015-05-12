@@ -3,10 +3,10 @@
 """
 
 __title__ = 'verify'
-__summary__ = 'A painless assertion library for Python.'
+__summary__ = 'A painless assertion and validation library for Python.'
 __url__ = 'https://github.com/dgilland/verify'
 
-__version__ = '0.4.0'
+__version__ = '0.5.0'
 
 __install_requires__ = ['pydash>=3.2.2']
 

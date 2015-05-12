@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+v0.5.0 (2015-05-12)
+-------------------
+
 - Add ``NotEqual``.
 - Add ``NotMatch``.
 - Add ``NotBetween``.
