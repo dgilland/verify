@@ -128,7 +128,6 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.DateString
 .. autoclass:: verify.Int
 .. autoclass:: verify.Float
-.. autoclass:: verify.NaN
 .. autoclass:: verify.Number
 .. autoclass:: verify.Positive
 .. autoclass:: verify.Negative
@@ -139,3 +138,4 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.StrictlyIncreasing
 .. autoclass:: verify.Decreasing
 .. autoclass:: verify.StrictlyDecreasing
+.. autoclass:: verify.NotNumber

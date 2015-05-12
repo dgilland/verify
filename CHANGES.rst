@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+- Rename ``NaN`` to ``NotNumber``. (**breaking change**)
+
+
 v0.4.0 (2015-05-12)
 -------------------
 

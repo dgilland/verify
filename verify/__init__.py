@@ -56,7 +56,6 @@ __all__ = (
     'DateString',
     'Int',
     'Float',
-    'NaN',
     'Number',
     'Positive',
     'Negative',
@@ -67,6 +66,7 @@ __all__ = (
     'StrictlyIncreasing',
     'Decreasing',
     'StrictlyDecreasing',
+    'NotNumber',
 )
 
 
@@ -970,22 +970,6 @@ class Number(Assertion):
     op = staticmethod(pydash.is_number)
 
 
-class NaN(Assertion):
-    """Asserts that `value` is a not a number.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
-    .. versionadded:: 0.1.0
-    """
-    reason = '{0} is a number'
-    op = staticmethod(pydash.is_nan)
-
-
 class Positive(Assertion):
     """Asserts that `value` is a positive number.
 
@@ -1128,3 +1112,21 @@ class StrictlyDecreasing(Assertion):
     """
     reason = '{0} is not strictly decreasing'
     op = staticmethod(pydash.is_strictly_decreasing)
+
+
+class NotNumber(Negate, Number):
+    """Asserts that `value` is a not a number.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.1.0
+
+    .. versionchanged:: 0.5.0
+        Renamed from ``NaN`` to ``NotNumber``.
+    """
+    reason = '{0} is a number'
