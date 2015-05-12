@@ -4,6 +4,26 @@ Changelog
 =========
 
 
+- Add ``NotEqual``.
+- Add ``NotMatch``.
+- Add ``NotAll``.
+- Add ``NotAny``.
+- Add ``NotIn``.
+- Add ``NotContains``.
+- Add ``NotContainsOnly``.
+- Add ``NotSubset``.
+- Add ``NotSuperset``.
+- Add ``NotUnique``.
+- Add ``NotInstanceOf``.
+- Add ``NotBoolean``.
+- Add ``NotString``.
+- Add ``NotDict``.
+- Add ``NotList``.
+- Add ``NotTuple``.
+- Add ``NotDate``.
+- Add ``NotDateString``.
+- Add ``NotInt``.
+- Add ``NotFloat``.
 - Rename ``NaN`` to ``NotNumber``. (**breaking change**)
 
 

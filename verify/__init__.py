@@ -66,6 +66,26 @@ __all__ = (
     'StrictlyIncreasing',
     'Decreasing',
     'StrictlyDecreasing',
+    'NotEqual',
+    'NotMatch',
+    'NotAll',
+    'NotAny',
+    'NotIn',
+    'NotContains',
+    'NotContainsOnly',
+    'NotSubset',
+    'NotSuperset',
+    'NotUnique',
+    'NotInstanceOf',
+    'NotBoolean',
+    'NotString',
+    'NotDict',
+    'NotList',
+    'NotTuple',
+    'NotDate',
+    'NotDateString',
+    'NotInt',
+    'NotFloat',
     'NotNumber',
 )
 
@@ -927,7 +947,7 @@ class Int(Assertion):
 
     .. versionadded:: 0.1.0
     """
-    reason = '{0} is not an int'
+    reason = '{0} is not an integer'
     op = staticmethod(pydash.is_int)
 
 
@@ -1112,6 +1132,308 @@ class StrictlyDecreasing(Assertion):
     """
     reason = '{0} is not strictly decreasing'
     op = staticmethod(pydash.is_strictly_decreasing)
+
+
+class NotEqual(Negate, Equal):
+    """Asserts that two values are not equal.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is equal to {comparable}'
+
+
+class NotMatch(Negate, Match):
+    """Asserts that `value` does not match the regular expression `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} matches the regular expression {comparable}'
+
+
+class NotAll(Negate, All):
+    """Asserts that `value` evaluates as falsy for **all** predicates in
+    `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is true for all {comparable}'
+
+
+class NotAny(Negate, Any):
+    """Asserts that `value` evaluates as falsy for **any** predicates in
+    `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is true for some {comparable}'
+
+
+class NotIn(Negate, In):
+    """Asserts that `value` is not in `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is in {comparable}'
+
+
+class NotContains(Negate, Contains):
+    """Asserts that `value` does not contain `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} contains {comparable}'
+
+
+class NotContainsOnly(Negate, ContainsOnly):
+    """Asserts that `value` does not contain only `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} contains only {comparable}'
+
+
+class NotSubset(Negate, Subset):
+    """Asserts that `value` is a not a subset of `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a subset of {comparable}'
+
+
+class NotSuperset(Negate, Superset):
+    """Asserts that `value` is a not a superset of `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a superset of {comparable}'
+
+
+class NotUnique(Negate, Unique):
+    """Asserts that `value` is a not a unique.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is unique'
+
+
+class NotInstanceOf(Negate, InstanceOf):
+    """Asserts that `value` is a not an instance of `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is an instance of {comparable}'
+
+
+class NotBoolean(Negate, Boolean):
+    """Asserts that `value` is a not a boolean.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a boolean'
+
+
+class NotString(Negate, String):
+    """Asserts that `value` is a not a string.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a string'
+
+
+class NotDict(Negate, Dict):
+    """Asserts that `value` is a not a dict.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a dict'
+
+
+class NotList(Negate, List):
+    """Asserts that `value` is a not a list.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a list'
+
+
+class NotTuple(Negate, Tuple):
+    """Asserts that `value` is a not a tuple.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a tuple'
+
+
+class NotDate(Negate, Date):
+    """Asserts that `value` is a not a date or datetime object.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a date or datetime object'
+
+
+class NotDateString(Negate, DateString):
+    """Asserts that `value` does not match datetime format string `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} matches the datetime format {comparable}'
+
+
+class NotInt(Negate, Int):
+    """Asserts that `value` is a not an integer.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is an integer'
+
+
+class NotFloat(Negate, Float):
+    """Asserts that `value` is a not a float.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is a float'
 
 
 class NotNumber(Negate, Number):
