@@ -183,6 +183,17 @@ class Comparator(Assertion):
         return self.op(value, self.comparable)
 
 
+class Negate(object):
+    """Mixin class that negates the results of :meth:`compare` from the parent
+    class.
+    """
+    def compare(self, *args, **kargs):
+        try:
+            return not super(Negate, self).compare(*args, **kargs)
+        except AssertionError:
+            return True
+
+
 class Not(Comparator):
     """Asserts that `comparable` doesn't raise an ``AssertionError``. Can be
     used to create "opposite" comparators.
