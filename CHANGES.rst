@@ -6,6 +6,11 @@ Changelog
 
 - Add ``NotEqual``.
 - Add ``NotMatch``.
+- Add ``NotBetween``.
+- Add ``IsNot``.
+- Add ``IsNotTrue``.
+- Add ``IsNotFalse``.
+- Add ``IsNotNone``.
 - Add ``NotAll``.
 - Add ``NotAny``.
 - Add ``NotIn``.

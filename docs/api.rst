@@ -140,6 +140,11 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.StrictlyDecreasing
 .. autoclass:: verify.NotEqual
 .. autoclass:: verify.NotMatch
+.. autoclass:: verify.NotBetween
+.. autoclass:: verify.IsNot
+.. autoclass:: verify.IsNotTrue
+.. autoclass:: verify.IsNotFalse
+.. autoclass:: verify.IsNotNone
 .. autoclass:: verify.NotAll
 .. autoclass:: verify.NotAny
 .. autoclass:: verify.NotIn

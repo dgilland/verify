@@ -68,6 +68,11 @@ __all__ = (
     'StrictlyDecreasing',
     'NotEqual',
     'NotMatch',
+    'NotBetween',
+    'IsNot',
+    'IsNotTrue',
+    'IsNotFalse',
+    'IsNotNone',
     'NotAll',
     'NotAny',
     'NotIn',
@@ -1162,6 +1167,81 @@ class NotMatch(Negate, Match):
     .. versionadded:: 0.5.0
     """
     reason = '{0} matches the regular expression {comparable}'
+
+
+class NotBetween(Negate, Between):
+    """Asserts that `value` is not between `min` and `max` inclusively.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is between {min} and {max}'
+
+
+class IsNot(Negate, Is):
+    """Asserts that `value` is not `comparable`.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is {comparable}'
+
+
+class IsNotTrue(Negate, IsTrue):
+    """Asserts that `value` is not ``True``.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is True'
+
+
+class IsNotFalse(Negate, IsFalse):
+    """Asserts that `value` is not ``False``.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is False'
+
+
+class IsNotNone(Negate, IsNone):
+    """Asserts that `value` is not ``None``.
+
+    Returns:
+        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
+            is raised.
+
+    Raises:
+        AssertionError: If comparison returns ``False``.
+
+    .. versionadded:: 0.5.0
+    """
+    reason = '{0} is None'
 
 
 class NotAll(Negate, All):
