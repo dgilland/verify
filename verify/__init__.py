@@ -40,7 +40,7 @@ __all__ = (
     'Subset',
     'Superset',
     'Unique',
-    'InstanceOf',
+    'Type',
     'Is',
     'IsTrue',
     'IsFalse',
@@ -81,7 +81,7 @@ __all__ = (
     'NotSubset',
     'NotSuperset',
     'NotUnique',
-    'NotInstanceOf',
+    'NotType',
     'NotBoolean',
     'NotString',
     'NotDict',
@@ -772,7 +772,7 @@ class Unique(Assertion):
         return is_unique
 
 
-class InstanceOf(Comparator):
+class Type(Comparator):
     """Asserts that `value` is an instance of `comparable`.
 
     Returns:
@@ -1366,7 +1366,7 @@ class NotUnique(Negate, Unique):
     reason = '{0} is unique'
 
 
-class NotInstanceOf(Negate, InstanceOf):
+class NotType(Negate, Type):
     """Asserts that `value` is a not an instance of `comparable`.
 
     Returns:

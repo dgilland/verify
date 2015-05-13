@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+- Rename ``InstanceOf`` and ``NotInstanceOf`` to ``Type`` and ``NotType``. (**breaking change**)
+
+
 v0.5.0 (2015-05-12)
 -------------------
 

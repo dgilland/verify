@@ -112,7 +112,7 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.Subset
 .. autoclass:: verify.Superset
 .. autoclass:: verify.Unique
-.. autoclass:: verify.InstanceOf
+.. autoclass:: verify.Type
 .. autoclass:: verify.Is
 .. autoclass:: verify.IsTrue
 .. autoclass:: verify.IsFalse
@@ -153,7 +153,7 @@ Below are the various assertion classes that can be used for validation.
 .. autoclass:: verify.NotSubset
 .. autoclass:: verify.NotSuperset
 .. autoclass:: verify.NotUnique
-.. autoclass:: verify.NotInstanceOf
+.. autoclass:: verify.NotType
 .. autoclass:: verify.NotBoolean
 .. autoclass:: verify.NotString
 .. autoclass:: verify.NotDict
