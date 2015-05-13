@@ -232,13 +232,6 @@ class Not(Comparator):
         >>> Not(In([1, 2, 3]))(5)
         True
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.0.1
     """
     reason = ('The negation of {comparable} should not be true '
@@ -255,13 +248,6 @@ class Predicate(Comparator):
     """Asserts that `value` evaluated by the predicate `comparable` is
     ``True``.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.1.0
     """
     reason = 'The evaluation of {0} using {comparable} is false'
@@ -272,13 +258,6 @@ class Predicate(Comparator):
 
 class Equal(Comparator):
     """Asserts that two values are equal.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -296,13 +275,6 @@ class Match(Comparator):
     Keyword Args:
         flags (int, optional): Used when compiling regular expression when
             regular expression is a string. Defaults to ``0``.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.3.0
     """
@@ -333,9 +305,6 @@ class Match(Comparator):
 class Greater(Comparator):
     """Asserts that `value` is greater than `comparable`.
 
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not greater than {comparable}'
@@ -344,9 +313,6 @@ class Greater(Comparator):
 
 class GreaterEqual(Comparator):
     """Asserts that `value` is greater than or equal to `comparable`.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -357,9 +323,6 @@ class GreaterEqual(Comparator):
 class Less(Comparator):
     """Asserts that `value` is less than `comparable`.
 
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not less than {comparable}'
@@ -368,9 +331,6 @@ class Less(Comparator):
 
 class LessEqual(Comparator):
     """Asserts that `value` is less than or equal to `comparable`.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -409,13 +369,6 @@ class Between(Comparator):
             equal to.
         max (int, optional): Maximum value that `value` must be less than or
             equal to.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     Warning:
         Specify the min/max using either a positional ``tuple`` or keyword
@@ -496,13 +449,6 @@ class Length(Between):
         max (int, optional): Maximum value that `value` must be less than or
             equal to.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     Warning:
         Specify the min/max using either a positional ``tuple`` or keyword
         arguments, but don't mix the two styles. Passing `comparable` by
@@ -530,13 +476,6 @@ class Length(Between):
 class Is(Comparator):
     """Asserts that `value` is `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not {comparable}'
@@ -545,13 +484,6 @@ class Is(Comparator):
 
 class IsTrue(Assertion):
     """Asserts that `value` is ``True``.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -562,13 +494,6 @@ class IsTrue(Assertion):
 class IsFalse(Assertion):
     """Asserts that `value` is ``False``.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not False'
@@ -577,13 +502,6 @@ class IsFalse(Assertion):
 
 class IsNone(Assertion):
     """Asserts that `value` is ``None``.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -594,13 +512,6 @@ class IsNone(Assertion):
 class All(Comparator):
     """Asserts that `value` evaluates as truthy for **all** predicates in
     `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.2.0
     """
@@ -618,13 +529,6 @@ class Any(Comparator):
     """Asserts that `value` evaluates as truthy for **any** predicates in
     `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.2.0
     """
     reason = '{0} is not true for any {comparable}'
@@ -639,13 +543,6 @@ class Any(Comparator):
 
 class In(Comparator):
     """Asserts that `value` is in `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -663,13 +560,6 @@ class In(Comparator):
 class Contains(Comparator):
     """Asserts that `value` is an iterable and contains `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.2.0
     """
     reason = '{0} does not contain {comparable}'
@@ -685,13 +575,6 @@ class Contains(Comparator):
 
 class ContainsOnly(Comparator):
     """Asserts that `value` is an iterable and only contains `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.2.0
     """
@@ -710,13 +593,6 @@ class Subset(Comparator):
     """Asserts that `value` is a subset of `comparable`. Comparison supports
     nested ``dict``, ``list``, and ``tuple`` objects.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not a subset of {comparable}'
@@ -727,13 +603,6 @@ class Superset(Comparator):
     """Asserts that `value` is a superset of `comparable`. Comparison supports
     nested ``dict``, ``list``, and ``tuple`` objects.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not a supserset of {comparable}'
@@ -743,13 +612,6 @@ class Superset(Comparator):
 class Unique(Assertion):
     """Asserts that `value` contains only unique values. If `value` is a
     ``dict``, then its ``values()`` will be compared.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.3.0
     """
@@ -775,14 +637,10 @@ class Unique(Assertion):
 class Type(Comparator):
     """Asserts that `value` is an instance of `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.0.1
+
+    .. versionchanged:: x.x.x
+        Renamed from ``InstanceOf`` to ``Type``
     """
     reason = '{0} is not an instance of {comparable}'
     op = isinstance
@@ -790,13 +648,6 @@ class Type(Comparator):
 
 class Truthy(Assertion):
     """Asserts that `value` is truthy.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.0.1
     """
@@ -807,13 +658,6 @@ class Truthy(Assertion):
 class Falsy(Assertion):
     """Asserts that `value` is falsy.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.0.1
     """
     reason = '{0} is not falsy'
@@ -822,13 +666,6 @@ class Falsy(Assertion):
 
 class Boolean(Assertion):
     """Asserts that `value` is a boolean.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -839,13 +676,6 @@ class Boolean(Assertion):
 class String(Assertion):
     """Asserts that `value` is a string (``str`` or ``unicode`` on Python 2).
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a string'
@@ -854,13 +684,6 @@ class String(Assertion):
 
 class Dict(Assertion):
     """Asserts that `value` is a dictionary.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -871,13 +694,6 @@ class Dict(Assertion):
 class List(Assertion):
     """Asserts that `value` is a list.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a list'
@@ -886,13 +702,6 @@ class List(Assertion):
 
 class Tuple(Assertion):
     """Asserts that `value` is a tuple.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -904,13 +713,6 @@ class Date(Assertion):
     """Asserts that `value` is an instance of ``datetime.date`` or
     ``datetime.datetime``.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not a date or datetime object'
@@ -919,13 +721,6 @@ class Date(Assertion):
 
 class DateString(Comparator):
     """Asserts that `value` is matches the datetime format string `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.3.0
     """
@@ -943,13 +738,6 @@ class DateString(Comparator):
 class Int(Assertion):
     """Asserts that `value` is an integer.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not an integer'
@@ -958,13 +746,6 @@ class Int(Assertion):
 
 class Float(Assertion):
     """Asserts that `value` is a float.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
     """
@@ -982,13 +763,6 @@ class Number(Assertion):
     - ``decimal.Decimal``
     - ``long (Python 2)``
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.1.0
     """
     reason = '{0} is not a number'
@@ -997,13 +771,6 @@ class Number(Assertion):
 
 class Positive(Assertion):
     """Asserts that `value` is a positive number.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.3.0
     """
@@ -1014,13 +781,6 @@ class Positive(Assertion):
 class Negative(Assertion):
     """Asserts that `value` is a negative number.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not a negative number'
@@ -1029,13 +789,6 @@ class Negative(Assertion):
 
 class Even(Assertion):
     """Asserts that `value` is an even number.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.3.0
     """
@@ -1046,13 +799,6 @@ class Even(Assertion):
 class Odd(Assertion):
     """Asserts that `value` is an odd number.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not an odd number'
@@ -1061,13 +807,6 @@ class Odd(Assertion):
 
 class Monotone(Comparator):
     """Asserts that `value` is a monotonic with respect to `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.3.0
     """
@@ -1078,13 +817,6 @@ class Monotone(Comparator):
 class Increasing(Assertion):
     """Asserts that `value` is monotonically increasing.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not monotonically increasing'
@@ -1093,13 +825,6 @@ class Increasing(Assertion):
 
 class StrictlyIncreasing(Assertion):
     """Asserts that `value` is strictly increasing.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.3.0
     """
@@ -1110,13 +835,6 @@ class StrictlyIncreasing(Assertion):
 class Decreasing(Assertion):
     """Asserts that `value` is monotonically decreasing.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.3.0
     """
     reason = '{0} is not monotonically decreasing'
@@ -1125,13 +843,6 @@ class Decreasing(Assertion):
 
 class StrictlyDecreasing(Assertion):
     """Asserts that `value` is strictly decreasing.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.3.0
     """
@@ -1142,13 +853,6 @@ class StrictlyDecreasing(Assertion):
 class NotEqual(Negate, Equal):
     """Asserts that two values are not equal.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is equal to {comparable}'
@@ -1156,13 +860,6 @@ class NotEqual(Negate, Equal):
 
 class NotMatch(Negate, Match):
     """Asserts that `value` does not match the regular expression `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1172,13 +869,6 @@ class NotMatch(Negate, Match):
 class NotBetween(Negate, Between):
     """Asserts that `value` is not between `min` and `max` inclusively.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is between {min} and {max}'
@@ -1186,13 +876,6 @@ class NotBetween(Negate, Between):
 
 class IsNot(Negate, Is):
     """Asserts that `value` is not `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1202,13 +885,6 @@ class IsNot(Negate, Is):
 class IsNotTrue(Negate, IsTrue):
     """Asserts that `value` is not ``True``.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is True'
@@ -1217,13 +893,6 @@ class IsNotTrue(Negate, IsTrue):
 class IsNotFalse(Negate, IsFalse):
     """Asserts that `value` is not ``False``.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is False'
@@ -1231,13 +900,6 @@ class IsNotFalse(Negate, IsFalse):
 
 class IsNotNone(Negate, IsNone):
     """Asserts that `value` is not ``None``.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1248,13 +910,6 @@ class NotAll(Negate, All):
     """Asserts that `value` evaluates as falsy for **all** predicates in
     `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is true for all {comparable}'
@@ -1264,13 +919,6 @@ class NotAny(Negate, Any):
     """Asserts that `value` evaluates as falsy for **any** predicates in
     `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is true for some {comparable}'
@@ -1278,13 +926,6 @@ class NotAny(Negate, Any):
 
 class NotIn(Negate, In):
     """Asserts that `value` is not in `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1294,13 +935,6 @@ class NotIn(Negate, In):
 class NotContains(Negate, Contains):
     """Asserts that `value` does not contain `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} contains {comparable}'
@@ -1308,13 +942,6 @@ class NotContains(Negate, Contains):
 
 class NotContainsOnly(Negate, ContainsOnly):
     """Asserts that `value` does not contain only `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1324,13 +951,6 @@ class NotContainsOnly(Negate, ContainsOnly):
 class NotSubset(Negate, Subset):
     """Asserts that `value` is a not a subset of `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is a subset of {comparable}'
@@ -1338,13 +958,6 @@ class NotSubset(Negate, Subset):
 
 class NotSuperset(Negate, Superset):
     """Asserts that `value` is a not a superset of `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1354,13 +967,6 @@ class NotSuperset(Negate, Superset):
 class NotUnique(Negate, Unique):
     """Asserts that `value` is a not a unique.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is unique'
@@ -1369,27 +975,16 @@ class NotUnique(Negate, Unique):
 class NotType(Negate, Type):
     """Asserts that `value` is a not an instance of `comparable`.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
+
+    .. versionchanged:: x.x.x
+        Renamed from ``NotInstanceOf`` to ``NotType``
     """
     reason = '{0} is an instance of {comparable}'
 
 
 class NotBoolean(Negate, Boolean):
     """Asserts that `value` is a not a boolean.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1399,13 +994,6 @@ class NotBoolean(Negate, Boolean):
 class NotString(Negate, String):
     """Asserts that `value` is a not a string.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is a string'
@@ -1413,13 +1001,6 @@ class NotString(Negate, String):
 
 class NotDict(Negate, Dict):
     """Asserts that `value` is a not a dict.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1429,13 +1010,6 @@ class NotDict(Negate, Dict):
 class NotList(Negate, List):
     """Asserts that `value` is a not a list.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is a list'
@@ -1443,13 +1017,6 @@ class NotList(Negate, List):
 
 class NotTuple(Negate, Tuple):
     """Asserts that `value` is a not a tuple.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1459,13 +1026,6 @@ class NotTuple(Negate, Tuple):
 class NotDate(Negate, Date):
     """Asserts that `value` is a not a date or datetime object.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is a date or datetime object'
@@ -1473,13 +1033,6 @@ class NotDate(Negate, Date):
 
 class NotDateString(Negate, DateString):
     """Asserts that `value` does not match datetime format string `comparable`.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.5.0
     """
@@ -1489,13 +1042,6 @@ class NotDateString(Negate, DateString):
 class NotInt(Negate, Int):
     """Asserts that `value` is a not an integer.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is an integer'
@@ -1504,13 +1050,6 @@ class NotInt(Negate, Int):
 class NotFloat(Negate, Float):
     """Asserts that `value` is a not a float.
 
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
-
     .. versionadded:: 0.5.0
     """
     reason = '{0} is a float'
@@ -1518,13 +1057,6 @@ class NotFloat(Negate, Float):
 
 class NotNumber(Negate, Number):
     """Asserts that `value` is a not a number.
-
-    Returns:
-        bool: ``True`` if comparison passes, otherwise, an ``AssertionError``
-            is raised.
-
-    Raises:
-        AssertionError: If comparison returns ``False``.
 
     .. versionadded:: 0.1.0
 
