@@ -163,7 +163,7 @@ Validator               Description
 ``NotMatch``            Assert ``not Match``.
 ``NotBetween``          Assert ``not Between``.
 ``IsNot``               Assert ``not Is``.
-``IsNotTrue``           Assert ``not Istrue``.
+``IsNotTrue``           Assert ``not IsTrue``.
 ``IsNotFalse``          Assert ``not IsFalse``.
 ``IsNotNone``           Assert ``not IsNone``.
 ``NotAll``              Assert ``not All``.
