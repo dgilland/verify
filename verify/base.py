@@ -99,9 +99,7 @@ class Comparator(Assertion):
         # self.compare() expects comparable to be an instance variable.
         self.comparable = comparable
 
-        if value is not NotSet:
-            # Immediately execute validation.
-            self(value, **opts)
+        super(Comparator, self).__init__(value, **opts)
 
     def compare(self, value):
         # pylint: disable=not-callable
