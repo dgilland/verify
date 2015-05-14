@@ -153,6 +153,7 @@ from .containers import (
     Unique,
     NotUnique,
     Length,
+    NotLength,
 )
 
 from .numbers import (

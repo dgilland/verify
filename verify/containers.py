@@ -23,6 +23,7 @@ __all__ = (
     'Unique',
     'NotUnique',
     'Length',
+    'NotLength',
 )
 
 
@@ -230,3 +231,13 @@ class Length(Between):
             return Between.op(len(value), min=min, max=max)
         except (TypeError, ValueError):
             return False
+
+
+class NotLength(Negate, Length):
+    """Asserts that `value` is an iterable with length not between `min` and
+    `max` inclusively.
+
+    .. versionadded:: x.x.x
+    """
+    #:
+    reason = '{0} has length between {min} and {max}'
