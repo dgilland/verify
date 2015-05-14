@@ -68,7 +68,7 @@ class Predicate(Comparator):
 
     .. versionadded:: 0.1.0
 
-    .. versionchanged:: x.x.x
+    .. versionchanged:: 0.6.0
         Catch ``AssertionError`` thrown by `comparable` and return ``False``
         as comparison value instead.
     """

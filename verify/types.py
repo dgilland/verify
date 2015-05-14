@@ -39,7 +39,7 @@ class Type(Comparator):
 
     .. versionadded:: 0.0.1
 
-    .. versionchanged:: x.x.x
+    .. versionchanged:: 0.6.0
         Renamed from ``InstanceOf`` to ``Type``
     """
     reason = '{0} is not an instance of {comparable}'
@@ -51,7 +51,7 @@ class NotType(Negate, Type):
 
     .. versionadded:: 0.5.0
 
-    .. versionchanged:: x.x.x
+    .. versionchanged:: 0.6.0
         Renamed from ``NotInstanceOf`` to ``NotType``
     """
     reason = '{0} is an instance of {comparable}'

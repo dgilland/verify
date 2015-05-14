@@ -115,7 +115,7 @@ The available validators are:
 Validator               Description
 ======================  ===========
 ``Not``                 Assert that a callable doesn't raise an ``AssertionError``.
-``Predicate``           Assert that ``predicate(a)`` (``predicate()`` should return a boolean).
+``Predicate``           Assert that ``predicate(a)``.
 ``Equal``               Assert that ``a == b``.
 ``Match``               Assert that ``a`` matches regular expression ``b``.
 ``Greater``             Assert that ``a > b``.
@@ -136,7 +136,7 @@ Validator               Description
 ``Subset``              Assert that ``a`` is a subset of ``b``.
 ``Superset``            Assert that ``a`` is a superset of ``b``.
 ``Unique``              Assert that ``a`` contains unique items.
-``InstanceOf``          Assert that ``isinstance(a, b)``.
+``Type``                Assert that ``isinstance(a, b)``.
 ``Truthy``              Assert that ``bool(a)``.
 ``Falsy``               Assert that ``not bool(a)``.
 ``Boolean``             Assert that ``isinstance(a, bool)``.
@@ -173,7 +173,7 @@ Validator               Description
 ``NotSubset``           Assert ``not Subset``.
 ``NotSuperset``         Assert ``not Superset``.
 ``NotUnique``           Assert ``not Unique``.
-``NotInstanceOf``       Assert ``not InstanceOf``.
+``NotType``             Assert ``not Type``.
 ``NotBoolean``          Assert ``not Boolean``.
 ``NotString``           Assert ``not String``.
 ``NotDict``             Assert ``not Dict``.

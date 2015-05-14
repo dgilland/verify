@@ -63,7 +63,7 @@ class expect(object):
         - Passed in `value` is no longer called if it's a callable.
         - Return ``True`` if all assertions pass.
 
-    .. versionchanged:: x.x.x
+    .. versionchanged:: 0.6.0
 
         - Re-implement as class.
         - Support method chaining of assertion classes.

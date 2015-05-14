@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+v0.6.0 (2015-05-14)
+-------------------
+
 - Make ``expect`` into a class and support method chaining of assertions. Original usage is still supported.
 - Make ``expect`` wrap external predicate functions with ``Predicate`` for evaluation. (**breaking change**)
 - Make ``Predicate`` catch ``AssertionError`` thrown by `comparable` and return ``False``. (**breaking change**)
