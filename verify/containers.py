@@ -175,34 +175,26 @@ class Length(Between):
 
         These will pass:
 
-        >>> assert Length([1, 2, 3], 3)  # 3 <= len(a) <= 3
-        >>> assert Length([1, 2, 3, 4, 5], (5, 6))  # 5 <= len(a) <= 6
-        >>> assert Length([1, 2, 3], (None, 6))  # len(a) <= 6
-        >>> assert Length([1, 2, 3, 4], (4, None))  # len(a) >= 4
-        >>> assert Length([1, 2, 3], min=2, max=4)  # 2 <= len(a) <= 4
+        >>> assert Length([1, 2, 3], min=3, max=3)  # 3 <= len(a) <= 3
+        >>> assert Length([1, 2, 3, 4, 5], min=5, max=6)  # 5 <= len(a) <= 6
+        >>> assert Length([1, 2, 3], max=6)  # len(a) <= 6
+        >>> assert Length([1, 2, 3, 4], min=4)  # len(a) >= 4
 
         This will fail:
 
-        >>> Length([1, 2, 4], 2)  # len(a) <= 2
+        >>> Length([1, 2, 4], max=2)  # len(a) <= 2
         Traceback (most recent call last):
         ...
         AssertionError...
 
     Args:
         value (mixed, optional): Value to compare.
-        comparable (tuple): The ``(min, max)`` values for length comparison.
-            Pass ``None`` for either position to skip that comparison.
 
     Keyword Args:
         min (int, optional): Minimum value that `value` must be greater than or
             equal to.
         max (int, optional): Maximum value that `value` must be less than or
             equal to.
-
-    Warning:
-        Specify the min/max using either a positional ``tuple`` or keyword
-        arguments, but don't mix the two styles. Passing `comparable` by
-        position has precedence.
 
     .. versionadded:: 0.2.0
 
@@ -212,6 +204,10 @@ class Length(Between):
           compared to min and max values.
         - Allow keyword arguments ``min`` and ``max`` to be used in place of
           positional tuple
+
+    .. versionchanged:: x.x.x
+        Removed positional tuple argument and only support ``min`` and ``max``
+        keyword arguments.
     """
     reason = '{0} does not have length between {min} and {max}'
 

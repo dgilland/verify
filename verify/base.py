@@ -16,11 +16,18 @@ class Assertion(object):
     reason = ''
     op = None
 
-    def __init__(self, value=NotSet):
+    def __init__(self, value=NotSet, **opts):
+        self.set_options(opts)
+
         if value is not NotSet:
-            self(value)
+            self(value, **opts)
 
     def message(self, *args, **kargs):
+    def set_options(self, opts):
+        # Optional method that sets options as class instance variables for
+        # use when calling operation.
+        pass
+
         kargs.update(self.__dict__)
         return self.reason.format(*args, **kargs)
 

@@ -63,31 +63,27 @@ class LessEqual(Comparator):
     op = operator.le
 
 
-class Between(Comparator):
+class Between(Assertion):
     """Asserts that `value` is between `min` and `max` inclusively.
 
     Examples:
 
         These will pass:
 
-        >>> assert Between(5, (4, 6))  # 4 <= 5 <= 6
-        >>> assert Between(5, (5, 6))  # 5 <= 5 <= 6
-        >>> assert Between(5, 6)  # 5 <= 6
-        >>> assert Between(5, (None, 6))  # 5 <= 6
-        >>> assert Between(5, (4, None))  # 5 >= 4
         >>> assert Between(5, min=4, max=6)  # 4 <= 5 <= 6
+        >>> assert Between(5, min=5, max=6)  # 5 <= 5 <= 6
+        >>> assert Between(5, max=6)  # 5 <= 6
+        >>> assert Between(5, min=4)  # 5 >= 4
 
         This will fail:
 
-        >>> Between(5, 4)  # 5 <= 4
+        >>> Between(5, max=4)  # 5 <= 4
         Traceback (most recent call last):
         ...
         AssertionError...
 
     Args:
         value (mixed, optional): Value to compare.
-        comparable (tuple): The ``(min, max)`` values for Between comparison.
-            Pass ``None`` for either position to skip that comparison.
 
     Keyword Args:
         min (int, optional): Minimum value that `value` must be greater than or
@@ -95,50 +91,29 @@ class Between(Comparator):
         max (int, optional): Maximum value that `value` must be less than or
             equal to.
 
-    Warning:
-        Specify the min/max using either a positional ``tuple`` or keyword
-        arguments, but don't mix the two styles. Passing `comparable` by
-        position has precedence.
-
     .. versionadded:: 0.2.0
 
     .. versionchanged:: 0.4.0
         Allow keyword arguments ``min`` and ``max`` to be used in place of
         positional tuple.
+
+    .. versionchanged:: x.x.x
+        Removed positional tuple argument and only support ``min`` and ``max``
+        keyword arguments.
     """
     reason = '{0} is not between {min} and {max}'
 
-    def __init__(self, comparable=NotSet, value=NotSet, **options):
-        if (value is not NotSet) or (comparable is not NotSet and options):
-            value, comparable = comparable, value
-
-        if comparable is NotSet:
-            self.min = options.get('min')
-            self.max = options.get('max')
-        elif isinstance(comparable, (list, tuple)):
-            self.min = pydash.get_path(comparable, 0)
-            self.max = pydash.get_path(comparable, 1)
-        else:
-            self.min = None
-            self.max = comparable
-
-        if value is not NotSet:
-            self(value)
+    def set_options(self, opts):
+        self.min = opts.pop('min', None)
+        self.max = opts.pop('max', None)
 
     def compare(self, value):
         return self.op(value, self.min, self.max)
 
     @staticmethod
     def op(value, min=None, max=None):
-        ge_min = True
-        le_max = True
-
-        if min is not None:
-            ge_min = value >= min
-
-        if max is not None:
-            le_max = value <= max
-
+        ge_min = value >= min if min is not None else True
+        le_max = value <= max if max is not None else True
         return ge_min and le_max
 
 
