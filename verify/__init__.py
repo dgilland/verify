@@ -13,7 +13,7 @@ from .__meta__ import (
 )
 
 
-from .expectations import (
+from .runners import (
     expect,
 )
 
