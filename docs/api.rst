@@ -68,7 +68,7 @@ Assertion Runner
 
 The :func:`.expect` function is basically an assertion runner that takes an input `value` and passes it through any number of assertions or predicate functions. If all assertions pass **and** return truthy, then all is well and ``True`` is returned. Otherwise, either one of the assertion functions will raise an ``AssertionError`` or no exceptiosn were raised but at least one of the functions returned a non-truthy value which means that :func:`.expect` will return ``False``.
 
-.. autofunction:: verify.expect
+.. autofunction:: verify.expections.expect
 
 
 Assertions
@@ -94,73 +94,115 @@ For all assertion classes, the `value` argument is optional, but when provided t
 
 Below are the various assertion classes that can be used for validation.
 
-.. autoclass:: verify.Not
-.. autoclass:: verify.Predicate
-.. autoclass:: verify.Equal
-.. autoclass:: verify.Match
-.. autoclass:: verify.Greater
-.. autoclass:: verify.GreaterEqual
-.. autoclass:: verify.Less
-.. autoclass:: verify.LessEqual
-.. autoclass:: verify.Between
-.. autoclass:: verify.Length
-.. autoclass:: verify.All
-.. autoclass:: verify.Any
-.. autoclass:: verify.In
-.. autoclass:: verify.Contains
-.. autoclass:: verify.ContainsOnly
-.. autoclass:: verify.Subset
-.. autoclass:: verify.Superset
-.. autoclass:: verify.Unique
-.. autoclass:: verify.Type
-.. autoclass:: verify.Is
-.. autoclass:: verify.IsTrue
-.. autoclass:: verify.IsFalse
-.. autoclass:: verify.IsNone
-.. autoclass:: verify.Truthy
-.. autoclass:: verify.Falsy
-.. autoclass:: verify.Boolean
-.. autoclass:: verify.String
-.. autoclass:: verify.Dict
-.. autoclass:: verify.List
-.. autoclass:: verify.Tuple
-.. autoclass:: verify.Date
-.. autoclass:: verify.DateString
-.. autoclass:: verify.Int
-.. autoclass:: verify.Float
-.. autoclass:: verify.Number
-.. autoclass:: verify.Positive
-.. autoclass:: verify.Negative
-.. autoclass:: verify.Even
-.. autoclass:: verify.Odd
-.. autoclass:: verify.Monotone
-.. autoclass:: verify.Increasing
-.. autoclass:: verify.StrictlyIncreasing
-.. autoclass:: verify.Decreasing
-.. autoclass:: verify.StrictlyDecreasing
-.. autoclass:: verify.NotEqual
-.. autoclass:: verify.NotMatch
-.. autoclass:: verify.NotBetween
-.. autoclass:: verify.IsNot
-.. autoclass:: verify.IsNotTrue
-.. autoclass:: verify.IsNotFalse
-.. autoclass:: verify.IsNotNone
-.. autoclass:: verify.NotAll
-.. autoclass:: verify.NotAny
-.. autoclass:: verify.NotIn
-.. autoclass:: verify.NotContains
-.. autoclass:: verify.NotContainsOnly
-.. autoclass:: verify.NotSubset
-.. autoclass:: verify.NotSuperset
-.. autoclass:: verify.NotUnique
-.. autoclass:: verify.NotType
-.. autoclass:: verify.NotBoolean
-.. autoclass:: verify.NotString
-.. autoclass:: verify.NotDict
-.. autoclass:: verify.NotList
-.. autoclass:: verify.NotTuple
-.. autoclass:: verify.NotDate
-.. autoclass:: verify.NotDateString
-.. autoclass:: verify.NotInt
-.. autoclass:: verify.NotFloat
-.. autoclass:: verify.NotNumber
+
+Logic
++++++
+
+.. automodule:: verify.logic
+    :members:
+    :exclude-members: op
+
+
+Equality
+++++++++
+
+.. automodule:: verify.equality
+    :members:
+    :exclude-members: op
+
+
+Types
++++++
+
+.. automodule:: verify.types
+    :members:
+    :exclude-members: op
+
+
+Containers
+++++++++++
+
+.. automodule:: verify.containers
+    :members:
+    :exclude-members: op
+
+Numbers
++++++++
+
+.. automodule:: verify.numbers
+    :members:
+    :exclude-members: op
+
+
+.. Comments
+
+    .. autoclass:: verify.Not
+    .. autoclass:: verify.Predicate
+    .. autoclass:: verify.Equal
+    .. autoclass:: verify.Match
+    .. autoclass:: verify.Greater
+    .. autoclass:: verify.GreaterEqual
+    .. autoclass:: verify.Less
+    .. autoclass:: verify.LessEqual
+    .. autoclass:: verify.Between
+    .. autoclass:: verify.Length
+    .. autoclass:: verify.All
+    .. autoclass:: verify.Any
+    .. autoclass:: verify.In
+    .. autoclass:: verify.Contains
+    .. autoclass:: verify.ContainsOnly
+    .. autoclass:: verify.Subset
+    .. autoclass:: verify.Superset
+    .. autoclass:: verify.Unique
+    .. autoclass:: verify.Type
+    .. autoclass:: verify.Is
+    .. autoclass:: verify.IsTrue
+    .. autoclass:: verify.IsFalse
+    .. autoclass:: verify.IsNone
+    .. autoclass:: verify.Truthy
+    .. autoclass:: verify.Falsy
+    .. autoclass:: verify.Boolean
+    .. autoclass:: verify.String
+    .. autoclass:: verify.Dict
+    .. autoclass:: verify.List
+    .. autoclass:: verify.Tuple
+    .. autoclass:: verify.Date
+    .. autoclass:: verify.DateString
+    .. autoclass:: verify.Int
+    .. autoclass:: verify.Float
+    .. autoclass:: verify.Number
+    .. autoclass:: verify.Positive
+    .. autoclass:: verify.Negative
+    .. autoclass:: verify.Even
+    .. autoclass:: verify.Odd
+    .. autoclass:: verify.Monotone
+    .. autoclass:: verify.Increasing
+    .. autoclass:: verify.StrictlyIncreasing
+    .. autoclass:: verify.Decreasing
+    .. autoclass:: verify.StrictlyDecreasing
+    .. autoclass:: verify.NotEqual
+    .. autoclass:: verify.NotMatch
+    .. autoclass:: verify.NotBetween
+    .. autoclass:: verify.IsNot
+    .. autoclass:: verify.IsNotTrue
+    .. autoclass:: verify.IsNotFalse
+    .. autoclass:: verify.IsNotNone
+    .. autoclass:: verify.NotAll
+    .. autoclass:: verify.NotAny
+    .. autoclass:: verify.NotIn
+    .. autoclass:: verify.NotContains
+    .. autoclass:: verify.NotContainsOnly
+    .. autoclass:: verify.NotSubset
+    .. autoclass:: verify.NotSuperset
+    .. autoclass:: verify.NotUnique
+    .. autoclass:: verify.NotType
+    .. autoclass:: verify.NotBoolean
+    .. autoclass:: verify.NotString
+    .. autoclass:: verify.NotDict
+    .. autoclass:: verify.NotList
+    .. autoclass:: verify.NotTuple
+    .. autoclass:: verify.NotDate
+    .. autoclass:: verify.NotDateString
+    .. autoclass:: verify.NotInt
+    .. autoclass:: verify.NotFloat
+    .. autoclass:: verify.NotNumber
