@@ -75,6 +75,20 @@ def test_expect_predicates_return_none():
     assert expect(True, assert_truthy)
 
 
+def test_expect_chaining():
+    assert expect(True).Boolean()(assert_truthy)
+    assert expect(True, v.Boolean(), assert_truthy).Truthy()
+
+
+def test_expect_chain_method_proxy():
+    for method in [method for method in v.__all__ if method[0].isupper()]:
+        assert getattr(v, method) is getattr(expect(None), method).assertion
+
+
+def test_expect_chain_invalid_method():
+    with pytest.raises(AttributeError):
+        expect(None).nosuchmethod
+
 
 @pytest.mark.parametrize('meth,value,arg', [
     (v.Not, False, Arg(v.Truthy)),

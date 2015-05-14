@@ -13,10 +13,6 @@ from .__meta__ import (
 )
 
 
-from .runners import (
-    expect,
-)
-
 from .logic import (
     Truthy,
     Falsy,
@@ -102,5 +98,81 @@ from .numbers import (
     StrictlyDecreasing,
 )
 
+from .runners import (
+    expect,
+)
 
-__all__ = tuple(name for name in globals().keys() if not name.startswith('__'))
+
+__all__ = (
+    'Truthy',
+    'Falsy',
+    'Not',
+    'Predicate',
+    'All',
+    'NotAll',
+    'Any',
+    'NotAny',
+    'Equal',
+    'NotEqual',
+    'Match',
+    'NotMatch',
+    'Is',
+    'IsNot',
+    'IsTrue',
+    'IsNotTrue',
+    'IsFalse',
+    'IsNotFalse',
+    'IsNotNone',
+    'IsNone',
+    'Type',
+    'NotType',
+    'Boolean',
+    'NotBoolean',
+    'String',
+    'NotString',
+    'Dict',
+    'NotDict',
+    'List',
+    'NotList',
+    'Tuple',
+    'NotTuple',
+    'Date',
+    'NotDate',
+    'DateString',
+    'NotDateString',
+    'Int',
+    'NotInt',
+    'NotFloat',
+    'Float',
+    'Number',
+    'NotNumber',
+    'In',
+    'NotIn',
+    'Contains',
+    'NotContains',
+    'ContainsOnly',
+    'NotContainsOnly',
+    'Subset',
+    'NotSubset',
+    'Superset',
+    'NotSuperset',
+    'Unique',
+    'NotUnique',
+    'Length',
+    'Greater',
+    'GreaterEqual',
+    'Less',
+    'LessEqual',
+    'Between',
+    'NotBetween',
+    'Positive',
+    'Negative',
+    'Even',
+    'Odd',
+    'Monotone',
+    'Increasing',
+    'StrictlyIncreasing',
+    'Decreasing',
+    'StrictlyDecreasing',
+    'expect',
+)

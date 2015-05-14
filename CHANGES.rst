@@ -4,7 +4,8 @@ Changelog
 =========
 
 
-- Make ``expect`` treat predicates that return ``None`` as passing. (**breaking change**)
+- Make ``expect`` into a class and support method chaining of assertions. Original usage is still supported.
+- Make ``expect`` wrap external predicate functions with ``Predicate`` for evaluation. (**breaking change**)
 - Make ``Predicate`` catch ``AssertionError`` thrown by `comparable` and return ``False``. (**breaking change**)
 - Make ``Predicate`` treat a `comparable` that returns ``None`` as passing. (**breaking change**)
 - Rename ``InstanceOf`` and ``NotInstanceOf`` to ``Type`` and ``NotType``. (**breaking change**)

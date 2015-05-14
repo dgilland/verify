@@ -35,8 +35,7 @@ class Assertion(object):
         return '{0}()'.format(self.__class__.__name__)
 
     def __call__(self, *args, **kargs):
-        """Our main entry point for executing validation. Return ``True`` so
-        that we can be used in ``all()``.
+        """Our main entry point for executing validation.
 
         Returns:
             bool: ``True`` if comparison passes, otherwise, an
@@ -79,3 +78,18 @@ class Negate(object):
             return not super(Negate, self).compare(*args, **kargs)
         except AssertionError:  # pragma: no cover
             return True
+
+
+def is_assertion(obj):
+    """Return whether `obj` is either an instance or subclass of
+    :class:`Assertion`.
+    """
+    is_instance = isinstance(obj, Assertion)
+
+    try:
+        is_subclass = issubclass(obj, Assertion)
+    except TypeError:
+        # Happens if `obj` isn't a class.
+        is_subclass = False
+
+    return is_instance or is_subclass

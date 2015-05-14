@@ -44,7 +44,7 @@ class Not(Comparator):
 
         >>> from verify import *
         >>> expect(5, Not(In([1, 2, 3])))
-        True
+        <expect(5)>
         >>> Not(5, In([1, 2, 3]))
         <Not()>
         >>> Not(In([1, 2, 3]))(5)
