@@ -58,9 +58,9 @@ class Not(Comparator):
     reason = ('The negation of {comparable} should not be true '
               'when evaluated with {0}')
 
-    def compare(self, *args, **kargs):
+    def compare(self, *args, **opts):
         try:
-            return not self.comparable(*args, **kargs)
+            return not self.comparable(*args, **opts)
         except AssertionError:
             return True
 
@@ -78,9 +78,9 @@ class Predicate(Comparator):
     #:
     reason = 'The evaluation of {0} using {comparable} is false'
 
-    def compare(self, *args, **kargs):
+    def compare(self, *args, **opts):
         try:
-            result = self.comparable(*args, **kargs)
+            result = self.comparable(*args, **opts)
         except AssertionError as ex:
             # Catch AssertionError so that our class will emit it's own error
             # message when False is returned.
