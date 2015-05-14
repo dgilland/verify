@@ -58,9 +58,9 @@ class Match(Comparator):
     """
     reason = '{0} does not match the regular expression {comparable}'
 
-    def __init__(self, comparable, value=NotSet, **options):
-        self.flags = options.get('flags', 0)
-        super(Match, self).__init__(comparable, value)
+    def __init__(self, comparable, value=NotSet, **opts):
+        self.flags = opts.pop('flags', 0)
+        super(Match, self).__init__(comparable, value, **opts)
 
     def compare(self, value):
         return self.op(value, self.comparable, flags=self.flags)

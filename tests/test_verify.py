@@ -86,3 +86,9 @@ def test_assert_raises(meth, value, arg):
     with raises_assertion() as exc:
         meth(value, *arg.args, **arg.kargs)
 
+    with raises_assertion() as exc:
+        opts = arg.kargs.copy()
+        opts.update({'msg': 'TEST CUSTOM MESSAGE'})
+        meth(value, *arg.args, **opts)
+
+    assert opts['msg'] in str(exc.value)
