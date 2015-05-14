@@ -32,6 +32,7 @@ class Greater(Comparator):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not greater than {comparable}'
     op = operator.gt
 
@@ -41,6 +42,7 @@ class GreaterEqual(Comparator):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not greater than or equal to {comparable}'
     op = operator.ge
 
@@ -50,6 +52,7 @@ class Less(Comparator):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not less than {comparable}'
     op = operator.lt
 
@@ -59,6 +62,7 @@ class LessEqual(Comparator):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not less than or equal to {comparable}'
     op = operator.le
 
@@ -101,6 +105,7 @@ class Between(Assertion):
         Removed positional tuple argument and only support ``min`` and ``max``
         keyword arguments.
     """
+    #:
     reason = '{0} is not between {min} and {max}'
 
     def set_options(self, opts):
@@ -122,6 +127,7 @@ class NotBetween(Negate, Between):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is between {min} and {max}'
 
 
@@ -130,6 +136,7 @@ class Positive(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not a positive number'
     op = staticmethod(pydash.is_positive)
 
@@ -139,6 +146,7 @@ class Negative(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not a negative number'
     op = staticmethod(pydash.is_negative)
 
@@ -148,6 +156,7 @@ class Even(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not an even number'
     op = staticmethod(pydash.is_even)
 
@@ -157,6 +166,7 @@ class Odd(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not an odd number'
     op = staticmethod(pydash.is_odd)
 
@@ -166,6 +176,7 @@ class Monotone(Comparator):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not monotonic as evaluated by {comparable}'
     op = staticmethod(pydash.is_monotone)
 
@@ -175,6 +186,7 @@ class Increasing(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not monotonically increasing'
     op = staticmethod(pydash.is_increasing)
 
@@ -184,6 +196,7 @@ class StrictlyIncreasing(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not strictly increasing'
     op = staticmethod(pydash.is_strictly_increasing)
 
@@ -193,6 +206,7 @@ class Decreasing(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not monotonically decreasing'
     op = staticmethod(pydash.is_decreasing)
 
@@ -202,5 +216,6 @@ class StrictlyDecreasing(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not strictly decreasing'
     op = staticmethod(pydash.is_strictly_decreasing)

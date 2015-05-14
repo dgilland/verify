@@ -31,6 +31,7 @@ class In(Comparator):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not in {comparable}'
 
     @staticmethod
@@ -47,6 +48,7 @@ class NotIn(Negate, In):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is in {comparable}'
 
 
@@ -55,6 +57,7 @@ class Contains(Comparator):
 
     .. versionadded:: 0.2.0
     """
+    #:
     reason = '{0} does not contain {comparable}'
 
     @staticmethod
@@ -71,6 +74,7 @@ class NotContains(Negate, Contains):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} contains {comparable}'
 
 
@@ -79,6 +83,7 @@ class ContainsOnly(Comparator):
 
     .. versionadded:: 0.2.0
     """
+    #:
     reason = '{0} does not only contain values in {comparable}'
 
     @staticmethod
@@ -95,6 +100,7 @@ class NotContainsOnly(Negate, ContainsOnly):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} contains only {comparable}'
 
 
@@ -104,6 +110,7 @@ class Subset(Comparator):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not a subset of {comparable}'
     op = pydash.rearg(pydash.is_match, 1, 0)
 
@@ -113,6 +120,7 @@ class NotSubset(Negate, Subset):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a subset of {comparable}'
 
 
@@ -122,6 +130,7 @@ class Superset(Comparator):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not a supserset of {comparable}'
     op = staticmethod(pydash.is_match)
 
@@ -131,6 +140,7 @@ class NotSuperset(Negate, Superset):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a superset of {comparable}'
 
 
@@ -140,6 +150,7 @@ class Unique(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} contains duplicate items'
 
     @staticmethod
@@ -164,6 +175,7 @@ class NotUnique(Negate, Unique):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is unique'
 
 
@@ -209,6 +221,7 @@ class Length(Between):
         Removed positional tuple argument and only support ``min`` and ``max``
         keyword arguments.
     """
+    #:
     reason = '{0} does not have length between {min} and {max}'
 
     @staticmethod

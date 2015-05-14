@@ -42,6 +42,7 @@ class Type(Comparator):
     .. versionchanged:: 0.6.0
         Renamed from ``InstanceOf`` to ``Type``
     """
+    #:
     reason = '{0} is not an instance of {comparable}'
     op = isinstance
 
@@ -54,6 +55,7 @@ class NotType(Negate, Type):
     .. versionchanged:: 0.6.0
         Renamed from ``NotInstanceOf`` to ``NotType``
     """
+    #:
     reason = '{0} is an instance of {comparable}'
 
 
@@ -62,6 +64,7 @@ class Boolean(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not a boolean'
     op = staticmethod(pydash.is_boolean)
 
@@ -71,6 +74,7 @@ class NotBoolean(Negate, Boolean):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a boolean'
 
 
@@ -79,6 +83,7 @@ class String(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not a string'
     op = staticmethod(pydash.is_string)
 
@@ -88,6 +93,7 @@ class NotString(Negate, String):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a string'
 
 
@@ -96,6 +102,7 @@ class Dict(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not a dictionary'
     op = staticmethod(pydash.is_dict)
 
@@ -105,6 +112,7 @@ class NotDict(Negate, Dict):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a dict'
 
 
@@ -113,6 +121,7 @@ class List(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not a list'
     op = staticmethod(pydash.is_list)
 
@@ -122,6 +131,7 @@ class NotList(Negate, List):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a list'
 
 
@@ -130,6 +140,7 @@ class Tuple(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not a tuple'
     op = staticmethod(pydash.is_tuple)
 
@@ -139,6 +150,7 @@ class NotTuple(Negate, Tuple):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a tuple'
 
 
@@ -148,6 +160,7 @@ class Date(Assertion):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} is not a date or datetime object'
     op = staticmethod(pydash.is_date)
 
@@ -157,6 +170,7 @@ class NotDate(Negate, Date):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a date or datetime object'
 
 
@@ -165,6 +179,7 @@ class DateString(Comparator):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} does not match the datetime format {comparable}'
 
     @staticmethod
@@ -181,6 +196,7 @@ class NotDateString(Negate, DateString):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} matches the datetime format {comparable}'
 
 
@@ -189,6 +205,7 @@ class Int(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not an integer'
     op = staticmethod(pydash.is_int)
 
@@ -198,6 +215,7 @@ class NotInt(Negate, Int):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is an integer'
 
 
@@ -206,6 +224,7 @@ class Float(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not a float'
     op = staticmethod(pydash.is_float)
 
@@ -215,6 +234,7 @@ class NotFloat(Negate, Float):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is a float'
 
 
@@ -230,6 +250,7 @@ class Number(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not a number'
     op = staticmethod(pydash.is_number)
 
@@ -242,4 +263,5 @@ class NotNumber(Negate, Number):
     .. versionchanged:: 0.5.0
         Renamed from ``NaN`` to ``NotNumber``.
     """
+    #:
     reason = '{0} is a number'

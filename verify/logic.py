@@ -23,6 +23,7 @@ class Truthy(Assertion):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not truthy'
     op = bool
 
@@ -32,6 +33,7 @@ class Falsy(Assertion):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not falsy'
     op = pydash.negate(bool)
 
@@ -52,6 +54,7 @@ class Not(Comparator):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = ('The negation of {comparable} should not be true '
               'when evaluated with {0}')
 
@@ -72,6 +75,7 @@ class Predicate(Comparator):
         Catch ``AssertionError`` thrown by `comparable` and return ``False``
         as comparison value instead.
     """
+    #:
     reason = 'The evaluation of {0} using {comparable} is false'
 
     def compare(self, *args, **kargs):
@@ -97,6 +101,7 @@ class All(Comparator):
 
     .. versionadded:: 0.2.0
     """
+    #:
     reason = '{0} is not true for all {comparable}'
 
     @staticmethod
@@ -113,6 +118,7 @@ class NotAll(Negate, All):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is true for all {comparable}'
 
 
@@ -122,6 +128,7 @@ class Any(Comparator):
 
     .. versionadded:: 0.2.0
     """
+    #:
     reason = '{0} is not true for any {comparable}'
 
     @staticmethod
@@ -138,4 +145,5 @@ class NotAny(Negate, Any):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is true for some {comparable}'

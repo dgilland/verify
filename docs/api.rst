@@ -44,6 +44,13 @@ For all assertion classes, the `value` argument is optional, but when provided t
 Below are the various assertion classes that can be used for validation.
 
 
+Base Classes
+++++++++++++
+
+.. automodule:: verify.base
+    :members:
+
+
 Logic
 +++++
 

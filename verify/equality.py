@@ -31,6 +31,7 @@ class Equal(Comparator):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not equal to {comparable}'
     op = operator.eq
 
@@ -40,6 +41,7 @@ class NotEqual(Negate, Equal):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is equal to {comparable}'
 
 
@@ -56,6 +58,7 @@ class Match(Comparator):
 
     .. versionadded:: 0.3.0
     """
+    #:
     reason = '{0} does not match the regular expression {comparable}'
 
     def __init__(self, comparable, value=NotSet, **opts):
@@ -85,6 +88,7 @@ class NotMatch(Negate, Match):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} matches the regular expression {comparable}'
 
 
@@ -93,6 +97,7 @@ class Is(Comparator):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not {comparable}'
     op = operator.is_
 
@@ -102,6 +107,7 @@ class IsNot(Negate, Is):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is {comparable}'
 
 
@@ -110,6 +116,7 @@ class IsTrue(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not True'
     op = partial(operator.is_, True)
 
@@ -119,6 +126,7 @@ class IsNotTrue(Negate, IsTrue):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is True'
 
 
@@ -127,6 +135,7 @@ class IsFalse(Assertion):
 
     .. versionadded:: 0.1.0
     """
+    #:
     reason = '{0} is not False'
     op = partial(operator.is_, False)
 
@@ -136,6 +145,7 @@ class IsNotFalse(Negate, IsFalse):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is False'
 
 
@@ -144,6 +154,7 @@ class IsNone(Assertion):
 
     .. versionadded:: 0.0.1
     """
+    #:
     reason = '{0} is not None'
     op = staticmethod(pydash.is_none)
 
@@ -153,4 +164,5 @@ class IsNotNone(Negate, IsNone):
 
     .. versionadded:: 0.5.0
     """
+    #:
     reason = '{0} is None'
