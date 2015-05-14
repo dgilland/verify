@@ -22,6 +22,10 @@ class Arg(object):
     __str__ = __repr__
 
 
+def assert_truthy(value):
+    assert value
+
+
 def make_parametrize_id(argvalue):
     """Return custom parameter id for test reporting."""
     if isinstance(argvalue, Arg):
@@ -68,10 +72,8 @@ def test_expect_predicates_raises(value, predicates):
 
 
 def test_expect_predicates_return_none():
-    def func(value):
-        assert value
+    assert expect(True, assert_truthy)
 
-    assert expect(True, func)
 
 
 @pytest.mark.parametrize('meth,value,arg', [
@@ -274,6 +276,7 @@ def test_assert_method(meth, value, arg):
     (v.Not, True, Arg(pydash.is_boolean)),
     (v.Predicate, 1, Arg(pydash.is_boolean)),
     (v.Predicate, True, Arg(pydash.is_number)),
+    (v.Predicate, False, Arg(assert_truthy)),
     (v.Equal, 1, Arg(2)),
     (v.Equal, True, Arg(False)),
     (v.Equal, 'abc', Arg('cba')),

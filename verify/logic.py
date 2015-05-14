@@ -67,11 +67,28 @@ class Predicate(Comparator):
     ``True``.
 
     .. versionadded:: 0.1.0
+
+    .. versionchanged:: x.x.x
+        Catch ``AssertionError`` thrown by `comparable` and return ``False``
+        as comparison value instead.
     """
     reason = 'The evaluation of {0} using {comparable} is false'
 
     def compare(self, *args, **kargs):
-        return self.comparable(*args, **kargs)
+        try:
+            result = self.comparable(*args, **kargs)
+        except AssertionError as ex:
+            # Catch AssertionError so that our class will emit it's own error
+            # message when False is returned.
+            result = False
+
+        if result is None:
+            # Consider predicates that return None to pass. This is done to
+            # support predicates that assert internally but don't have a return
+            # value.
+            result = True
+
+        return result
 
 
 class All(Comparator):

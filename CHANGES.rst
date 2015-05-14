@@ -5,6 +5,8 @@ Changelog
 
 
 - Make ``expect`` treat predicates that return ``None`` as passing. (**breaking change**)
+- Make ``Predicate`` catch ``AssertionError`` thrown by `comparable` and return ``False``. (**breaking change**)
+- Make ``Predicate`` treat a `comparable` that returns ``None`` as passing. (**breaking change**)
 - Rename ``InstanceOf`` and ``NotInstanceOf`` to ``Type`` and ``NotType``. (**breaking change**)
 
 
