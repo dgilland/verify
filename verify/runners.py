@@ -48,6 +48,8 @@ def expect(value, *assertions):
         - Passed in `value` is no longer called if it's a callable.
         - Return ``True`` if all assertions pass.
     """
-    results = all(assertable(value) for assertable in assertions)
+    results = (assertable(value) for assertable in assertions)
+    # Consider results that evaluate to None as passing.
+    results = all(result for result in results if result is not None)
     assert results, 'Not all expectations evaluated to true'
     return True

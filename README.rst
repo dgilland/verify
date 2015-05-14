@@ -48,7 +48,6 @@ Verify using your own assert functions:
 
     def is_just_right(value):
         assert value == 'just right', 'Not just right!'
-        return True
 
     # Passes
     expect('just right', is_just_right)

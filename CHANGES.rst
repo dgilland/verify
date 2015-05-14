@@ -4,6 +4,7 @@ Changelog
 =========
 
 
+- Make ``expect`` treat predicates that return ``None`` as passing. (**breaking change**)
 - Rename ``InstanceOf`` and ``NotInstanceOf`` to ``Type`` and ``NotType``. (**breaking change**)
 
 

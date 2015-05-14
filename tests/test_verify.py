@@ -67,6 +67,13 @@ def test_expect_predicates_raises(value, predicates):
         assert expect(value, *predicates)
 
 
+def test_expect_predicates_return_none():
+    def func(value):
+        assert value
+
+    assert expect(True, func)
+
+
 @pytest.mark.parametrize('meth,value,arg', [
     (v.Not, False, Arg(v.Truthy)),
     (v.Not, True, Arg(v.Falsy)),
