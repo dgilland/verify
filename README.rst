@@ -74,7 +74,14 @@ Or your own predicate functions:
     expect('so awesome', is_awesome, is_more_awesome)
 
 
-But you don't have to use ``expect`` since the ``verify`` assertions can be used on their own:
+Or use chaining syntax:
+
+.. code-block:: python
+
+    expect(1).Truthy().Number().NotBoolean().Not(is_awesome)
+
+
+But you don't have to use ``expect`` since the ``verify`` assertions can also be used on their own:
 
 
 .. code-block:: python
@@ -92,13 +99,13 @@ But you don't have to use ``expect`` since the ``verify`` assertions can be used
     verify.Greater(2, 3)
 
 
-And if you'd prefer to see ``assert`` being used, all ``verify`` assertions will return ``True`` if no ``AssertionError`` is raised:
+And if you'd prefer to see ``assert`` being used, all ``verify`` assertions will return truthy if no ``AssertionError`` is raised:
 
 
 .. code-block:: python
 
     assert Truthy(1)
-    assert Expect(1, Truthy(), Number())
+    assert expect(1, Truthy(), Number())
 
 
 Validators
