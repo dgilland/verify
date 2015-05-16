@@ -218,7 +218,7 @@ class Length(Between):
         - Allow keyword arguments ``min`` and ``max`` to be used in place of
           positional tuple
 
-    .. versionchanged:: x.x.x
+    .. versionchanged:: 1.0.0
         Removed positional tuple argument and only support ``min`` and ``max``
         keyword arguments.
     """
@@ -237,7 +237,7 @@ class NotLength(Negate, Length):
     """Asserts that `value` is an iterable with length not between `min` and
     `max` inclusively.
 
-    .. versionadded:: x.x.x
+    .. versionadded:: 1.0.0
     """
     #:
     reason = '{0} has length between {min} and {max}'

@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+v1.0.0 (2015-05-15)
+-------------------
+
 - Add ``NotLength``.
 - Make assertions accept an optional argument, ``msg``, that overrides the default assert message on a per call basis.
 - Make ``Between`` and ``Length`` only accept keyword arguments ``min`` and ``max``. (**breaking change**)

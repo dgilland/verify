@@ -101,7 +101,7 @@ class Between(Assertion):
         Allow keyword arguments ``min`` and ``max`` to be used in place of
         positional tuple.
 
-    .. versionchanged:: x.x.x
+    .. versionchanged:: 1.0.0
         Removed positional tuple argument and only support ``min`` and ``max``
         keyword arguments.
     """
