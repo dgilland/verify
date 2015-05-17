@@ -110,8 +110,8 @@ from .equality import (
     IsNotTrue,
     IsFalse,
     IsNotFalse,
-    IsNotNone,
     IsNone,
+    IsNotNone,
 )
 
 from .types import (

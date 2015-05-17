@@ -121,39 +121,68 @@ The available validators are:
 ======================  ===========
 Validator               Description
 ======================  ===========
+``Truthy``              Assert that ``bool(a)``.
+``Falsy``               Assert that ``not bool(a)``.
 ``Not``                 Assert that a callable doesn't raise an ``AssertionError``.
 ``Predicate``           Assert that ``predicate(a)``.
+``All``                 Assert that all of the list of predicates evaluate ``a`` as truthy.
+``NotAll``              Assert ``not All``.
+``Any``                 Assert that any of the list of predicates evaluate ``a`` as truthy.
+``NotAny``              Assert ``not Any``.
 ``Equal``               Assert that ``a == b``.
+``NotEqual``            Assert ``not Equal``.
 ``Match``               Assert that ``a`` matches regular expression ``b``.
+``NotMatch``            Assert ``not Match``.
+``Is``                  Assert that ``a is b``.
+``IsNot``               Assert ``not Is``.
+``IsTrue``              Assert that ``a is True``.
+``IsNotTrue``           Assert ``not IsTrue``.
+``IsFalse``             Assert that ``a is False``.
+``IsNotFalse``          Assert ``not IsFalse``.
+``IsNone``              Assert that ``a is None``.
+``IsNotNone``           Assert ``not IsNone``.
+``Type``                Assert that ``isinstance(a, b)``.
+``NotType``             Assert ``not Type``.
+``Boolean``             Assert that ``isinstance(a, bool)``.
+``NotBoolean``          Assert ``not Boolean``.
+``String``              Assert that ``isinstance(a, (str, unicode))``.
+``NotString``           Assert ``not String``.
+``Dict``                Assert that ``isinstance(a, dict)``.
+``NotDict``             Assert ``not Dict``.
+``List``                Assert that ``isinstance(a, list)``.
+``NotList``             Assert ``not List``.
+``Tuple``               Assert that ``isinstance(a, tuple)``.
+``NotTuple``            Assert ``not Tuple``.
+``Date``                Assert that ``isinstance(a, datetime.date)``.
+``NotDate``             Assert ``not Date``.
+``DateString``          Assert that ``a`` matches the datetime format string ``b``.
+``NotDateString``       Assert ``not DateString``.
+``Int``                 Assert that ``isinstance(a, int)``.
+``NotInt``              Assert ``not Int``.
+``Float``               Assert that ``isinstance(a, float)``.
+``NotFloat``            Assert ``not Float``.
+``Number``              Assert that ``isinstance(a, (int, float, Decimal, long))``.
+``NotNumber``           Assert ``not Number``.
+``In``                  Assert that ``a in b``.
+``NotIn``               Assert ``not In``.
+``Contains``            Assert that ``b in a``.
+``NotContains``         Assert ``not Contains``.
+``ContainsOnly``        Assert that values from ``b`` are the only ones contained in ``a``.
+``NotContainsOnly``     Assert ``not ContainsOnly``.
+``Subset``              Assert that ``a`` is a subset of ``b``.
+``NotSubset``           Assert ``not Subset``.
+``Superset``            Assert that ``a`` is a superset of ``b``.
+``NotSuperset``         Assert ``not Superset``.
+``Unique``              Assert that ``a`` contains unique items.
+``NotUnique``           Assert ``not Unique``.
+``Length``              Assert that ``b <= len(a) <= c``.
+``NotLength``           Assert that ``not Length``.
 ``Greater``             Assert that ``a > b``.
 ``GreaterEqual``        Assert that ``a >= b``.
 ``Less``                Assert that ``a < b``.
 ``LessEqual``           Assert that ``a <= b``.
 ``Between``             Assert that ``b <= a <= c``.
-``Length``              Assert that ``b <= len(a) <= c``.
-``Is``                  Assert that ``a is b``.
-``IsTrue``              Assert that ``a is True``.
-``IsFalse``             Assert that ``a is False``.
-``IsNone``              Assert that ``a is None``.
-``All``                 Assert that all of the list of predicates evaluate ``a`` as truthy.
-``Any``                 Assert that any of the list of predicates evaluate ``a`` as truthy.
-``In``                  Assert that ``a in b``.
-``Contains``            Assert that ``b in a``.
-``ContainsOnly``        Assert that values from ``b`` are the only ones contained in ``a``.
-``Subset``              Assert that ``a`` is a subset of ``b``.
-``Superset``            Assert that ``a`` is a superset of ``b``.
-``Unique``              Assert that ``a`` contains unique items.
-``Type``                Assert that ``isinstance(a, b)``.
-``Truthy``              Assert that ``bool(a)``.
-``Falsy``               Assert that ``not bool(a)``.
-``Boolean``             Assert that ``isinstance(a, bool)``.
-``String``              Assert that ``isinstance(a, (str, unicode))``.
-``Dict``                Assert that ``isinstance(a, dict)``.
-``List``                Assert that ``isinstance(a, list)``.
-``Tuple``               Assert that ``isinstance(a, tuple)``.
-``Int``                 Assert that ``isinstance(a, int)``.
-``Float``               Assert that ``isinstance(a, float)``.
-``Number``              Assert that ``isinstance(a, (int, float, Decimal, long))``.
+``NotBetween``          Assert ``not Between``.
 ``Positive``            Assert that ``a > 0``.
 ``Negative``            Assert that ``a < 0``.
 ``Even``                Assert that ``a % 2 == 0``.
@@ -163,34 +192,6 @@ Validator               Description
 ``StrictlyIncreasing``  Assert that ``a`` is strictly increasing.
 ``Decreasing``          Assert that ``a`` is monotonically decreasing.
 ``StrictlyDecreasing``  Assert that ``a`` is strictly decreasing.
-``Date``                Assert that ``isinstance(a, datetime.date)``.
-``DateString``          Assert that ``a`` matches the datetime format string ``b``.
-``NotEqual``            Assert ``not Equal``.
-``NotMatch``            Assert ``not Match``.
-``NotBetween``          Assert ``not Between``.
-``IsNot``               Assert ``not Is``.
-``IsNotTrue``           Assert ``not IsTrue``.
-``IsNotFalse``          Assert ``not IsFalse``.
-``IsNotNone``           Assert ``not IsNone``.
-``NotAll``              Assert ``not All``.
-``NotAny``              Assert ``not Any``.
-``NotIn``               Assert ``not In``.
-``NotContains``         Assert ``not Contains``.
-``NotContainsOnly``     Assert ``not ContainsOnly``.
-``NotSubset``           Assert ``not Subset``.
-``NotSuperset``         Assert ``not Superset``.
-``NotUnique``           Assert ``not Unique``.
-``NotType``             Assert ``not Type``.
-``NotBoolean``          Assert ``not Boolean``.
-``NotString``           Assert ``not String``.
-``NotDict``             Assert ``not Dict``.
-``NotList``             Assert ``not List``.
-``NotTuple``            Assert ``not Tuple``.
-``NotDate``             Assert ``not Date``.
-``NotDateString``       Assert ``not DateString``.
-``NotInt``              Assert ``not Int``.
-``NotFloat``            Assert ``not Float``.
-``NotNumber``           Assert ``not Number``.
 ======================  ===========
 
 
