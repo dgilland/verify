@@ -58,7 +58,7 @@ Verify using your own assert functions:
     expect AssertionError:
         raise
 
-**NOTE:** The assert function should return a truthy value, otherwise, ``expect`` will treat the falsy return from the function as an indication that it failed as subsequently raise it's own ``AssertionError``.
+**NOTE:** The assert function should return a truthy value, otherwise, ``expect`` will treat the falsy return from the function as an indication that it failed and subsequently raise it's own ``AssertionError``.
 
 Or your own predicate functions:
 
