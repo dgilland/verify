@@ -55,7 +55,7 @@ Verify using your own assert functions:
     # Fails
     try:
         expect('too cold', is_just_right)
-    expect AssertionError:
+    except AssertionError:
         raise
 
 **NOTE:** The assert function should return a truthy value, otherwise, ``expect`` will treat the falsy return from the function as an indication that it failed and subsequently raise it's own ``AssertionError``.
