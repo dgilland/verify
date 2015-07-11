@@ -176,6 +176,7 @@ from .numbers import (
 
 from .runners import (
     expect,
+    ensure,
 )
 
 

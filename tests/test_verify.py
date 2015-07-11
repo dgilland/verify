@@ -4,7 +4,7 @@ import pytest
 import pydash
 
 import verify as v
-from verify import expect
+from verify import expect, ensure
 
 from .fixtures import (
     METHOD_CALL_CASES,
@@ -92,3 +92,7 @@ def test_assert_raises(meth, value, arg):
         meth(value, *arg.args, **opts)
 
     assert opts['msg'] in str(exc.value)
+
+
+def test_expect_and_ensure_are_aliases():
+    assert expect is ensure

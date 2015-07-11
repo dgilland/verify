@@ -93,12 +93,12 @@ class expect(object):
             raise AttributeError(('"{0}" is not a valid assertion method'
                                   .format(attr)))
 
-        def chain(*args, **kargs):
+        def chained_assertion(*args, **kargs):
             assertion(*args, **kargs)(self.value)
             return self
-        chain.assertion = assertion
+        chained_assertion.assertion = assertion
 
-        return chain
+        return chained_assertion
 
     def __call__(self, *assertions):
         for assertion in assertions:
@@ -108,3 +108,6 @@ class expect(object):
                 assertion = verify.Predicate(assertion)
             assertion(self.value)
         return self
+
+
+ensure = expect
