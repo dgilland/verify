@@ -10,9 +10,13 @@ from .base import Assertion, Comparator, Negate, NotSet
 
 __all__ = (
     'Greater',
+    'GreaterThan',
     'GreaterEqual',
+    'GreaterOrEqual',
     'Less',
+    'LessThan',
     'LessEqual',
+    'LessOrEqual',
     'Between',
     'NotBetween',
     'Positive',
@@ -37,6 +41,9 @@ class Greater(Comparator):
     op = operator.gt
 
 
+GreaterThan = Greater
+
+
 class GreaterEqual(Comparator):
     """Asserts that `value` is greater than or equal to `comparable`.
 
@@ -45,6 +52,9 @@ class GreaterEqual(Comparator):
     #:
     reason = '{0} is not greater than or equal to {comparable}'
     op = operator.ge
+
+
+GreaterOrEqual = GreaterEqual
 
 
 class Less(Comparator):
@@ -57,6 +67,9 @@ class Less(Comparator):
     op = operator.lt
 
 
+LessThan = Less
+
+
 class LessEqual(Comparator):
     """Asserts that `value` is less than or equal to `comparable`.
 
@@ -65,6 +78,9 @@ class LessEqual(Comparator):
     #:
     reason = '{0} is not less than or equal to {comparable}'
     op = operator.le
+
+
+LessOrEqual = LessEqual
 
 
 class Between(Assertion):

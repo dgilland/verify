@@ -140,3 +140,10 @@ def test_assert_raises(meth, value, arg):
 
 def test_expect_and_ensure_are_aliases():
     assert expect is ensure
+
+
+def test_assertions_aliases():
+    assert v.Greater is v.GreaterThan
+    assert v.GreaterEqual is v.GreaterOrEqual
+    assert v.Less is v.LessThan
+    assert v.LessEqual is v.LessOrEqual

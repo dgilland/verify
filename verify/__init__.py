@@ -158,9 +158,13 @@ from .containers import (
 
 from .numbers import (
     Greater,
+    GreaterThan,
     GreaterEqual,
+    GreaterOrEqual,
     Less,
+    LessThan,
     LessEqual,
+    LessOrEqual,
     Between,
     NotBetween,
     Positive,
