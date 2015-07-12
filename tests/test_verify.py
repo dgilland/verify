@@ -59,6 +59,50 @@ def test_expect_chain_method_proxy():
         assert getattr(v, method) is getattr(expect(None), method).assertion
 
 
+def test_expect_chain_method_proxy_in_method_format():
+    for method in [method for method in v.__all__ if method[0].isupper()]:
+        method_name = _method_format(method)
+        chained_assertion = getattr(expect(None), method_name)
+        assert getattr(v, method) is chained_assertion.assertion
+
+
+def test_expect_chain_method_proxy_in_method_format_with_to_be_prefix():
+    for method in [method for method in v.__all__ if method[0].isupper()]:
+        method_name = 'to_be_' + _method_format(method)
+        chained_assertion = getattr(expect(None), method_name)
+        assert getattr(v, method) is chained_assertion.assertion
+
+
+def test_does_assertion():
+    chained_assertion = expect(None).does
+    assert chained_assertion.assertion is v.Predicate
+
+
+def test_does_not_assertion():
+    chained_assertion = expect(None).does_not
+    assert chained_assertion.assertion is v.Not
+
+
+def test_expect_chain_method_proxy_in_method_format_with_is_prefix():
+    for method in [method for method in v.__all__ if method[0].isupper()]:
+        if method == 'Not':
+            # Name mismatch, is_not is translated to IsNot assertion.
+            continue
+        method_name = 'is_' + _method_format(method)
+        chained_assertion = getattr(expect(None), method_name)
+        assert getattr(v, method) is chained_assertion.assertion
+
+
+def _method_format(name):
+    result = []
+    for letter in name:
+        if letter.isupper():
+            result.append('_' + letter.lower())
+        else:
+            result.append(letter)
+    return ''.join(result)[1:]
+
+
 def test_expect_chain_invalid_method():
     with pytest.raises(AttributeError):
         expect(None).nosuchmethod

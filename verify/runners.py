@@ -1,6 +1,8 @@
 """Assertion runners.
 """
 
+import re
+
 import verify
 from .base import Assertion, is_assertion
 
@@ -87,7 +89,7 @@ class expect(object):
         """Invoke assertions via attribute access. All :mod:`verify` assertions
         are available.
         """
-        assertion = getattr(verify, attr, None)
+        assertion = _find_assertion_class(attr)
 
         if not is_assertion(assertion):
             raise AttributeError(('"{0}" is not a valid assertion method'
@@ -111,3 +113,54 @@ class expect(object):
 
 
 ensure = expect
+
+
+def _find_assertion_class(name):
+    try:
+        return getattr(verify, name)
+    except AttributeError as original_error:
+        pass
+
+    name_formatters = [
+        _class_format,
+        _to_be_prefix,
+        _is_prefix,
+        _reserved_names,
+    ]
+
+    for format_name in name_formatters:
+        new_name = format_name(name)
+        if new_name is None:
+            continue
+
+        try:
+            return getattr(verify, new_name)
+        except AttributeError:
+            pass
+
+    raise original_error
+
+
+def _class_format(name):
+    new_name = [part.capitalize() for part in name.split('_')]
+    return ''.join(new_name)
+
+
+def _to_be_prefix(name):
+    return _prefixed_name(name, 'to_be_')
+
+
+def _is_prefix(name):
+    return _prefixed_name(name, 'is_')
+
+
+def _prefixed_name(name, prefix):
+    if re.match(prefix, name):
+        return _class_format(name[len(prefix):])
+
+
+def _reserved_names(name):
+    if name == 'does':
+        return 'Predicate'
+    elif name == 'does_not':
+        return 'Not'
