@@ -107,6 +107,57 @@ And if you'd prefer to see ``assert`` being used, all ``verify`` assertions will
     assert Truthy(1)
     assert expect(1, Truthy(), Number())
 
+More natural syntax
+===================
+
+You can also use more natural syntax using ``ensure`` alias for ``expect`` and
+prefixes ``to_be_*`` or ``is_*``:
+
+.. code-block:: python
+
+    expect(some_var).to_be_int().to_be_less_or_equal(5).to_be_not_list()
+    ensure(some_var).is_int().is_less_or_equal(5).is_not_list()
+    # Both above lines are the same as:
+    expect(some_var).Int().LessOrEqual(5).NotList()
+
+All assertions can be also used as lowercased methods:
+
+.. code-block:: python
+
+    expect(value).contains(5)
+    # The same as:
+    expect(value).Contains(5)
+
+    expect(value).not_in(some_set)
+    # The same as:
+    expect(value).NotIn(some_set)
+
+Two assertions are special cases: ``Not`` and ``Predicate``. ``Not`` is
+available through ``does_not`` and ``Predicate`` is available through ``does``:
+
+.. code-block:: python
+
+    def have_access_rights(user):
+        assert user.is_admin is True
+
+    expect(user).does(have_access_rights)
+    # Equal to:
+    expect(user).Predicate(have_access_rights)
+
+    expect(user).does_not(have_access_rights)
+    # Equal to:
+    expect(user).Not(have_access_rights)
+
+
+Reserved names
+--------------
+
+Things that doesn't work as expected:
+
+.. code-block:: python
+
+    expect(value).is_not(predicate)  # translated into IsNot assertion
+    expect('v').in('verify')  # syntax error, try `to_be_in`
 
 Validators
 ==========
