@@ -11,4 +11,4 @@ Lead
 Contributors
 ------------
 
-None
+- Szczepan Cieślik, szczepan.cieslik@gmail.com, `beregond@github <https://github.com/beregond>`_
