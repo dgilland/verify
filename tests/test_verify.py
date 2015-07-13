@@ -108,6 +108,11 @@ def test_expect_chain_invalid_method():
         expect(None).nosuchmethod
 
 
+def test_expect_chain_not_assertion():
+    with pytest.raises(AttributeError):
+        expect(None).expect
+
+
 @pytest.mark.parametrize('meth,value,arg',
                          METHOD_CALL_CASES,
                          ids=make_parametrize_id)

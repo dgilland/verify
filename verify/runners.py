@@ -118,7 +118,7 @@ ensure = expect
 def _find_assertion_class(name):
     try:
         return getattr(verify, name)
-    except AttributeError as original_error:
+    except AttributeError:
         pass
 
     name_formatters = [
@@ -138,7 +138,8 @@ def _find_assertion_class(name):
         except AttributeError:
             pass
 
-    raise original_error
+    raise AttributeError(('"{0}" is not a valid assertion method'
+                          .format(name)))
 
 
 def _class_format(name):
