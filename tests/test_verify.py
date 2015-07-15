@@ -83,6 +83,16 @@ def test_does_not_assertion():
     assert chained_assertion.assertion is v.Not
 
 
+def test_is_assertion():
+    chained_assertion = expect(None).is_
+    assert chained_assertion.assertion is v.Is
+
+
+def test_in_assertion():
+    chained_assertion = expect(None).in_
+    assert chained_assertion.assertion is v.In
+
+
 def test_expect_chain_method_proxy_in_method_format_with_is_prefix():
     for method in [method for method in v.__all__ if method[0].isupper()]:
         if method == 'Not':

@@ -132,13 +132,17 @@ All assertions can be also used in snake case format:
     # The same as:
     expect(value).NotIn(some_set)
 
-Two assertions are special cases: ``Not`` and ``Predicate``. ``Not`` is
-available through ``does_not`` and ``Predicate`` is available through ``does``:
+There are special cases:
+
+* ``Not`` is available through ``does_not``
+* ``Predicate`` is available through ``does``
+* ``Is`` is available through ``is_``
+* ``In`` is available through ``in_``
 
 .. code-block:: python
 
     def have_access_rights(user):
-        assert user.is_admin is True
+        return user.is_admin is True
 
     expect(user).does(have_access_rights)
     # Equal to:
@@ -147,6 +151,14 @@ available through ``does_not`` and ``Predicate`` is available through ``does``:
     expect(user).does_not(have_access_rights)
     # Equal to:
     expect(user).Not(have_access_rights)
+
+    ensure(some_value).in_(some_set)
+    # Equal to:
+    ensure(some_value).In(some_set)
+
+    ensure(result).is_(MyClass)
+    # Equal to:
+    ensure(result).Is(MyClass)
 
 
 Reserved names
