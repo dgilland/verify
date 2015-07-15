@@ -120,7 +120,7 @@ prefixes ``to_be_*`` or ``is_*``:
     # Both above lines are the same as:
     expect(some_var).Int().LessOrEqual(5).NotList()
 
-All assertions can be also used as lowercased methods:
+All assertions can be also used in snake case format:
 
 .. code-block:: python
 
@@ -152,7 +152,7 @@ available through ``does_not`` and ``Predicate`` is available through ``does``:
 Reserved names
 --------------
 
-Things that doesn't work as expected:
+Things that don't work as expected:
 
 .. code-block:: python
 
@@ -167,7 +167,7 @@ All of the validators in ``verify`` are callables that can be used in two contex
 1. By themselves as in ``Equal(a, b)`` which will raise an ``AssertionError`` if false.
 2. In combination with ``expect`` as in ``expect(a, Equal(b))`` which could also raise an ``AssertionError``.
 
-The available validators           are:
+The available validators are:
 
 =================================== ===========
 Validator                           Description

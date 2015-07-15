@@ -143,12 +143,12 @@ def test_assert_raises(meth, value, arg):
     assert opts['msg'] in str(exc.value)
 
 
-def test_expect_and_ensure_are_aliases():
-    assert expect is ensure
-
-
-def test_assertions_aliases():
-    assert v.Greater is v.GreaterThan
-    assert v.GreaterEqual is v.GreaterOrEqual
-    assert v.Less is v.LessThan
-    assert v.LessEqual is v.LessOrEqual
+@pytest.mark.parametrize('obj,alias', [
+    (expect, ensure),
+    (v.Greater, v.GreaterThan),
+    (v.GreaterEqual, v.GreaterOrEqual),
+    (v.Less, v.LessThan),
+    (v.LessEqual, v.LessOrEqual),
+])
+def test_aliases(obj, alias):
+    assert obj is alias
