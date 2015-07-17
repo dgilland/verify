@@ -161,7 +161,7 @@ def _prefixed_name(name, prefix):
 
 
 def _reserved_names(name):
-    if name == 'does':
+    if name in ['does', 'passes', 'to_pass']:
         return 'Predicate'
-    elif name == 'does_not':
+    elif name in ['does_not', 'fails', 'to_fail']:
         return 'Not'

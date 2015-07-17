@@ -132,10 +132,10 @@ All assertions can be also used in snake case format:
     # The same as:
     expect(value).NotIn(some_set)
 
-There are special cases:
+There are few special cases:
 
-* ``Not`` is available through ``does_not``
-* ``Predicate`` is available through ``does``
+* ``Not`` is available through ``does_not``, ``fails`` and ``to_fail``
+* ``Predicate`` is available through ``does``, ``passes`` and ``to_pass``
 * ``Is`` is available through ``is_``
 * ``In`` is available through ``in_``
 
@@ -145,10 +145,14 @@ There are special cases:
         return user.is_admin is True
 
     expect(user).does(have_access_rights)
+    expect(user).to_pass(have_access_rights)
+    ensure(user).passes(have_access_rights)
     # Equal to:
     expect(user).Predicate(have_access_rights)
 
     expect(user).does_not(have_access_rights)
+    expect(user).to_fail(have_access_rights)
+    ensure(user).fails(have_access_rights)
     # Equal to:
     expect(user).Not(have_access_rights)
 

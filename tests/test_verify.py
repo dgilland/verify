@@ -73,24 +73,15 @@ def test_expect_chain_method_proxy_in_method_format_with_to_be_prefix():
         assert getattr(v, method) is chained_assertion.assertion
 
 
-def test_does_assertion():
-    chained_assertion = expect(None).does
-    assert chained_assertion.assertion is v.Predicate
-
-
-def test_does_not_assertion():
-    chained_assertion = expect(None).does_not
-    assert chained_assertion.assertion is v.Not
-
-
-def test_is_assertion():
-    chained_assertion = expect(None).is_
-    assert chained_assertion.assertion is v.Is
-
-
-def test_in_assertion():
-    chained_assertion = expect(None).in_
-    assert chained_assertion.assertion is v.In
+def test_special_aliases():
+    assert expect(None).does.assertion is v.Predicate
+    assert ensure(None).passes.assertion is v.Predicate
+    assert expect(None).to_pass.assertion is v.Predicate
+    assert expect(None).does_not.assertion is v.Not
+    assert ensure(None).fails.assertion is v.Not
+    assert expect(None).to_fail.assertion is v.Not
+    assert expect(None).is_.assertion is v.Is
+    assert expect(None).in_.assertion is v.In
 
 
 def test_expect_chain_method_proxy_in_method_format_with_is_prefix():
