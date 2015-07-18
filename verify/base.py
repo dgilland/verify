@@ -121,12 +121,8 @@ def is_assertion(obj):
     """Return whether `obj` is either an instance or subclass of
     :class:`Assertion`.
     """
-    is_instance = isinstance(obj, Assertion)
-
     try:
-        is_subclass = issubclass(obj, Assertion)
+        return isinstance(obj, Assertion) or issubclass(obj, Assertion)
     except TypeError:
         # Happens if `obj` isn't a class.
-        is_subclass = False
-
-    return is_instance or is_subclass
+        return False

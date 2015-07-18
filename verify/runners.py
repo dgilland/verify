@@ -1,6 +1,8 @@
 """Assertion runners.
 """
 
+import re
+
 import verify
 from .base import Assertion, is_assertion
 
@@ -87,18 +89,18 @@ class expect(object):
         """Invoke assertions via attribute access. All :mod:`verify` assertions
         are available.
         """
-        assertion = getattr(verify, attr, None)
+        assertion = _find_assertion_class(attr)
 
         if not is_assertion(assertion):
             raise AttributeError(('"{0}" is not a valid assertion method'
                                   .format(attr)))
 
-        def chain(*args, **kargs):
+        def chained_assertion(*args, **kargs):
             assertion(*args, **kargs)(self.value)
             return self
-        chain.assertion = assertion
+        chained_assertion.assertion = assertion
 
-        return chain
+        return chained_assertion
 
     def __call__(self, *assertions):
         for assertion in assertions:
@@ -108,3 +110,58 @@ class expect(object):
                 assertion = verify.Predicate(assertion)
             assertion(self.value)
         return self
+
+
+ensure = expect
+
+
+def _find_assertion_class(name):
+    try:
+        return getattr(verify, name)
+    except AttributeError:
+        pass
+
+    name_formatters = [
+        _class_format,
+        _to_be_prefix,
+        _is_prefix,
+        _reserved_names,
+    ]
+
+    for format_name in name_formatters:
+        new_name = format_name(name)
+        if new_name is None:
+            continue
+
+        try:
+            return getattr(verify, new_name)
+        except AttributeError:
+            pass
+
+    raise AttributeError(('"{0}" is not a valid assertion method'
+                          .format(name)))
+
+
+def _class_format(name):
+    new_name = [part.capitalize() for part in name.split('_')]
+    return ''.join(new_name)
+
+
+def _to_be_prefix(name):
+    return _prefixed_name(name, 'to_be_')
+
+
+def _is_prefix(name):
+    return _prefixed_name(name, 'is_')
+
+
+def _prefixed_name(name, prefix):
+    if re.match(prefix, name):
+        return _class_format(name[len(prefix):])
+
+
+def _reserved_names(name):
+    if name in ['does', 'passes', 'to_pass']:
+        return 'Predicate'
+    elif name in ['does_not', 'fails', 'to_fail']:
+        return 'Not'

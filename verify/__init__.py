@@ -158,9 +158,13 @@ from .containers import (
 
 from .numbers import (
     Greater,
+    GreaterThan,
     GreaterEqual,
+    GreaterOrEqual,
     Less,
+    LessThan,
     LessEqual,
+    LessOrEqual,
     Between,
     NotBetween,
     Positive,
@@ -176,6 +180,7 @@ from .numbers import (
 
 from .runners import (
     expect,
+    ensure,
 )
 
 
