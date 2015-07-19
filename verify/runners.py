@@ -8,6 +8,7 @@ from .base import Assertion, is_assertion
 
 
 __all__ = (
+    'ensure',
     'expect',
 )
 
@@ -55,6 +56,10 @@ class expect(object):
 
     Raises:
         AssertionError: If the evaluation of all assertions returns ``False``.
+
+    See Also:
+        - :class:`expect` (main definition)
+        - :class:`ensure` (alias)
 
     .. versionadded:: 0.0.1
 
