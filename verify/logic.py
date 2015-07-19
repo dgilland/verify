@@ -21,6 +21,10 @@ __all__ = (
 class Truthy(Assertion):
     """Asserts that `value` is truthy.
 
+    Aliases:
+        - ``to_be_truthy``
+        - ``is_truthy``
+
     .. versionadded:: 0.0.1
     """
     #:
@@ -28,14 +32,26 @@ class Truthy(Assertion):
     op = bool
 
 
+to_be_truthy = Truthy
+is_truthy = Truthy
+
+
 class Falsy(Assertion):
     """Asserts that `value` is falsy.
+
+    Aliases:
+        - ``to_be_falsy``
+        - ``is_falsy``
 
     .. versionadded:: 0.0.1
     """
     #:
     reason = '{0} is not falsy'
     op = pydash.negate(bool)
+
+
+to_be_falsy = Falsy
+is_falsy = Falsy
 
 
 class Not(Comparator):
@@ -52,6 +68,12 @@ class Not(Comparator):
         >>> Not(In([1, 2, 3]))(5)
         True
 
+    Aliases:
+        - ``not_``
+        - ``does_not``
+        - ``to_fail``
+        - ``fails``
+
     .. versionadded:: 0.0.1
     """
     #:
@@ -65,9 +87,20 @@ class Not(Comparator):
             return True
 
 
+not_ = Not
+does_not = Not
+to_fail = Not
+fails = Not
+
+
 class Predicate(Comparator):
     """Asserts that `value` evaluated by the predicate `comparable` is
     ``True``.
+
+    Aliases:
+        - ``does``
+        - ``to_pass``
+        - ``passes``
 
     .. versionadded:: 0.1.0
 
@@ -95,9 +128,19 @@ class Predicate(Comparator):
         return result
 
 
+does = Predicate
+to_pass = Predicate
+passes = Predicate
+
+
 class All(Comparator):
     """Asserts that `value` evaluates as truthy for **all** predicates in
     `comparable`.
+
+    Aliases:
+        - ``all_``
+        - ``does_all``
+        - ``passes_all``
 
     .. versionadded:: 0.2.0
     """
@@ -111,10 +154,19 @@ class All(Comparator):
         """
         return all(pydash.juxtapose(*comparable)(value))
 
+all_ = All
+does_all = All
+passes_all = All
+
 
 class NotAll(Negate, All):
     """Asserts that `value` evaluates as falsy for **all** predicates in
     `comparable`.
+
+    Aliases:
+        - ``to_be_not_all``
+        - ``does_not_all``
+        - ``fails_all``
 
     .. versionadded:: 0.5.0
     """
@@ -122,9 +174,19 @@ class NotAll(Negate, All):
     reason = '{0} is true for all {comparable}'
 
 
+not_all = NotAll
+does_not_all = NotAll
+fails_all = NotAll
+
+
 class Any(Comparator):
     """Asserts that `value` evaluates as truthy for **any** predicates in
     `comparable`.
+
+    Aliases:
+        - ``any_``
+        - ``does_any``
+        - ``passes_any``
 
     .. versionadded:: 0.2.0
     """
@@ -139,11 +201,26 @@ class Any(Comparator):
         return any(pydash.juxtapose(*comparable)(value))
 
 
+any_ = Any
+does_any = Any
+passes_any = Any
+
+
 class NotAny(Negate, Any):
     """Asserts that `value` evaluates as falsy for **any** predicates in
     `comparable`.
+
+    Aliases:
+        - ``not_any``
+        - ``does_not_any``
+        - ``fails_any``
 
     .. versionadded:: 0.5.0
     """
     #:
     reason = '{0} is true for some {comparable}'
+
+
+not_any = NotAny
+does_not_any = NotAny
+fails_any = NotAny

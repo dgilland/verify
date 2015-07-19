@@ -9,6 +9,7 @@ from verify import expect, ensure
 from .fixtures import (
     METHOD_CALL_CASES,
     METHOD_RAISE_CASES,
+    METHOD_ALIAS_CASES,
     raises_assertion,
     assert_truthy,
     make_parametrize_id
@@ -55,63 +56,18 @@ def test_expect_chaining():
 
 
 def test_expect_chain_method_proxy():
-    for method in [method for method in v.__all__ if method[0].isupper()]:
+    for method in [method for method in dir(v)
+                   if method[0].isupper() or method[:2] in ('to', 'is')]:
         assert getattr(v, method) is getattr(expect(None), method).assertion
 
 
-def test_expect_chain_method_proxy_in_method_format():
-    for method in [method for method in v.__all__ if method[0].isupper()]:
-        method_name = _method_format(method)
-        chained_assertion = getattr(expect(None), method_name)
-        assert getattr(v, method) is chained_assertion.assertion
-
-
-def test_expect_chain_method_proxy_in_method_format_with_to_be_prefix():
-    for method in [method for method in v.__all__ if method[0].isupper()]:
-        method_name = 'to_be_' + _method_format(method)
-        chained_assertion = getattr(expect(None), method_name)
-        assert getattr(v, method) is chained_assertion.assertion
-
-
-def test_special_aliases():
-    assert expect(None).does.assertion is v.Predicate
-    assert ensure(None).passes.assertion is v.Predicate
-    assert expect(None).to_pass.assertion is v.Predicate
-    assert expect(None).does_not.assertion is v.Not
-    assert ensure(None).fails.assertion is v.Not
-    assert expect(None).to_fail.assertion is v.Not
-    assert expect(None).is_.assertion is v.Is
-    assert expect(None).in_.assertion is v.In
-
-
-def test_expect_chain_method_proxy_in_method_format_with_is_prefix():
-    for method in [method for method in v.__all__ if method[0].isupper()]:
-        if method == 'Not':
-            # Name mismatch, is_not is translated to IsNot assertion.
-            continue
-        method_name = 'is_' + _method_format(method)
-        chained_assertion = getattr(expect(None), method_name)
-        assert getattr(v, method) is chained_assertion.assertion
-
-
-def _method_format(name):
-    result = []
-    for letter in name:
-        if letter.isupper():
-            result.append('_' + letter.lower())
-        else:
-            result.append(letter)
-    return ''.join(result)[1:]
-
-
-def test_expect_chain_invalid_method():
+@pytest.mark.parametrize('method', [
+    'nosuchmethod',
+    'expect'
+])
+def test_expect_chain_invalid_method(method):
     with pytest.raises(AttributeError):
-        expect(None).nosuchmethod
-
-
-def test_expect_chain_not_assertion():
-    with pytest.raises(AttributeError):
-        expect(None).expect
+        getattr(expect(None), method)
 
 
 @pytest.mark.parametrize('meth,value,arg',
@@ -144,12 +100,8 @@ def test_assert_raises(meth, value, arg):
     assert opts['msg'] in str(exc.value)
 
 
-@pytest.mark.parametrize('obj,alias', [
-    (expect, ensure),
-    (v.Greater, v.GreaterThan),
-    (v.GreaterEqual, v.GreaterOrEqual),
-    (v.Less, v.LessThan),
-    (v.LessEqual, v.LessOrEqual),
-])
+@pytest.mark.parametrize('obj,alias',
+                         METHOD_ALIAS_CASES,
+                         ids=make_parametrize_id)
 def test_aliases(obj, alias):
     assert obj is alias

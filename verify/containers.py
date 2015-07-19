@@ -30,6 +30,10 @@ __all__ = (
 class In(Comparator):
     """Asserts that `value` is in `comparable`.
 
+    Aliases:
+        - ``to_be_in``
+        - ``is_in``
+
     .. versionadded:: 0.0.1
     """
     #:
@@ -44,8 +48,16 @@ class In(Comparator):
             return False
 
 
+to_be_in = In
+is_in = In
+
+
 class NotIn(Negate, In):
     """Asserts that `value` is not in `comparable`.
+
+    Aliases:
+        - ``to_not_be_in``
+        - ``is_not_in``
 
     .. versionadded:: 0.5.0
     """
@@ -53,8 +65,16 @@ class NotIn(Negate, In):
     reason = '{0} is in {comparable}'
 
 
+to_not_be_in = NotIn
+is_not_in = NotIn
+
+
 class Contains(Comparator):
     """Asserts that `value` is an iterable and contains `comparable`.
+
+    Aliases:
+        - ``to_contain``
+        - ``does_contain``
 
     .. versionadded:: 0.2.0
     """
@@ -70,8 +90,16 @@ class Contains(Comparator):
             return False
 
 
+to_contain = Contains
+does_contain = Contains
+
+
 class NotContains(Negate, Contains):
     """Asserts that `value` does not contain `comparable`.
+
+    Aliases:
+        - ``to_not_contain``
+        - ``does_not_contain``
 
     .. versionadded:: 0.5.0
     """
@@ -79,8 +107,16 @@ class NotContains(Negate, Contains):
     reason = '{0} contains {comparable}'
 
 
+to_not_contain = NotContains
+does_not_contain = NotContains
+
+
 class ContainsOnly(Comparator):
     """Asserts that `value` is an iterable and only contains `comparable`.
+
+    Aliases:
+        - ``to_contain_only``
+        - ``does_contain_only``
 
     .. versionadded:: 0.2.0
     """
@@ -96,8 +132,16 @@ class ContainsOnly(Comparator):
             return False
 
 
+to_contain_only = ContainsOnly
+does_contain_only = ContainsOnly
+
+
 class NotContainsOnly(Negate, ContainsOnly):
     """Asserts that `value` does not contain only `comparable`.
+
+    Aliases:
+        - ``to_not_contain_only``
+        - ``does_not_contain_only``
 
     .. versionadded:: 0.5.0
     """
@@ -105,9 +149,17 @@ class NotContainsOnly(Negate, ContainsOnly):
     reason = '{0} contains only {comparable}'
 
 
+to_not_contain_only = NotContainsOnly
+does_not_contain_only = NotContainsOnly
+
+
 class Subset(Comparator):
     """Asserts that `value` is a subset of `comparable`. Comparison supports
     nested ``dict``, ``list``, and ``tuple`` objects.
+
+    Aliases:
+        - ``to_be_subset``
+        - ``is_subset``
 
     .. versionadded:: 0.3.0
     """
@@ -116,8 +168,16 @@ class Subset(Comparator):
     op = pydash.rearg(pydash.is_match, 1, 0)
 
 
+to_be_subset = Subset
+is_subset = Subset
+
+
 class NotSubset(Negate, Subset):
     """Asserts that `value` is a not a subset of `comparable`.
+
+    Aliases:
+        - ``to_not_be_subset``
+        - ``is_not_subset``
 
     .. versionadded:: 0.5.0
     """
@@ -125,9 +185,17 @@ class NotSubset(Negate, Subset):
     reason = '{0} is a subset of {comparable}'
 
 
+to_not_be_subset = NotSubset
+is_not_subset = NotSubset
+
+
 class Superset(Comparator):
     """Asserts that `value` is a superset of `comparable`. Comparison supports
     nested ``dict``, ``list``, and ``tuple`` objects.
+
+    Aliases:
+        - ``to_be_superset``
+        - ``is_superset``
 
     .. versionadded:: 0.3.0
     """
@@ -136,8 +204,16 @@ class Superset(Comparator):
     op = staticmethod(pydash.is_match)
 
 
+to_be_superset = Superset
+is_superset = Superset
+
+
 class NotSuperset(Negate, Superset):
     """Asserts that `value` is a not a superset of `comparable`.
+
+    Aliases:
+        - ``to_not_be_superset``
+        - ``is_not_superset``
 
     .. versionadded:: 0.5.0
     """
@@ -145,9 +221,17 @@ class NotSuperset(Negate, Superset):
     reason = '{0} is a superset of {comparable}'
 
 
+to_not_be_superset = NotSuperset
+is_not_superset = NotSuperset
+
+
 class Unique(Assertion):
     """Asserts that `value` contains only unique values. If `value` is a
     ``dict``, then its ``values()`` will be compared.
+
+    Aliases:
+        - ``to_be_unique``
+        - ``is_unique``
 
     .. versionadded:: 0.3.0
     """
@@ -171,13 +255,25 @@ class Unique(Assertion):
         return is_unique
 
 
+to_be_unique = Unique
+is_unique = Unique
+
+
 class NotUnique(Negate, Unique):
     """Asserts that `value` is a not a unique.
+
+    Aliases:
+        - ``to_not_be_unique``
+        - ``is_not_unique``
 
     .. versionadded:: 0.5.0
     """
     #:
     reason = '{0} is unique'
+
+
+to_not_be_unique = NotUnique
+is_not_unique = NotUnique
 
 
 class Length(Between):
@@ -209,6 +305,10 @@ class Length(Between):
         max (int, optional): Maximum value that `value` must be less than or
             equal to.
 
+    Aliases:
+        - ``to_have_length``
+        - ``has_length``
+
     .. versionadded:: 0.2.0
 
     .. versionchanged:: 0.4.0
@@ -233,11 +333,23 @@ class Length(Between):
             return False
 
 
+to_have_length = Length
+has_length = Length
+
+
 class NotLength(Negate, Length):
     """Asserts that `value` is an iterable with length not between `min` and
     `max` inclusively.
+
+    Aliases:
+        - ``to_not_have_length``
+        - ``has_not_length``
 
     .. versionadded:: 1.0.0
     """
     #:
     reason = '{0} has length between {min} and {max}'
+
+
+to_not_have_length = NotLength
+has_not_length = NotLength
