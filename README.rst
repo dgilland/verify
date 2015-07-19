@@ -265,14 +265,14 @@ Validator                           Description
 For more details, please see the full documentation at http://verify.readthedocs.org.
 
 
-.. |version| image:: http://img.shields.io/pypi/v/verify.svg?style=flat-square
+.. |version| image:: https://img.shields.io/pypi/v/verify.svg?style=flat-square
     :target: https://pypi.python.org/pypi/verify/
 
-.. |travis| image:: http://img.shields.io/travis/dgilland/verify/master.svg?style=flat-square
+.. |travis| image:: https://img.shields.io/travis/dgilland/verify/master.svg?style=flat-square
     :target: https://travis-ci.org/dgilland/verify
 
-.. |coveralls| image:: http://img.shields.io/coveralls/dgilland/verify/master.svg?style=flat-square
+.. |coveralls| image:: https://img.shields.io/coveralls/dgilland/verify/master.svg?style=flat-square
     :target: https://coveralls.io/r/dgilland/verify
 
-.. |license| image:: http://img.shields.io/pypi/l/verify.svg?style=flat-square
+.. |license| image:: https://img.shields.io/pypi/l/verify.svg?style=flat-square
     :target: https://pypi.python.org/pypi/verify/
