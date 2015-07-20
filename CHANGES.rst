@@ -4,6 +4,10 @@ Changelog
 =========
 
 
+- Add ``ensure`` as alias of ``expect``.
+- Add ``to_be_*`` and ``is_*`` aliases for all assertions.
+
+
 v1.0.0 (2015-05-15)
 -------------------
 
