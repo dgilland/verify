@@ -60,7 +60,8 @@ Verify using your own assert functions:
 
 **NOTE:** The assert function should return a truthy value, otherwise, ``expect`` will treat the falsy return from the function as an indication that it failed and subsequently raise it's own ``AssertionError``.
 
-Or your own predicate functions:
+
+Verify using your own predicate functions:
 
 
 .. code-block:: python
@@ -74,14 +75,15 @@ Or your own predicate functions:
     expect('so awesome', is_awesome, is_more_awesome)
 
 
-Or use chaining syntax:
+Verify using chaining syntax:
+
 
 .. code-block:: python
 
     expect(1).Truthy().Number().NotBoolean().Not(is_awesome)
 
 
-But you don't have to use ``expect`` since the ``verify`` assertions can also be used on their own:
+Verify without ``expect`` since the ``verify`` assertions can be used on their own:
 
 
 .. code-block:: python
@@ -99,7 +101,7 @@ But you don't have to use ``expect`` since the ``verify`` assertions can also be
     verify.Greater(2, 3)
 
 
-And if you'd prefer to see ``assert`` being used, all ``verify`` assertions will return truthy if no ``AssertionError`` is raised:
+If you'd prefer to see ``assert`` being used, all ``verify`` assertions will return ``True`` if no ``AssertionError`` is raised:
 
 
 .. code-block:: python
@@ -107,73 +109,71 @@ And if you'd prefer to see ``assert`` being used, all ``verify`` assertions will
     assert Truthy(1)
     assert expect(1, Truthy(), Number())
 
-More natural syntax
-===================
 
-You can also use more natural syntax using ``ensure`` alias for ``expect`` and
-prefixes ``to_be_*`` or ``is_*``:
+Multiple Syntax Styles
+======================
 
-.. code-block:: python
-
-    expect(some_var).to_be_int().to_be_less_or_equal(5).to_be_not_list()
-    ensure(some_var).is_int().is_less_or_equal(5).is_not_list()
-    # Both above lines are the same as:
-    expect(some_var).Int().LessOrEqual(5).NotList()
-
-All assertions can be also used in snake case format:
-
-.. code-block:: python
-
-    expect(value).contains(5)
-    # The same as:
-    expect(value).Contains(5)
-
-    expect(value).not_in(some_set)
-    # The same as:
-    expect(value).NotIn(some_set)
-
-There are few special cases:
-
-* ``Not`` is available through ``does_not``, ``fails`` and ``to_fail``
-* ``Predicate`` is available through ``does``, ``passes`` and ``to_pass``
-* ``Is`` is available through ``is_``
-* ``In`` is available through ``in_``
-
-.. code-block:: python
-
-    def have_access_rights(user):
-        return user.is_admin is True
-
-    expect(user).does(have_access_rights)
-    expect(user).to_pass(have_access_rights)
-    ensure(user).passes(have_access_rights)
-    # Equal to:
-    expect(user).Predicate(have_access_rights)
-
-    expect(user).does_not(have_access_rights)
-    expect(user).to_fail(have_access_rights)
-    ensure(user).fails(have_access_rights)
-    # Equal to:
-    expect(user).Not(have_access_rights)
-
-    ensure(some_value).in_(some_set)
-    # Equal to:
-    ensure(some_value).In(some_set)
-
-    ensure(result).is_(MyClass)
-    # Equal to:
-    ensure(result).Is(MyClass)
+There are several syntax styles available to help construct more natural sounding assertion chains.
 
 
-Reserved names
+Expect...To Be
 --------------
 
-Things that don't work as expected:
+Use ``expect`` with the ``to_be`` aliases. All Pascal case assertions have ``to_be_*`` and ``to_not_be_*`` prefixes (with a few expections).
 
 .. code-block:: python
 
-    expect(value).is_not(predicate)  # translated into IsNot assertion
-    expect('v').in('verify')  # syntax error, try `to_be_in`
+    expect(something).to_be_int().to_be_less_or_equal(5).to_be_greater_or_equal(1)
+    expect(something_else).to_not_be_float().to_be_number()
+
+
+Ensure...Is
+-----------
+
+Use ``ensure`` with ``is`` aliases. All Pascal case assertions have ``is_*`` and ``is_not_*`` prefixes (with a few expections).
+
+
+.. code-block:: python
+
+    ensure(something).is_int().is_less_or_equal(5).is_greater_or_equal(1)
+    ensure(something_else).is_not_float().is_number()
+
+
+Classical
+---------
+
+Use ``expect`` or ``ensure`` with the Pascal case assertions.
+
+.. code-block:: python
+
+    ensure(something).Int().LessOrEqual(5).GreaterOrEqual(1)
+    expect(something_else).Float().Number()
+
+
+**NOTE:** While it's suggested to not mix styles, each of the assertion syntaxes are available with both ``expect`` and ``ensure``. So you can call ``expect(..).is_int()`` as well as ``ensure(..).to_be_int()``.
+
+
+Naming Convention Exceptions
+----------------------------
+
+As mentioned above, there are some assertions that have nonstandard aliases:
+
+- ``Not``:  ``not_``, ``does_not``, ``to_fail``, and ``fails``
+- ``Predicate``: ``does``, ``to_pass``, and ``passes``
+- ``All``: ``all_``, ``does_all``, and ``passes_all``
+- ``NotAll``: ``not_all``, ``does_not_all``, and ``fails_all``
+- ``Any``: ``any_``, ``does_any``, and ``passes_any``
+- ``NotAny``: ``not_any``, ``does_not_any``, and ``fails_any``
+- ``Match``: ``to_match``, ``is_match`` and ``matches``
+- ``NotMatch``: ``to_not_match``, ``is_not_match`` and ``does_not_match``
+- ``Is``: ``to_be`` and ``is_``
+- ``Contains``: ``to_contain`` and ``contains``
+- ``NotContains``: ``to_not_contain`` and ``does_not_contain``
+- ``ContainsOnly``: ``to_contain_only`` and ``contains_only``
+- ``NotContainsOnly``: ``to_not_contain_only`` and ``does_not_contain_only``
+- ``Length``: ``to_have_length`` and ``has_length``
+- ``NotLength``: ``to_not_have_length`` and ``does_not_have_length``
+
 
 Validators
 ==========
