@@ -73,7 +73,7 @@ class Match(Comparator):
             regular expression is a string. Defaults to ``0``.
 
     Aliases:
-        - ``to_be_match``
+        - ``to_match``
         - ``is_match``
         - ``matches``
 
@@ -103,7 +103,7 @@ class Match(Comparator):
         return match
 
 
-to_be_match = Match
+to_match = Match
 is_match = Match
 matches = Match
 
@@ -122,9 +122,9 @@ class NotMatch(Negate, Match):
     reason = '{0} matches the regular expression {comparable}'
 
 
-to_not_be_match = NotMatch
-is_not_match = NotMatch
-not_matches = NotMatch
+to_not_match = NotMatch
+is_not_match = Match
+does_not_match = NotMatch
 
 
 class Is(Comparator):

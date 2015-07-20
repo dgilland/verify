@@ -74,7 +74,7 @@ class Contains(Comparator):
 
     Aliases:
         - ``to_contain``
-        - ``does_contain``
+        - ``contains``
 
     .. versionadded:: 0.2.0
     """
@@ -91,7 +91,7 @@ class Contains(Comparator):
 
 
 to_contain = Contains
-does_contain = Contains
+contains = Contains
 
 
 class NotContains(Negate, Contains):
@@ -116,7 +116,7 @@ class ContainsOnly(Comparator):
 
     Aliases:
         - ``to_contain_only``
-        - ``does_contain_only``
+        - ``contains_only``
 
     .. versionadded:: 0.2.0
     """
@@ -133,7 +133,7 @@ class ContainsOnly(Comparator):
 
 
 to_contain_only = ContainsOnly
-does_contain_only = ContainsOnly
+contains_only = ContainsOnly
 
 
 class NotContainsOnly(Negate, ContainsOnly):
@@ -343,7 +343,7 @@ class NotLength(Negate, Length):
 
     Aliases:
         - ``to_not_have_length``
-        - ``has_not_length``
+        - ``does_not_have_length``
 
     .. versionadded:: 1.0.0
     """
@@ -352,4 +352,4 @@ class NotLength(Negate, Length):
 
 
 to_not_have_length = NotLength
-has_not_length = NotLength
+does_not_have_length = NotLength
