@@ -95,6 +95,12 @@ class expect(object):
         """
         assertion = getattr(verify, attr, None)
 
+        if not callable(assertion) and not attr.endswith('_'):
+            # Alias method names not ending in underscore to their underscore
+            # counterpart. This allows chaining of functions that have a name
+            # conflict with builtins (e.g. "any_", "all_", etc).
+            assertion = getattr(verify, attr + '_', None)
+
         if not is_assertion(assertion):
             raise AttributeError(('"{0}" is not a valid assertion method'
                                   .format(attr)))
