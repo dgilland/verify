@@ -36,7 +36,7 @@ def test_expect_predicates(value, predicates):
 
 @pytest.mark.parametrize('value,predicates', [
     (True, (pydash.is_boolean, pydash.is_number)),
-    (True, (pydash.is_int, pydash.identity)),
+    (True, (pydash.is_integer, pydash.identity)),
 ])
 def test_expect_predicates_raises(value, predicates):
     """Test that Expect handles multiple predicates that returns boolean

@@ -339,7 +339,7 @@ class Int(Assertion):
     """
     #:
     reason = '{0} is not an integer'
-    op = staticmethod(pydash.is_int)
+    op = staticmethod(pydash.is_integer)
 
 
 to_be_int = Int
