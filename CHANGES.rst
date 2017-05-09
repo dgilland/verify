@@ -4,6 +4,9 @@ Changelog
 =========
 
 
+v1.1.1 (2017-05-09)
+-------------------
+
 - Fix compatibility with pydash v4.
 
 
